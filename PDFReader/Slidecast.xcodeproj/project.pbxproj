@@ -41,6 +41,7 @@
 		45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D9699E1553058E00338688 /* CPDFPageViewController.m */; };
 		45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D969CC1553177800338688 /* CPDFAnnotationView.m */; };
 		45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */; };
+		5FE9460818D7828700215162 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9460718D7828700215162 /* Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		45D969CC1553177800338688 /* CPDFAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFAnnotationView.m; sourceTree = "<group>"; };
 		45F9FAF81582D495004D267B /* CFadelessTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFadelessTiledLayer.h; sourceTree = "<group>"; };
 		45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFadelessTiledLayer.m; sourceTree = "<group>"; };
+		5FE9460618D7828700215162 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		5FE9460718D7828700215162 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 		45024C2A1310CEC100BB3E3D = {
 			isa = PBXGroup;
 			children = (
+				5FE9460618D7828700215162 /* Utilities.h */,
+				5FE9460718D7828700215162 /* Utilities.m */,
 				4539023017809F2200C3CC47 /* Default-568h@2x.png */,
 				4556998815507139009E52FE /* Slidecast */,
 				455699B715507141009E52FE /* Source */,
@@ -367,6 +372,7 @@
 				455699FB155071A5009E52FE /* NSFileManager_BugFixExtensions.m in Sources */,
 				45D9699B1552F8F600338688 /* CPDFAnnotation.m in Sources */,
 				45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */,
+				5FE9460818D7828700215162 /* Utilities.m in Sources */,
 				45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */,
 				45C25DD6155335AC001BA233 /* CPDFStream.m in Sources */,
 				45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */,
