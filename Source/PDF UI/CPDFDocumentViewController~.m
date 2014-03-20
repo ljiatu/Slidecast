@@ -55,13 +55,14 @@
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
 @property (readwrite, nonatomic, strong) UIImage *pagePlaceholderImage;
 @property (readonly, nonatomic, strong) NSArray *pages;
+@property NSString *imageDirectoryPath;
 @property (strong, nonatomic) NSTimer * timer;
 @property (strong, nonatomic) NSDate * date;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property PWCUtilities * notes;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property PWCUtilities * notes;
-@property NSString *imageDirectoryPath;
+
 
 - (void)hideChrome;
 - (void)toggleChrome;

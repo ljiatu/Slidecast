@@ -1,6 +1,6 @@
 //
 //  main.m
-//  Slidcast
+//  iOS-PDF-Reader
 //
 //  Created by Jonathan Wight on 02/19/11.
 //  Copyright 2012 Jonathan Wight. All rights reserved.
