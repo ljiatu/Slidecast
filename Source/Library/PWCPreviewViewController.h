@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class CPDFDocument;
+@class GCKMediaControlChannel;
+@class GCKDeviceManager;
 
 @interface PWCPreviewViewController : UIViewController
 
 @property (strong, nonatomic) NSURL *documentURL;
 @property (strong, nonatomic) CPDFDocument *document;
+
+@property GCKDeviceManager *deviceManager;
+@property GCKMediaControlChannel *mediaControlChannel;
 
 @end

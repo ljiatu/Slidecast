@@ -89,8 +89,13 @@
     CGPDFDictionaryRef theInfo = CGPDFDocumentGetInfo(self.cg);
     CGPDFStringRef thePDFTitle = NULL;
     CGPDFDictionaryGetString(theInfo, "Title", &thePDFTitle);
-    NSString *theTitle = (__bridge_transfer NSString *)CGPDFStringCopyTextString(thePDFTitle);
-    return(theTitle);
+    NSString *title = (__bridge_transfer NSString *)CGPDFStringCopyTextString(thePDFTitle);
+    if ([title rangeOfString:@"."].location != NSNotFound) {
+        // if title contains the suffix ".pdf" or ".ppt", get rid of the suffix
+        return [[title componentsSeparatedByString:@"."] objectAtIndex:0];
+    } else {
+        return title;
+    }
 }
 
 #pragma mark -

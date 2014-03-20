@@ -30,10 +30,19 @@
 //  or implied, of Jonathan Wight.
 
 #import <UIKit/UIKit.h>
+#import <GoogleCast/GoogleCast.h>
 
-@interface CLibraryViewController : UITableViewController
+@interface CLibraryViewController : UITableViewController<GCKDeviceScannerListener,
+                                                          GCKDeviceManagerDelegate,
+                                                          GCKMediaControlChannelDelegate,
+                                                          UIActionSheetDelegate>
 
 @property (readwrite, nonatomic, strong) NSArray *URLs;
+
+@property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
+@property(nonatomic, strong) UIButton* chromecastButton;
+@property(nonatomic, strong) GCKDeviceManager* deviceManager;
+@property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 

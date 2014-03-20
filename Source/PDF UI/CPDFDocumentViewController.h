@@ -35,6 +35,8 @@
 @class CContentScrollView;
 @class CPreviewBar;
 @class CPDFPage;
+@class GCKMediaControlChannel;
+@class GCKDeviceManager;
 
 @interface CPDFDocumentViewController : UIViewController
 
@@ -42,6 +44,9 @@
 @property (readonly, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) UIView *backgroundView;
 @property (readwrite, nonatomic, assign) BOOL magazineMode;
+
+@property GCKDeviceManager *deviceManager;
+@property GCKMediaControlChannel *mediaControlChannel;
 
 - (BOOL)openPage:(CPDFPage *)inPage;
 

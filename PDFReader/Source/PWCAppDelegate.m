@@ -44,19 +44,17 @@
 {
     if ([url isFileURL])
     {
-        NSString *theDocumentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
-        NSURL *theDestinationURL = [[NSURL fileURLWithPath:theDocumentsPath] URLByAppendingPathComponent:[url lastPathComponent]];
+        NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath] URLByAppendingPathComponent:[url lastPathComponent]];
         
-        NSError *theError = NULL;
-        NSFileManager *manager = [NSFileManager defaultManager];
-        BOOL theResult = [manager moveItemAtURL:url toURL:theDestinationURL error:&theError];
-        if (theResult == YES)
+        BOOL result = [[NSFileManager defaultManager] moveItemAtURL:url toURL:destinationURL error:nil];
+        if (result == YES)
         {
             NSMutableDictionary *theUserInfo = [NSMutableDictionary dictionary];
-            if (theDestinationURL != NULL)
+            if (destinationURL != NULL)
             {
-                theUserInfo[@"URL"] = theDestinationURL;
+                theUserInfo[@"URL"] = destinationURL;
             }
             if (sourceApplication != NULL)
             {
@@ -68,23 +66,36 @@
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidOpenURL" object:application userInfo:theUserInfo];
             
-            CPDFDocument *document = [[CPDFDocument alloc] initWithURL:theDestinationURL];
-            NSString *folderName = [NSString stringWithFormat:@"/%@", document.title];
-            
-            // create new folder
-            NSString *newFolderName = [theDocumentsPath stringByAppendingString:folderName];
-            [manager createDirectoryAtPath:newFolderName withIntermediateDirectories:NO attributes:nil error:&theError];
-            
-            // create a jpeg file for each page of the pdf file
-            for (int i = 0; i < document.numberOfPages; ++i) {
-                NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpg", newFolderName, i];
-                [UIImageJPEGRepresentation([[document pageForPageNumber:i] image], 1.0) writeToFile:jpegPath atomically:YES];
+            if (![self createImagesForSlides:documentsPath destinationURL:destinationURL]) {
+                // return NO if failed to create images for slides
+                return NO;
             }
         }
         
-        return theResult;
+        return result;
     }
     return NO;
+}
+
+- (BOOL)createImagesForSlides:(NSString *)documentsPath destinationURL:(NSURL *)destinationURL
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    CPDFDocument *document = [[CPDFDocument alloc] initWithURL:destinationURL];
+    NSString *folderName = [NSString stringWithFormat:@"/%@", document.title];
+    
+    // create new folder
+    NSString *newFolderPath = [documentsPath stringByAppendingString:folderName];
+    BOOL result = [manager createDirectoryAtPath:newFolderPath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    // create a jpeg file for each page of the pdf file
+    for (int i = 1; i <= document.numberOfPages; ++i) {
+        NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpg", newFolderPath, i];
+        [UIImageJPEGRepresentation([[document pageForPageNumber:i] image], 1.0) writeToFile:jpegPath atomically:YES];
+        
+        //UIImageWriteToSavedPhotosAlbum([[document pageForPageNumber:i] image], nil, nil, nil);
+    }
+    
+    return result;
 }
 
 @end

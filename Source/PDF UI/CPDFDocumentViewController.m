@@ -32,6 +32,7 @@
 #import "CPDFDocumentViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import <GoogleCast/GoogleCast.h>
 
 #import "CPDFDocument.h"
 #import "CPDFPageViewController.h"
@@ -40,6 +41,7 @@
 #import "CContentScrollView.h"
 #import "Geometry.h"
 #import "CPreviewCollectionViewCell.h"
+#import "PWCUtilities.h"
 
 @interface CPDFDocumentViewController () <CPDFDocumentDelegate, UIPageViewControllerDelegate,
                                           UIPageViewControllerDataSource, UIGestureRecognizerDelegate,
@@ -53,6 +55,14 @@
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
 @property (readwrite, nonatomic, strong) UIImage *pagePlaceholderImage;
 @property (readonly, nonatomic, strong) NSArray *pages;
+@property NSString *imageDirectoryPath;
+@property (strong, nonatomic) NSTimer * timer;
+@property (strong, nonatomic) NSDate * date;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property PWCUtilities * notes;
+@property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
 
 - (void)hideChrome;
 - (void)toggleChrome;
@@ -89,6 +99,39 @@
 }
 
 #pragma mark -
+- (void)updateTimer
+{
+    // Create date from the elapsed time
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
+    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    // Create a date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss.SSS"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+    
+    // Format the elapsed time and set it to the label
+    NSString *timeString = [dateFormatter stringFromDate:timerDate];
+    self.timeLabel.text = timeString;
+}
+
+- (void)action:(id)sender
+{
+    if([self.segmentedControl selectedSegmentIndex] == 0)
+    {
+        NSLog(@"here1\n");
+        self.previewCollectionView.hidden = NO;
+        self.noteText.hidden = YES;
+    }
+    if([self.segmentedControl selectedSegmentIndex] == 1)
+    {
+        NSLog(@"here2\n");
+        self.previewCollectionView.hidden = YES;
+        self.previewCollectionView.opaque = NO;
+        self.noteText.hidden = NO;
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -108,6 +151,14 @@
     
     // #########################################################################
     
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                  target:self
+                                                selector:@selector(updateTimer)
+                                                userInfo:nil
+                                                 repeats:YES];
+    self.date = [NSDate date];
+    self.notes = [[PWCUtilities alloc] init];
+    
     NSDictionary *theOptions = @{ UIPageViewControllerOptionSpineLocationKey: [NSNumber numberWithInt:theSpineLocation] };
     
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:theOptions];
@@ -121,6 +172,13 @@
     }
     NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
     [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    CPDFPageViewController *theFirstViewController = theViewControllers[0];
+    [self.notes openNotesWithFilename:theFirstViewController.page.document.title
+                              andPath:path
+                           andPageNum:theFirstViewController.page.document.numberOfPages];
+    [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
     
     [self addChildViewController:self.pageViewController];
     
@@ -159,7 +217,11 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    [self updateTitle];
+    [self updateTitleAndCastImage];
+    
+    // set the image directory path
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    self.imageDirectoryPath = [documentsPath stringByAppendingString:[NSString stringWithFormat:@"/%@", self.document.title]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -195,7 +257,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self updateTitle];
+    [self updateTitleAndCastImage];
     [self.renderedPageCache removeAllObjects];
     [self populateCache];
 }
@@ -223,16 +285,44 @@
     }];
 }
 
-- (void)updateTitle
+- (void)updateTitleAndCastImage
 {
     NSArray *theViewControllers = self.pageViewController.viewControllers;
     if (theViewControllers.count == 1) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
-        self.title = [NSString stringWithFormat:@"Page %d", theFirstViewController.page.pageNumber];
+        NSInteger pageNumber = theFirstViewController.page.pageNumber;
+        self.title = [NSString stringWithFormat:@"Page %d", pageNumber];
+        
+        [self.noteText setText:[self.notes getNoteAtIndex:(theFirstViewController.page.pageNumber - 1)]];
+        // cast image of the page
+        //[self castImageOfPageNumber:pageNumber];
     } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
         self.title = [NSString stringWithFormat:@"Pages %d-%d", theFirstViewController.page.pageNumber, theSecondViewController.page.pageNumber];
+    }
+}
+
+- (void)castImageOfPageNumber:(NSInteger)pageNumber
+{
+    // send images to the device if connected
+    if (self.deviceManager && self.deviceManager.isConnected) {
+        // search for the image
+        NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
+        NSString *imagePath = [self.imageDirectoryPath stringByAppendingString:imageName];
+        
+        // load the data
+        GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
+        GCKMediaInformation *mediaInformation =
+        [[GCKMediaInformation alloc] initWithContentID:imagePath
+                                            streamType:GCKMediaStreamTypeNone
+                                           contentType:@"image/jpeg"
+                                              metadata:metadata
+                                        streamDuration:0
+                                            customData:nil];
+        
+        // cast the image
+        [self.mediaControlChannel loadMedia:mediaInformation];
     }
 }
 
@@ -329,7 +419,7 @@
     UIPageViewControllerNavigationDirection theDirection = inPage.pageNumber > theCurrentPageViewController.pageNumber ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
     [self.pageViewController setViewControllers:theViewControllers direction:theDirection animated:YES completion:NULL];
-    [self updateTitle];
+    [self updateTitleAndCastImage];
     
     [self populateCache];
     
@@ -443,7 +533,7 @@
     if (theNextPageNumber > self.document.numberOfPages)
     {
         //thealch3m1st: if we are in two page mode and the document has an even number of pages if it would just return NULL it woudln't flip to that last page so we have to return a an empty page for the (number of pages + 1)th page.
-        if(self.document.numberOfPages %2 == 0 &&
+        if(self.document.numberOfPages % 2 == 0 &&
            theNextPageNumber == self.document.numberOfPages + 1 &&
            self.pageViewController.spineLocation == UIPageViewControllerSpineLocationMid)
             return [self pageViewControllerWithPage:NULL];
@@ -460,7 +550,7 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed;
 {
-    [self updateTitle];
+    [self updateTitleAndCastImage];
     [self populateCache];
     [self hideChrome];
     

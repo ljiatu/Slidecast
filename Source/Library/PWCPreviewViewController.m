@@ -11,14 +11,13 @@
 #import "CPDFDocumentViewController.h"
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
+#import "PWCNotesViewController.h"
 
 @interface PWCPreviewViewController ()
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *presentationTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *presentationPreview;
 @property (weak, nonatomic) IBOutlet UILabel *numberSlides;
-@property (weak, nonatomic) IBOutlet UISwitch *timeSwitch;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *displayInfoSwitch;
 
 @end
 
@@ -44,13 +43,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // set title
-    NSString *title = self.document.title;
-    if ([title rangeOfString:@"."].location != NSNotFound) {
-        // if title contains the suffix ".pdf" or ".ppt"
-        self.presentationTitle.title = [[title componentsSeparatedByString:@"."] objectAtIndex:0];
-    } else {
-        self.presentationTitle.title = title;
-    }
+    self.presentationTitle.title = self.document.title;
     
     // display preview of the presentation
     CPDFPage *firstPage = [self.document pageForPageNumber:1];
@@ -71,9 +64,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"viewSegue"]) {
-        // pass the document document view controller
+        // pass the document to the document view controller
         CPDFDocumentViewController *destination = segue.destinationViewController;
         destination.document = self.document;
+        
+        // pass the device manager and the media control channel to the document view controller
+        destination.deviceManager = self.deviceManager;
+        destination.mediaControlChannel = self.mediaControlChannel;
+    } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
+        NSLog(@"Preparing to go to NotesViewController\n");
+        PWCNotesViewController * dest  = segue.destinationViewController;
+        NSLog(@"%@\n", self.document.title);
+        dest.docTitle               = self.document.title;
+        dest.pageNum                = self.document.numberOfPages;
     }
 }
 
