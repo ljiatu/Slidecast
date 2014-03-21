@@ -37,7 +37,6 @@
 @class CPDFPage;
 @class GCKMediaControlChannel;
 @class GCKDeviceManager;
-@class HTTPServer;
 
 @interface CPDFDocumentViewController : UIViewController
 
@@ -48,7 +47,6 @@
 
 @property GCKDeviceManager *deviceManager;
 @property GCKMediaControlChannel *mediaControlChannel;
-@property HTTPServer *httpServer;
 
 - (BOOL)openPage:(CPDFPage *)inPage;
 

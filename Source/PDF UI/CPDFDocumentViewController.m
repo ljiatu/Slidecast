@@ -33,6 +33,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <GoogleCast/GoogleCast.h>
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 #import "CPDFDocument.h"
 #import "CPDFPageViewController.h"
@@ -42,6 +44,7 @@
 #import "Geometry.h"
 #import "CPreviewCollectionViewCell.h"
 #import "PWCUtilities.h"
+#import "HTTPServer.h"
 
 @interface CPDFDocumentViewController () <CPDFDocumentDelegate, UIPageViewControllerDelegate,
                                           UIPageViewControllerDataSource, UIGestureRecognizerDelegate,
@@ -62,6 +65,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property PWCUtilities * notes;
 @property NSString *imageDirectoryPath;
+@property NSString *ipAddress;
 
 - (void)hideChrome;
 - (void)toggleChrome;
@@ -216,11 +220,18 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    [self updateTitleAndCastImage];
-    
     // set the image directory path
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.imageDirectoryPath = [documentsPath stringByAppendingString:[NSString stringWithFormat:@"/%@", self.document.title]];
+    
+    // get the ip address of the phone
+    self.ipAddress = [self getIPAddress];
+    NSLog(@"%@", self.ipAddress);
+    
+    // set server's document root directory to be the image directory
+    [self.httpServer setDocumentRoot:self.imageDirectoryPath];
+    
+    [self updateTitleAndCastImage];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -242,6 +253,34 @@
     [super viewDidAppear:animated];
     
     [self performSelector:@selector(hideChrome) withObject:NULL afterDelay:0.5];
+}
+
+- (NSString *)getIPAddress {
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr -> ifa_addr -> sa_family == AF_INET) {
+                // check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr -> ifa_name] isEqualToString:@"en0"]) {
+                    // get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr -> ifa_addr) -> sin_addr)];
+                    
+                }
+                
+            }
+            temp_addr = temp_addr -> ifa_next;
+        }
+    }
+    // free memory
+    freeifaddrs(interfaces);
+    return address;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -294,8 +333,8 @@
         
         [self.noteText setText:[self.notes getNoteAtIndex:(theFirstViewController.page.pageNumber - 1)]];
         // cast image of the page
-        //[self castImageOfPageNumber:pageNumber];
-    } else if (theViewControllers.count == 2) {
+        [self castImageOfPageNumber:pageNumber];
+        } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
         self.title = [NSString stringWithFormat:@"Pages %d-%d", theFirstViewController.page.pageNumber, theSecondViewController.page.pageNumber];
@@ -309,11 +348,12 @@
         // search for the image
         NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
         NSString *imagePath = [self.imageDirectoryPath stringByAppendingString:imageName];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@", self.ipAddress, imagePath];
         
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
         GCKMediaInformation *mediaInformation =
-        [[GCKMediaInformation alloc] initWithContentID:imagePath
+        [[GCKMediaInformation alloc] initWithContentID:imageWebPath
                                             streamType:GCKMediaStreamTypeNone
                                            contentType:@"image/jpeg"
                                               metadata:metadata

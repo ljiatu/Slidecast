@@ -43,6 +43,9 @@
 #import "CPreviewCollectionViewCell.h"
 #import "PWCUtilities.h"
 
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
 @interface CPDFDocumentViewController () <CPDFDocumentDelegate, UIPageViewControllerDelegate,
                                           UIPageViewControllerDataSource, UIGestureRecognizerDelegate,
                                           CPDFPageViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource,
@@ -55,14 +58,14 @@
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
 @property (readwrite, nonatomic, strong) UIImage *pagePlaceholderImage;
 @property (readonly, nonatomic, strong) NSArray *pages;
-@property NSString *imageDirectoryPath;
 @property (strong, nonatomic) NSTimer * timer;
 @property (strong, nonatomic) NSDate * date;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property PWCUtilities * notes;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-
+@property PWCUtilities * notes;
+@property NSString *imageDirectoryPath;
+@property NSString *ipAddress;
 
 - (void)hideChrome;
 - (void)toggleChrome;
@@ -222,6 +225,10 @@
     // set the image directory path
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.imageDirectoryPath = [documentsPath stringByAppendingString:[NSString stringWithFormat:@"/%@", self.document.title]];
+    
+    // get the ip address of the phone
+    self.ipAddress = [self getIPAddress];
+    NSLog(@"%@", self.ipAddress);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -243,6 +250,34 @@
     [super viewDidAppear:animated];
     
     [self performSelector:@selector(hideChrome) withObject:NULL afterDelay:0.5];
+}
+
+- (NSString *)getIPAddress {
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr -> ifa_addr -> sa_family == AF_INET) {
+                // check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr -> ifa_name] isEqualToString:@"en0"]) {
+                    // get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr -> ifa_addr) -> sin_addr)];
+                    
+                }
+                
+            }
+            temp_addr = temp_addr -> ifa_next;
+        }
+    }
+    // free memory
+    freeifaddrs(interfaces);
+    return address;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

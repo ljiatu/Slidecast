@@ -1,8 +1,8 @@
 //
-//  iOS-PDF-ReaderViewController.h
+//  CLibraryViewController.h
 //  iOS-PDF-Reader
 //
-//  Created by Jonathan Wight on 02/19/11.
+//  Created by Jonathan Wight on 05/31/11.
 //  Copyright 2012 Jonathan Wight. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are
@@ -30,26 +30,20 @@
 //  or implied, of Jonathan Wight.
 
 #import <UIKit/UIKit.h>
+#import <GoogleCast/GoogleCast.h>
 
-@class CPDFDocument;
-@class CContentScrollView;
-@class CPreviewBar;
-@class CPDFPage;
-@class GCKMediaControlChannel;
-@class GCKDeviceManager;
-@class HTTPServer;
+@interface CLibraryViewController : UITableViewController<GCKDeviceScannerListener,
+                                                          GCKDeviceManagerDelegate,
+                                                          GCKMediaControlChannelDelegate,
+                                                          UIActionSheetDelegate>
 
-@interface CPDFDocumentViewController : UIViewController
+@property (readwrite, nonatomic, strong) NSArray *URLs;
 
-@property (readwrite, nonatomic, strong) CPDFDocument *document;
-@property (readonly, nonatomic, strong) UIPageViewController *pageViewController;
-@property (readwrite, nonatomic, strong) UIView *backgroundView;
-@property (readwrite, nonatomic, assign) BOOL magazineMode;
+@property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
+@property(nonatomic, strong) UIButton* chromecastButton;
+@property(nonatomic, strong) GCKDeviceManager* deviceManager;
+@property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
 
-@property GCKDeviceManager *deviceManager;
-@property GCKMediaControlChannel *mediaControlChannel;
-@property HTTPServer *httpServer;
-
-- (BOOL)openPage:(CPDFPage *)inPage;
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
 @end

@@ -35,12 +35,7 @@
 #import "CPDFDocument.h"
 #import "NSFileManager_BugFixExtensions.h"
 #import "PWCPreviewViewController.h"
-#import "HTTPServer.h"
-#import "DDLog.h"
-#import "DDTTYLogger.h"
 
-// Log levels: off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static NSString *const kReceiverAppID = @"2CFA780B";
 
 @interface CLibraryViewController ()
@@ -113,31 +108,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     self.deviceScanner = [[GCKDeviceScanner alloc] init];
     [self.deviceScanner addListener:self];
     [self.deviceScanner startScan];
-    
-    if (self.httpServer == nil) {
-        // set up http server
-        // Configure our logging framework.
-        // To keep things simple and fast, we're just going to log to the Xcode console.
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
-        
-        // Create server using our custom MyHTTPServer class
-        self.httpServer = [[HTTPServer alloc] init];
-        
-        // Tell the server to broadcast its presence via Bonjour.
-        // This allows browsers such as Safari to automatically discover our service.
-        [self.httpServer setType:@"_http._tcp."];
-        
-        // Normally there's no need to run our server on any specific port.
-        // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
-        // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-        // [httpServer setPort:12345];
-        
-        // Serve files from our embedded Web folder
-        //NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
-        //DDLogInfo(@"Setting document root: %@", webPath);
-        
-        //[self.httpServer setDocumentRoot:webPath];
-    }
 }
 
 - (void)viewDidUnload
@@ -168,35 +138,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-}
-
-- (void)startServer
-{
-    // Start the server (and check for problems)
-	
-	NSError *error;
-	if([self.httpServer start:&error])
-	{
-		DDLogInfo(@"Started HTTP Server on port %hu", [self.httpServer listeningPort]);
-	}
-	else
-	{
-		DDLogError(@"Error starting HTTP Server: %@", error);
-	}
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [self startServer];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // There is no public(allowed in AppStore) method for iOS to run continiously in the background for our purposes (serving HTTP).
-    // So, we stop the server when the app is paused (if a users exits from the app or locks a device) and
-    // restart the server when the app is resumed (based on this document: http://developer.apple.com/library/ios/#technotes/tn2277/_index.html )
-    
-    [self.httpServer stop];
 }
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
@@ -246,8 +187,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     destination.deviceManager = self.deviceManager;
     destination.mediaControlChannel = self.mediaControlChannel;
     
-    // set the http server
-    destination.httpServer = self.httpServer;
 }
 
 - (void)scanDirectories
@@ -326,7 +265,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         
         [sheet showInView:_chromecastButton];
     } else {
-        // Already connected information
+        //Already connected information
         NSString *str = [NSString stringWithFormat:NSLocalizedString(@"Casting to %@", nil),
                          self.selectedDevice.friendlyName];
         NSString *mediaTitle = [self.mediaInformation.metadata stringForKey:kGCKMetadataKeyTitle];
@@ -374,17 +313,17 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (void)updateButtonStates
 {
     if (self.deviceScanner.devices.count == 0) {
-        // Hide the cast button
+        //Hide the cast button
         [_chromecastButton setImage:_btnImage forState:UIControlStateNormal];
         _chromecastButton.hidden = YES;
     } else {
         if (self.deviceManager && self.deviceManager.isConnected) {
-            // Enabled state for cast button
+            //Enabled state for cast button
             [_chromecastButton setImage:_btnImageSelected forState:UIControlStateNormal];
             [_chromecastButton setTintColor:[UIColor blueColor]];
             _chromecastButton.hidden = NO;
         } else {
-            // Disabled state for cast button
+            //Disabled state for cast button
             [_chromecastButton setImage:_btnImage forState:UIControlStateNormal];
             [_chromecastButton setTintColor:[UIColor grayColor]];
             _chromecastButton.hidden = NO;

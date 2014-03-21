@@ -38,6 +38,7 @@
     if (checkFile == NO)
     {
         //make the text file and initialize array size
+        NSLog(@"File did not exist\n");
         [[NSFileManager defaultManager] createFileAtPath:self.filePath
                                                 contents:nil attributes:nil];
         //set notes to be nil for everything right now
@@ -45,7 +46,7 @@
                                   fileHandleForUpdatingAtPath:self.filePath];
         NSString * emptyString = @"empty";
         NSData * emptyData = [emptyString dataUsingEncoding:NSUTF8StringEncoding];
-        for (int i = 0; i < size; ++i)
+        for (int i = 0; i < size; i++)
         {
             [self.notes addObject:emptyString];
             [newFile writeData:emptyData];
@@ -53,6 +54,7 @@
     }
     else
     {
+        NSLog(@"File existed\n");
         NSString * fileContent  = [NSString stringWithContentsOfFile:self.filePath
                                                             encoding:NSUTF8StringEncoding
                                                                error:nil];

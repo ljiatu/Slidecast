@@ -11,6 +11,7 @@
 @class CPDFDocument;
 @class GCKMediaControlChannel;
 @class GCKDeviceManager;
+@class HTTPServer;
 
 @interface PWCPreviewViewController : UIViewController
 
@@ -19,6 +20,7 @@
 
 @property GCKDeviceManager *deviceManager;
 @property GCKMediaControlChannel *mediaControlChannel;
+@property HTTPServer *httpServer;
 
 // for save/cancel notes to go back to preview
 - (IBAction)unwindToPreview:(UIStoryboardSegue *)segue;

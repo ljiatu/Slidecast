@@ -20,4 +20,7 @@
 @property GCKDeviceManager *deviceManager;
 @property GCKMediaControlChannel *mediaControlChannel;
 
+// for save/cancel notes to go back to preview
+- (IBAction)unwindToPreview:(UIStoryboardSegue *)segue;
+
 @end
