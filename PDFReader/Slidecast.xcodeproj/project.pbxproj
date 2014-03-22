@@ -156,8 +156,8 @@
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13B713AC18D7DE7700B00D20 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "../../GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		13B713AE18D7E21F00B00D20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
-		13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
+		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWCPreviewViewController.h; path = ../../Source/Library/PWCPreviewViewController.h; sourceTree = "<group>"; };
+		13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PWCPreviewViewController.m; path = ../../Source/Library/PWCPreviewViewController.m; sourceTree = "<group>"; };
 		45024C351310CEC100BB3E3D /* Slidecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45024C391310CEC100BB3E3D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		45024C3B1310CEC100BB3E3D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -448,6 +448,8 @@
 		4556999515507139009E52FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */,
+				13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */,
 				132CC52B18DBB0F500FFD22D /* Prefix.pch */,
 				132CC52C18DBB0F500FFD22D /* PWCUtilities.h */,
 				132CC52D18DBB0F500FFD22D /* PWCUtilities.m */,
@@ -482,8 +484,6 @@
 				455699BA15507141009E52FE /* CLibrary.m */,
 				455699BB15507141009E52FE /* CLibraryViewController.h */,
 				455699BC15507141009E52FE /* CLibraryViewController.m */,
-				13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */,
-				13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";

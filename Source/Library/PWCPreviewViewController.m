@@ -77,7 +77,6 @@
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
         NSLog(@"Preparing to go to NotesViewController\n");
         PWCNotesViewController * dest = segue.destinationViewController;
-        NSLog(@"%@\n", self.document.title);
         dest.docTitle = self.document.title;
         dest.numberOfPages = self.document.numberOfPages;
     }

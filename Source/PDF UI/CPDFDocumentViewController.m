@@ -160,7 +160,6 @@
                                                 userInfo:nil
                                                  repeats:YES];
     self.date = [NSDate date];
-    self.notes = [[PWCUtilities alloc] init];
     
     NSDictionary *theOptions = @{ UIPageViewControllerOptionSpineLocationKey: [NSNumber numberWithInt:theSpineLocation] };
     
@@ -227,9 +226,9 @@
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     CPDFPageViewController *theFirstViewController = theViewControllers[0];
-    [self.notes openNotesWithFilename:theFirstViewController.page.document.title
+    self.notes = [[PWCUtilities alloc] initNotesWithFilename:theFirstViewController.page.document.title
                                  path:path
-                              pageNum:theFirstViewController.page.document.numberOfPages];
+                              numberOfPages:theFirstViewController.page.document.numberOfPages];
     [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
     
     // update title and cast the image of the first page

@@ -10,10 +10,9 @@
 
 @interface PWCUtilities : NSObject
 
-- (void) openNotesWithFilename:(NSString *) fileName path:(NSString *) pathName
-                    pageNum:(int) size;
-- (void) addNote:(NSString *) note atIndex:(int) index;
-- (void) saveNotes;
-- (NSString *) getNoteAtIndex:(int) index;
+- (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(int)numberOfPages;
+- (void)addNote:(NSString *) note atIndex:(int) index;
+- (void)saveNotes;
+- (NSString *)getNoteAtIndex:(int) index;
 
 @end

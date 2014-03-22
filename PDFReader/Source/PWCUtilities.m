@@ -19,20 +19,16 @@
 
 @implementation PWCUtilities
 
-- (id)init
+- (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(int)numberOfPages
 {
-    self        = [super init];
-    _notes      = [[NSMutableArray alloc] init];
-    _filePath   = [[NSString alloc] init];
-    return self;
-}
-
-- (void)openNotesWithFilename:(NSString *)fileName path:(NSString *)pathName pageNum:(int)size
-{
-    // error testing job of caller
-    self.filePath = [pathName stringByAppendingString:[NSString stringWithFormat:@"/%@/notes.txt", fileName]];
-    BOOL checkFile = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+    if (!(self = [super init])) {
+        return nil;
+    }
     
+    _notes = [[NSMutableArray alloc] init];
+    _filePath = [path stringByAppendingString:[NSString stringWithFormat:@"/%@/notes.txt", fileName]];
+    
+    BOOL checkFile = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
     if (checkFile == NO)
     {
         // make the text file and initialize array size
@@ -41,7 +37,7 @@
         NSFileHandle * newFile = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
         NSString * emptyString = @"empty\n";
         NSData * emptyData = [emptyString dataUsingEncoding:NSUTF8StringEncoding];
-        for (int i = 0; i < size; ++i)
+        for (int i = 0; i < numberOfPages; ++i)
         {
             [self.notes addObject:emptyString];
             [newFile writeData:emptyData];
@@ -61,6 +57,8 @@
             }
         }
     }
+    
+    return self;
 }
 
 - (void)addNote:(NSString *)note atIndex:(int)index
@@ -76,12 +74,14 @@
     NSFileHandle * writeFile = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
     [writeFile truncateFileAtOffset:0];
     int notesCount = [self.notes count];
+    NSLog(@"%d", notesCount);
     for (int i = 0; i < notesCount; ++i)
     {
         NSString * writeString = [[self.notes objectAtIndex:i] stringByAppendingString:@"\n"];
         NSData * writeData = [writeString dataUsingEncoding:NSUTF8StringEncoding];
         [writeFile writeData:writeData];
     }
+    [writeFile closeFile];
 }
 
 - (NSString *)getNoteAtIndex:(int)index

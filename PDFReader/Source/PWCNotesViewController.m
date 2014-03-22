@@ -36,9 +36,8 @@
 {
     [super viewDidLoad];
 	// load notes
-    self.notes      = [[PWCUtilities alloc] init];
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    [self.notes openNotesWithFilename:self.docTitle path:path pageNum:self.numberOfPages];
+    self.notes      = [[PWCUtilities alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
     self.index      = 0;
     NSString * text = [self.notes getNoteAtIndex:self.index];
     if ([text isEqualToString:@"empty"])
