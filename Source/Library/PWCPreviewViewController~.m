@@ -71,6 +71,9 @@
         // pass the device manager and the media control channel to the document view controller
         destination.deviceManager = self.deviceManager;
         destination.mediaControlChannel = self.mediaControlChannel;
+        
+        // pass the http server to the document view controller
+        destination.httpServer = self.httpServer;
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
         NSLog(@"Preparing to go to NotesViewController\n");
         PWCNotesViewController * dest  = segue.destinationViewController;

@@ -27,23 +27,19 @@
     return self;
 }
 
-- (void) openNotesWithFilename:(NSString *)fileName andPath:(NSString *)pathName
-                    andPageNum:(int) size
+- (void)openNotesWithFilename:(NSString *)fileName path:(NSString *)pathName pageNum:(int)size
 {
-    //error testing job of caller
-    self.filePath           = [pathName stringByAppendingString:[NSString
-                                                                 stringWithFormat:@"/%@/notes.txt", fileName]];
+    // error testing job of caller
+    self.filePath = [pathName stringByAppendingString:[NSString stringWithFormat:@"/%@/notes.txt", fileName]];
     BOOL checkFile = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
     
     if (checkFile == NO)
     {
-        //make the text file and initialize array size
-        [[NSFileManager defaultManager] createFileAtPath:self.filePath
-                                                contents:nil attributes:nil];
-        //set notes to be nil for everything right now
-        NSFileHandle * newFile = [NSFileHandle
-                                  fileHandleForUpdatingAtPath:self.filePath];
-        NSString * emptyString = @"empty";
+        // make the text file and initialize array size
+        [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:nil attributes:nil];
+        // set notes to be nil for everything right now
+        NSFileHandle * newFile = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
+        NSString * emptyString = @"empty\n";
         NSData * emptyData = [emptyString dataUsingEncoding:NSUTF8StringEncoding];
         for (int i = 0; i < size; ++i)
         {
@@ -53,36 +49,42 @@
     }
     else
     {
-        NSString * fileContent  = [NSString stringWithContentsOfFile:self.filePath
-                                                            encoding:NSUTF8StringEncoding
-                                                               error:nil];
-        self.notes              = [[fileContent componentsSeparatedByString:@"\n"]
-                                   mutableCopy];
+        NSString * fileContent = [NSString stringWithContentsOfFile:self.filePath
+                                                           encoding:NSUTF8StringEncoding
+                                                              error:nil];
+        self.notes = [[fileContent componentsSeparatedByString:@"\n"] mutableCopy];
+        NSLog(@"number of notes page %d", self.notes.count);
+        for(int i = 0; i < self.notes.count; ++i) {
+            NSLog(@"Notes for this page: %@", [self.notes objectAtIndex:i]);
+            if([[self.notes objectAtIndex:i] isEqualToString:@""]) {
+                NSLog(@"Yes");
+            }
+        }
     }
 }
 
-- (void) addNote:(NSString *)note atIndex:(int)index
+- (void)addNote:(NSString *)note atIndex:(int)index
 {
     NSLog(@"%@\n", note);
     [self.notes replaceObjectAtIndex:index withObject:note];
 }
 
-- (void) saveNotes
+- (void)saveNotes
 {
-    //error testing job of caller
-    //clear text file if you want to save
+    // error testing job of caller
+    // clear text file if you want to save
     NSFileHandle * writeFile = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
     [writeFile truncateFileAtOffset:0];
-    for (int i = 0; i < [self.notes count]; i++)
+    int notesCount = [self.notes count];
+    for (int i = 0; i < notesCount; ++i)
     {
-        NSString * writeString = [[self.notes objectAtIndex:i]
-                                  stringByAppendingString:@"\n"];
-        NSData * writeData  = [writeString dataUsingEncoding:NSUTF8StringEncoding];
+        NSString * writeString = [[self.notes objectAtIndex:i] stringByAppendingString:@"\n"];
+        NSData * writeData = [writeString dataUsingEncoding:NSUTF8StringEncoding];
         [writeFile writeData:writeData];
     }
 }
 
-- (NSString *) getNoteAtIndex:(int)index
+- (NSString *)getNoteAtIndex:(int)index
 {
     return [self.notes objectAtIndex:index];
 }

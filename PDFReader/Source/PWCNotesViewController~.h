@@ -11,9 +11,9 @@
 @interface PWCNotesViewController : UIViewController
 
 @property NSString * docTitle;
-@property int numberOfPages;
+@property int pageNum;
 
-- (void)setDocTitle:(NSString *)title;
+- (void) setDocTitle:(NSString *)title;
 - (IBAction)prevAction:(id)sender;
 - (IBAction)nextAction:(id)sender;
 

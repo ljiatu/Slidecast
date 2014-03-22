@@ -176,13 +176,6 @@
     NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
     [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
-    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    CPDFPageViewController *theFirstViewController = theViewControllers[0];
-    [self.notes openNotesWithFilename:theFirstViewController.page.document.title
-                              andPath:path
-                           andPageNum:theFirstViewController.page.document.numberOfPages];
-    [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
-    
     [self addChildViewController:self.pageViewController];
     
     // #########################################################################
@@ -231,6 +224,15 @@
     // set server's document root directory to be the image directory
     [self.httpServer setDocumentRoot:self.imageDirectoryPath];
     
+    // set up notes
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    CPDFPageViewController *theFirstViewController = theViewControllers[0];
+    [self.notes openNotesWithFilename:theFirstViewController.page.document.title
+                                 path:path
+                              pageNum:theFirstViewController.page.document.numberOfPages];
+    [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
+    
+    // update title and cast the image of the first page
     [self updateTitleAndCastImage];
 }
 
@@ -330,8 +332,8 @@
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         NSInteger pageNumber = theFirstViewController.page.pageNumber;
         self.title = [NSString stringWithFormat:@"Page %d", pageNumber];
-        
-        [self.noteText setText:[self.notes getNoteAtIndex:(theFirstViewController.page.pageNumber - 1)]];
+        // load notes for that page
+        [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
         // cast image of the page
         [self castImageOfPageNumber:pageNumber];
         } else if (theViewControllers.count == 2) {

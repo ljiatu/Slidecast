@@ -121,10 +121,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="nextButton" destination="LSf-46-ynN" id="x4i-mw-QRW"/>
+                        <outlet property="nextButton" destination="f6y-P9-GeS" id="BrR-XJ-xcY"/>
                         <outlet property="noteText" destination="lHO-Vf-fyg" id="JP6-2I-O3y"/>
                         <outlet property="pageTitle" destination="sna-3U-zr1" id="yQn-4W-JM7"/>
-                        <outlet property="prevButton" destination="LSf-46-ynN" id="tZu-ZW-mcF"/>
+                        <outlet property="previousButton" destination="o1X-oz-P0V" id="sm7-dt-Su5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLp-XA-LiU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -71,7 +71,7 @@
         <!--Notes View Controller - Notes-->
         <scene sceneID="h7b-xP-YsE">
             <objects>
-                <viewController title="Notes" id="hTT-Uf-dNu" customClass="NotesViewController" sceneMemberID="viewController">
+                <viewController title="Notes" id="hTT-Uf-dNu" customClass="PWCNotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DLg-ee-jXr"/>
                         <viewControllerLayoutGuide type="bottom" id="mb3-Py-Pxj"/>
@@ -111,12 +111,12 @@
                     <navigationItem key="navigationItem" title="(Notes for Slide #)" id="sna-3U-zr1">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I4Y-hB-KlR">
                             <connections>
-                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToList:" id="Yak-x6-MYz"/>
+                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToPreview:" id="Yak-x6-MYz"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uI8-P8-ngY">
                             <connections>
-                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToList:" id="dao-6F-oXC"/>
+                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToPreview:" id="dao-6F-oXC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
