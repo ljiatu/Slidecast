@@ -75,7 +75,6 @@
         // pass the http server to the document view controller
         destination.httpServer = self.httpServer;
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
-        NSLog(@"Preparing to go to NotesViewController\n");
         PWCNotesViewController * dest = segue.destinationViewController;
         dest.docTitle = self.document.title;
         dest.numberOfPages = self.document.numberOfPages;

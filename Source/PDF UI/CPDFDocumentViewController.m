@@ -123,15 +123,14 @@
 {
     if([self.segmentedControl selectedSegmentIndex] == 0)
     {
-        NSLog(@"here1\n");
+        self.scrollView.hidden = NO;
         self.previewCollectionView.hidden = NO;
         self.noteText.hidden = YES;
     }
     if([self.segmentedControl selectedSegmentIndex] == 1)
     {
-        NSLog(@"here2\n");
+        self.scrollView.hidden = YES;
         self.previewCollectionView.hidden = YES;
-        self.previewCollectionView.opaque = NO;
         self.noteText.hidden = NO;
     }
 }
@@ -349,7 +348,7 @@
         // search for the image
         NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
         NSString *imagePath = [self.imageDirectoryPath stringByAppendingString:imageName];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@", self.ipAddress, imagePath];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@", self.ipAddress, imagePath];
         
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];

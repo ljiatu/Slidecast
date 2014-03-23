@@ -52,7 +52,6 @@
 
 - (void)addNote:(NSString *)note atIndex:(int)index
 {
-    NSLog(@"%@\n", note);
     [self.notes replaceObjectAtIndex:index withObject:note];
 }
 
