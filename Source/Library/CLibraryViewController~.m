@@ -132,10 +132,11 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         // However, for easy testing you may want force a certain port so you can just hit the refresh button.
         // [httpServer setPort:12345];
         
-        // Serve files from our cache folder
-        NSArray *directories = [[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-        NSString *cacheDirectoryPath = [directories[0] absoluteString];
-        [self.httpServer setDocumentRoot:cacheDirectoryPath];
+        // Serve files from our embedded Web folder
+        //NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
+        //DDLogInfo(@"Setting document root: %@", webPath);
+        
+        //[self.httpServer setDocumentRoot:webPath];
     }
 }
 

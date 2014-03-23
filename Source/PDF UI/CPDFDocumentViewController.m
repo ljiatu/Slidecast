@@ -65,6 +65,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property PWCUtilities * notes;
 @property NSString *imageDirectoryPath;
+@property NSString *imageDirectoryCachePath;
 @property NSString *ipAddress;
 
 - (void)hideChrome;
@@ -214,13 +215,25 @@
     // set the image directory path
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.imageDirectoryPath = [documentsPath stringByAppendingString:[NSString stringWithFormat:@"/%@", self.document.title]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directories = [fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSString *cacheDirectoryPath = [[directories lastObject] absoluteString];
+    NSError *error = nil;
+    BOOL moved = [fileManager copyItemAtPath:self.imageDirectoryPath toPath:cacheDirectoryPath error:&error];
+    if(!moved) {
+        NSLog(@"%@", error);
+        if([fileManager fileExistsAtPath:cacheDirectoryPath]) {
+            NSLog(@"cache directory path exists!");
+        } else {
+            NSLog(@"cache directory path does not exist!");
+        }
+    }
+    self.imageDirectoryCachePath = [cacheDirectoryPath stringByAppendingString:[NSString stringWithFormat:@"%@", self.document.title]];
+    NSLog(@"%@", self.imageDirectoryCachePath);
     
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
     NSLog(@"%@", self.ipAddress);
-    
-    // set server's document root directory to be the image directory
-    [self.httpServer setDocumentRoot:self.imageDirectoryPath];
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -271,9 +284,7 @@
                 if([[NSString stringWithUTF8String:temp_addr -> ifa_name] isEqualToString:@"en0"]) {
                     // get NSString from C String
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr -> ifa_addr) -> sin_addr)];
-                    
                 }
-                
             }
             temp_addr = temp_addr -> ifa_next;
         }
@@ -346,9 +357,9 @@
     // send images to the device if connected
     if (self.deviceManager && self.deviceManager.isConnected) {
         // search for the image
-        NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
-        NSString *imagePath = [self.imageDirectoryPath stringByAppendingString:imageName];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@", self.ipAddress, imagePath];
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@/%@", self.ipAddress, self.imageDirectoryCachePath, imageName];
+        NSLog(@"%@", imageWebPath);
         
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
