@@ -212,24 +212,25 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // set the image directory path
+    // name of the directory containing all images
+    NSString *imageDirectoryName = [NSString stringWithFormat:@"/%@", self.document.title];
+    
+    // find the image directory in the documents folder
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.imageDirectoryPath = [documentsPath stringByAppendingString:[NSString stringWithFormat:@"/%@", self.document.title]];
+    self.imageDirectoryPath = [documentsPath stringByAppendingString:imageDirectoryName];
+    
+    // copy images over to the cache directory
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *directories = [fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-    NSString *cacheDirectoryPath = [[directories lastObject] absoluteString];
-    NSError *error = nil;
-    BOOL moved = [fileManager copyItemAtPath:self.imageDirectoryPath toPath:cacheDirectoryPath error:&error];
-    if(!moved) {
-        NSLog(@"%@", error);
-        if([fileManager fileExistsAtPath:cacheDirectoryPath]) {
-            NSLog(@"cache directory path exists!");
-        } else {
-            NSLog(@"cache directory path does not exist!");
+    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    self.imageDirectoryCachePath = [cacheDirectoryPath stringByAppendingString:imageDirectoryName];
+    if (![fileManager fileExistsAtPath:self.imageDirectoryCachePath]) {
+        // if the images haven't been copied over, copy them
+        NSError *error = nil;
+        BOOL moved = [fileManager copyItemAtPath:self.imageDirectoryPath toPath:self.imageDirectoryCachePath error:&error];
+        if(!moved) {
+            NSLog(@"%@", error);
         }
     }
-    self.imageDirectoryCachePath = [cacheDirectoryPath stringByAppendingString:[NSString stringWithFormat:@"%@", self.document.title]];
-    NSLog(@"%@", self.imageDirectoryCachePath);
     
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
@@ -345,7 +346,7 @@
         [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
         // cast image of the page
         [self castImageOfPageNumber:pageNumber];
-        } else if (theViewControllers.count == 2) {
+    } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
         self.title = [NSString stringWithFormat:@"Pages %d-%d", theFirstViewController.page.pageNumber, theSecondViewController.page.pageNumber];
@@ -358,7 +359,7 @@
     if (self.deviceManager && self.deviceManager.isConnected) {
         // search for the image
         NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@/%@", self.ipAddress, self.imageDirectoryCachePath, imageName];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@/%@", self.ipAddress, self.imageDirectoryCachePath, imageName];
         NSLog(@"%@", imageWebPath);
         
         // load the data
