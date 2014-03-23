@@ -53,6 +53,9 @@
     
     // display number of pages
     self.numberSlides.text = [@(self.document.numberOfPages) stringValue];
+    
+    // create images for each slide if not created yet
+    [self createImagesForSlides];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +81,43 @@
         PWCNotesViewController * dest = segue.destinationViewController;
         dest.docTitle = self.document.title;
         dest.numberOfPages = self.document.numberOfPages;
+    }
+}
+
+- (BOOL)createImagesForSlides
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    // get the path of the directory of images
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imageDirectoryPath = [documentsPath stringByAppendingFormat:@"/%@", self.document.title];
+    
+    if ([manager fileExistsAtPath:imageDirectoryPath]) {
+        // if exists, do nothing
+        return YES;
+    } else {
+        // otherwise, create new folder
+        if (![manager createDirectoryAtPath:imageDirectoryPath withIntermediateDirectories:NO attributes:nil error:nil]) {
+            return NO;
+        }
+        
+        NSError *error = nil;
+        // create a jpeg file for each page of the pdf file
+        for (int i = 1; i <= self.document.numberOfPages; ++i) {
+            NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", imageDirectoryPath, i];
+            // most likely we have to change the size of the images
+            UIImage *image = [[self.document pageForPageNumber:i] imageWithSize:CGSizeMake(280, 220) scale:[UIScreen mainScreen].scale];
+            if (![UIImageJPEGRepresentation(image, 1.0) writeToFile:jpegPath atomically:YES]) {
+                // if fail for one of the images, delete the whole directory
+                if (![manager removeItemAtPath:imageDirectoryPath error:&error]) {
+                    NSLog(@"%@", error);
+                }
+                return NO;
+            }
+            
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+        
+        return YES;
     }
 }
 

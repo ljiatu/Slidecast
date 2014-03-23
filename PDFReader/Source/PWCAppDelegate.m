@@ -65,38 +65,12 @@
                 theUserInfo[@"annotation"] = annotation;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidOpenURL" object:application userInfo:theUserInfo];
-            
-            if (![self createImagesForSlides:documentsPath destinationURL:destinationURL]) {
-                // return NO if failed to create images for slides
-                return NO;
-            }
         }
         
         return result;
     }
 
     return NO;
-}
-
-- (BOOL)createImagesForSlides:(NSString *)documentsPath destinationURL:(NSURL *)destinationURL
-{
-    NSFileManager *manager = [NSFileManager defaultManager];
-    CPDFDocument *document = [[CPDFDocument alloc] initWithURL:destinationURL];
-    NSString *folderName = [NSString stringWithFormat:@"/%@", document.title];
-    
-    // create new folder
-    NSString *newFolderPath = [documentsPath stringByAppendingString:folderName];
-    BOOL result = [manager createDirectoryAtPath:newFolderPath withIntermediateDirectories:NO attributes:nil error:nil];
-    
-    // create a jpeg file for each page of the pdf file
-    for (int i = 1; i <= document.numberOfPages; ++i) {
-        NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpg", newFolderPath, i];
-        [UIImageJPEGRepresentation([[document pageForPageNumber:i] image], 1.0) writeToFile:jpegPath atomically:YES];
-        
-        //UIImageWriteToSavedPhotosAlbum([[document pageForPageNumber:i] image], nil, nil, nil);
-    }
-    
-    return result;
 }
 
 @end

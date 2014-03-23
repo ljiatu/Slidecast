@@ -3,6 +3,7 @@
 //  Slidcast
 //
 //  Created by Jonathan Wight on 02/19/11.
+//  Modified by Jiatu Liu to be used in Slidecast
 //  Copyright 2012 Jonathan Wight. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are

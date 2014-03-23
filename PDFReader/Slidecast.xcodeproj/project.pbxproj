@@ -45,6 +45,7 @@
 		132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m */; };
 		132CC5A018DBBD7100FFD22D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 132CC58018DBBD7100FFD22D /* README.txt */; };
 		132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132CC5A118DBC2D800FFD22D /* libxml2.dylib */; };
+		1393FFAF18DF55E900A4F915 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1B26D518DE936E00BED3B6 /* GoogleCast.framework */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
 		13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */; };
@@ -77,7 +78,6 @@
 		45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D9699E1553058E00338688 /* CPDFPageViewController.m */; };
 		45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D969CC1553177800338688 /* CPDFAnnotationView.m */; };
 		45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */; };
-		5F1B26D618DE936E00BED3B6 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1B26D518DE936E00BED3B6 /* GoogleCast.framework */; };
 		5F5E604018D9431C00485259 /* PWCNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E603F18D9431C00485259 /* PWCNotesViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -154,7 +154,6 @@
 		132CC58018DBBD7100FFD22D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		132CC5A118DBC2D800FFD22D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		13B713AC18D7DE7700B00D20 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "../../GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		13B713AE18D7E21F00B00D20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWCPreviewViewController.h; path = ../../Source/Library/PWCPreviewViewController.h; sourceTree = "<group>"; };
 		13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PWCPreviewViewController.m; path = ../../Source/Library/PWCPreviewViewController.m; sourceTree = "<group>"; };
@@ -220,7 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F1B26D618DE936E00BED3B6 /* GoogleCast.framework in Frameworks */,
+				1393FFAF18DF55E900A4F915 /* GoogleCast.framework in Frameworks */,
 				132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */,
 				13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */,
 				13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */,
@@ -413,7 +412,6 @@
 				132CC5A118DBC2D800FFD22D /* libxml2.dylib */,
 				13964DD118D7EC7F00E21E15 /* CFNetwork.framework */,
 				13B713AE18D7E21F00B00D20 /* Security.framework */,
-				13B713AC18D7DE7700B00D20 /* GoogleCast.framework */,
 				454BF5B31554B92600E7DE1D /* MediaPlayer.framework */,
 				4527B3BB1398C5F400F3ECC8 /* MobileCoreServices.framework */,
 				45024C721310CF1700BB3E3D /* QuartzCore.framework */,
@@ -742,6 +740,7 @@
 					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 					"/Users/chaysonhurst/Desktop/GoogleCastFramework-2.0-Release",
 					"/Users/chaysonhurst/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
+					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -776,6 +775,7 @@
 					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 					"/Users/chaysonhurst/Desktop/GoogleCastFramework-2.0-Release",
 					"/Users/chaysonhurst/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
+					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
