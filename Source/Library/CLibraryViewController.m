@@ -198,10 +198,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // There is no public(allowed in AppStore) method for iOS to run continiously in the background for our purposes (serving HTTP).
-    // So, we stop the server when the app is paused (if a users exits from the app or locks a device) and
-    // restart the server when the app is resumed (based on this document: http://developer.apple.com/library/ios/#technotes/tn2277/_index.html )
-    
     [self.httpServer stop];
 }
 
