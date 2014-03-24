@@ -234,9 +234,9 @@
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
     self.port = [self.httpServer listeningPort];
-    NSLog(@"%@", self.ipAddress);
-    NSLog(@"%d", self.port);
-    NSLog([self.httpServer isRunning]? @"YES" : @"NO");
+    //NSLog(@"%@", self.ipAddress);
+    //NSLog(@"%d", self.port);
+    //NSLog([self.httpServer isRunning]? @"YES" : @"NO");
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -362,15 +362,6 @@
         // search for the image
         NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
         NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d%@", self.ipAddress, self.port, imageName];
-        NSString *imagePath = [NSString stringWithFormat:@"%@%@", self.cacheDirectoryPath, imageName];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
-            NSLog(@"image does exist!");
-        }
-        /*NSFileManager *manager = [NSFileManager defaultManager];
-        NSURL *cacheDirectoryURL = [[manager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
-        NSURL *imageURL = [cacheDirectoryURL URLByAppendingPathComponent:imageName];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@", self.ipAddress, [imageURL absoluteString]];*/
-        NSLog(@"%@", imageWebPath);
         
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
