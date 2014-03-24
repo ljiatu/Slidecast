@@ -64,8 +64,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property PWCUtilities * notes;
-@property NSString *imageDirectoryPath;
-@property NSString *imageDirectoryCachePath;
+@property NSString *cacheDirectoryPath;
 @property NSString *ipAddress;
 
 - (void)hideChrome;
@@ -212,23 +211,21 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // name of the directory containing all images
-    NSString *imageDirectoryName = [NSString stringWithFormat:@"/%@", self.document.title];
-    
     // find the image directory in the documents folder
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.imageDirectoryPath = [documentsPath stringByAppendingString:imageDirectoryName];
+    NSString *imageDirectoryPath = [documentsPath stringByAppendingFormat:@"/%@", self.document.title];
     
     // copy images over to the cache directory
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    self.imageDirectoryCachePath = [cacheDirectoryPath stringByAppendingString:imageDirectoryName];
-    if (![fileManager fileExistsAtPath:self.imageDirectoryCachePath]) {
-        // if the images haven't been copied over, copy them
-        NSError *error = nil;
-        BOOL moved = [fileManager copyItemAtPath:self.imageDirectoryPath toPath:self.imageDirectoryCachePath error:&error];
-        if(!moved) {
-            NSLog(@"%@", error);
+    self.cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    int numberOfPages = [self.document numberOfPages];
+    NSError *error = nil;
+    for (int i = 1; i <= numberOfPages; ++i) {
+        NSString *imageSourcePath = [imageDirectoryPath stringByAppendingFormat:@"/%d.jpeg", i];
+        NSString *imageDestinationPath = [self.cacheDirectoryPath stringByAppendingFormat:@"/%d.jpeg", i];
+        BOOL copied = [fileManager copyItemAtPath:imageSourcePath toPath:imageDestinationPath error:&error];
+        if (!copied) {
+            //NSLog(@"%@", error);
         }
     }
     
@@ -358,8 +355,16 @@
     // send images to the device if connected
     if (self.deviceManager && self.deviceManager.isConnected) {
         // search for the image
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@/%@", self.ipAddress, self.imageDirectoryCachePath, imageName];
+        NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@", self.ipAddress, imageName];
+        NSString *imagePath = [NSString stringWithFormat:@"%@%@", self.cacheDirectoryPath, imageName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
+            NSLog(@"image does exist!");
+        }
+        /*NSFileManager *manager = [NSFileManager defaultManager];
+        NSURL *cacheDirectoryURL = [[manager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
+        NSURL *imageURL = [cacheDirectoryURL URLByAppendingPathComponent:imageName];
+        NSString *imageWebPath = [NSString stringWithFormat:@"%@/%@", self.ipAddress, [imageURL absoluteString]];*/
         NSLog(@"%@", imageWebPath);
         
         // load the data
