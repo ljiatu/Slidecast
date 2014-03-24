@@ -66,6 +66,7 @@
 @property PWCUtilities * notes;
 @property NSString *cacheDirectoryPath;
 @property NSString *ipAddress;
+@property UInt16 port;
 
 - (void)hideChrome;
 - (void)toggleChrome;
@@ -231,7 +232,9 @@
     
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
+    self.port = [self.httpServer port];
     NSLog(@"%@", self.ipAddress);
+    NSLog(@"%d", self.port);
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -356,7 +359,7 @@
     if (self.deviceManager && self.deviceManager.isConnected) {
         // search for the image
         NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
-        NSString *imageWebPath = [NSString stringWithFormat:@"%@%@", self.ipAddress, imageName];
+        NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d%@", self.ipAddress, self.port, imageName];
         NSString *imagePath = [NSString stringWithFormat:@"%@%@", self.cacheDirectoryPath, imageName];
         if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
             NSLog(@"image does exist!");
