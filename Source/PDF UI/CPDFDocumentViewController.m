@@ -1,8 +1,9 @@
 //
-//  iOS-PDF-ReaderViewController.m
-//  iOS-PDF-Reader
+//  CPDFDocumentViewController.m
+//  Slidecast
 //
 //  Created by Jonathan Wight on 02/19/11.
+// Modified by Jiatu Liu to be used in Slidecast.
 //  Copyright 2012 Jonathan Wight. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are
@@ -232,9 +233,10 @@
     
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
-    self.port = [self.httpServer port];
+    self.port = [self.httpServer listeningPort];
     NSLog(@"%@", self.ipAddress);
     NSLog(@"%d", self.port);
+    NSLog([self.httpServer isRunning]? @"YES" : @"NO");
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

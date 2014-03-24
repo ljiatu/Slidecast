@@ -138,6 +138,8 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         NSLog(@"%@", cacheDirectoryPath);
         [self.httpServer setDocumentRoot:cacheDirectoryPath];
     }
+    
+    [self startServer];
 }
 
 - (void)viewDidUnload
