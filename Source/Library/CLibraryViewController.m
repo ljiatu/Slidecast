@@ -51,6 +51,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 @property GCKApplicationMetadata *applicationMetadata;
 @property GCKDevice *selectedDevice;
 @property GCKMediaControlChannel *mediaControlChannel;
+@property NSString *cacheDirectoryPath;
 
 - (void)scanDirectories;
 
@@ -140,6 +141,9 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     }
     
     [self startServer];
+    
+    // set the path to the cache directory
+    self.cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 - (void)viewDidUnload
@@ -203,7 +207,18 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:self.cacheDirectoryPath error:&error];
+    for (NSString *file in files) {
+        if ([file rangeOfString:@".jpeg"].location == NSNotFound) {
+            // don't remove something without .jpeg in it
+            continue;
+        }
+        if (![fileManager removeItemAtPath:[self.cacheDirectoryPath stringByAppendingFormat:@"/%@", file] error:&error]) {
+            NSLog(@"%@", error);
+        }
+    }
 }
 
 #pragma mark - Table view data source
