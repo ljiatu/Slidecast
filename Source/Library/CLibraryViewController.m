@@ -136,7 +136,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         // Serve files from our cache folder
         NSArray *directories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString *cacheDirectoryPath = [directories lastObject];
-        NSLog(@"%@", cacheDirectoryPath);
         [self.httpServer setDocumentRoot:cacheDirectoryPath];
     }
     

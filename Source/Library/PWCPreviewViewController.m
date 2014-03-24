@@ -113,8 +113,6 @@
                 }
                 return NO;
             }
-            
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         }
         
         return YES;

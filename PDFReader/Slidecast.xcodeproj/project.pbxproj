@@ -35,7 +35,6 @@
 		132CC59518DBBD7100FFD22D /* PUTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC56918DBBD7100FFD22D /* PUTResponse.m */; };
 		132CC59618DBBD7100FFD22D /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = 132CC56C18DBBD7100FFD22D /* About.txt */; };
 		132CC59718DBBD7100FFD22D /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC56E18DBBD7100FFD22D /* GCDAsyncSocket.m */; };
-		132CC59818DBBD7100FFD22D /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = 132CC57018DBBD7100FFD22D /* About.txt */; };
 		132CC59918DBBD7100FFD22D /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57218DBBD7100FFD22D /* DDAbstractDatabaseLogger.m */; };
 		132CC59A18DBBD7100FFD22D /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57418DBBD7100FFD22D /* DDASLLogger.m */; };
 		132CC59B18DBBD7100FFD22D /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57618DBBD7100FFD22D /* DDFileLogger.m */; };
@@ -590,6 +589,11 @@
 				CLASSPREFIX = PWC;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Purple Works";
+				TargetAttributes = {
+					45024C341310CEC100BB3E3D = {
+						DevelopmentTeam = TV47C9J6ME;
+					};
+				};
 			};
 			buildConfigurationList = 45024C2F1310CEC100BB3E3D /* Build configuration list for PBXProject "Slidecast" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -620,7 +624,6 @@
 				132CC53418DBB10C00FFD22D /* Default-568h@2x.png in Resources */,
 				132CC53518DBB10C00FFD22D /* icon-cast-connected.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,
-				132CC59818DBBD7100FFD22D /* About.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,13 +736,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/GoogleCastFramework-2.0-Release",
-					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
-					"/Users/chaysonhurst/Desktop/GoogleCastFramework-2.0-Release",
-					"/Users/chaysonhurst/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -756,6 +757,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -768,13 +770,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/GoogleCastFramework-2.0-Release",
-					"/afs/umich.edu/user/l/j/ljiatu/CSEMacLabHomeDir/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
-					"/Users/chaysonhurst/Desktop/GoogleCastFramework-2.0-Release",
-					"/Users/chaysonhurst/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -790,6 +790,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
