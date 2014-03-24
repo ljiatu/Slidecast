@@ -90,6 +90,10 @@
     CGPDFStringRef thePDFTitle = NULL;
     CGPDFDictionaryGetString(theInfo, "Title", &thePDFTitle);
     NSString *title = (__bridge_transfer NSString *)CGPDFStringCopyTextString(thePDFTitle);
+    if ([title isEqualToString:@""] || title == nil) {
+        // if there is no title, assign the last path component to be the title
+        title = [self.URL lastPathComponent];
+    }
     if ([title rangeOfString:@"."].location != NSNotFound) {
         // if title contains the suffix ".pdf" or ".ppt", get rid of the suffix
         return [[title componentsSeparatedByString:@"."] objectAtIndex:0];
