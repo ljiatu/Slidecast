@@ -18,19 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousButton;
 @property (weak, nonatomic) IBOutlet UINavigationItem *pageTitle;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
 
 @implementation PWCNotesViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -52,9 +44,15 @@
     
     // disable previous button
     self.previousButton.enabled = NO;
-    if(self.numberOfPages <= 1) {
+    if (self.numberOfPages <= 1) {
         self.nextButton.enabled = NO;
     }
+}
+
+- (IBAction)addAndSaveNotes:(id)sender
+{
+    [self.notes addNote:self.noteText.text atIndex:self.index];
+    [self.notes saveNotes];
 }
 
 - (IBAction)prevAction:(id)sender
@@ -118,7 +116,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [super prepareForSegue:segue sender:sender];
@@ -127,6 +125,6 @@
         [self.notes addNote:self.noteText.text atIndex:self.index];
         [self.notes saveNotes];
     }
-}
+}*/
 
 @end

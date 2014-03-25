@@ -53,8 +53,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 @property GCKMediaControlChannel *mediaControlChannel;
 @property NSString *cacheDirectoryPath;
 
-- (void)scanDirectories;
-
 @end
 
 @implementation CLibraryViewController

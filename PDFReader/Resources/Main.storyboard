@@ -116,7 +116,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uI8-P8-ngY">
                             <connections>
-                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToPreview:" id="dao-6F-oXC"/>
+                                <action selector="addAndSaveNotes:" destination="hTT-Uf-dNu" id="qg8-7b-d0Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -125,6 +125,7 @@
                         <outlet property="noteText" destination="lHO-Vf-fyg" id="JP6-2I-O3y"/>
                         <outlet property="pageTitle" destination="sna-3U-zr1" id="yQn-4W-JM7"/>
                         <outlet property="previousButton" destination="o1X-oz-P0V" id="sm7-dt-Su5"/>
+                        <outlet property="saveButton" destination="uI8-P8-ngY" id="TVv-da-GzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLp-XA-LiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
