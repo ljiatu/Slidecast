@@ -35,12 +35,7 @@
 #import "CPDFDocument.h"
 #import "NSFileManager_BugFixExtensions.h"
 #import "PWCPreviewViewController.h"
-#import "HTTPServer.h"
-#import "DDLog.h"
-#import "DDTTYLogger.h"
 
-// Log levels: off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static NSString *const kReceiverAppID = @"2CFA780B";
 
 @interface CLibraryViewController ()
@@ -51,20 +46,10 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 @property GCKApplicationMetadata *applicationMetadata;
 @property GCKDevice *selectedDevice;
 @property GCKMediaControlChannel *mediaControlChannel;
-@property NSString *cacheDirectoryPath;
 
 @end
 
 @implementation CLibraryViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -75,6 +60,17 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 }
 
 #pragma mark - View lifecycle
+
+- (id)init
+{
+    if (self = [super init]) {
+        _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
+        _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
+        _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -92,55 +88,22 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // create cast button
-    _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
-    _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
-    
-    _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_chromecastButton addTarget:self
+    // set up chromecast button
+    [self.chromecastButton addTarget:self
                           action:@selector(chooseDevice:)
                 forControlEvents:UIControlEventTouchDown];
-    _chromecastButton.frame = CGRectMake(0, 0, _btnImage.size.width, _btnImage.size.height);
-    [_chromecastButton setImage:nil forState:UIControlStateNormal];
-    _chromecastButton.hidden = YES;
+    self.chromecastButton.frame = CGRectMake(0, 0, self.btnImage.size.width, self.btnImage.size.height);
+    [self.chromecastButton setImage:nil forState:UIControlStateNormal];
+    self.chromecastButton.hidden = YES;
     
     // add cast button to navigation bar
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithCustomView:_chromecastButton];
+    [[UIBarButtonItem alloc] initWithCustomView:self.chromecastButton];
     
     // initialize device scanner
     self.deviceScanner = [[GCKDeviceScanner alloc] init];
     [self.deviceScanner addListener:self];
     [self.deviceScanner startScan];
-    
-    if (self.httpServer == nil) {
-        // set up http server
-        // Configure our logging framework.
-        // To keep things simple and fast, we're just going to log to the Xcode console.
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
-        
-        // Create server using our custom MyHTTPServer class
-        self.httpServer = [[HTTPServer alloc] init];
-        
-        // Tell the server to broadcast its presence via Bonjour.
-        // This allows browsers such as Safari to automatically discover our service.
-        [self.httpServer setType:@"_http._tcp."];
-        
-        // Normally there's no need to run our server on any specific port.
-        // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
-        // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-        // [httpServer setPort:12345];
-        
-        // Serve files from our cache folder
-        NSArray *directories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *cacheDirectoryPath = [directories lastObject];
-        [self.httpServer setDocumentRoot:cacheDirectoryPath];
-    }
-    
-    [self startServer];
-    
-    // set the path to the cache directory
-    self.cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 - (void)viewDidUnload
@@ -173,34 +136,9 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     return YES;
 }
 
-- (void)startServer
-{
-    // Start the server (and check for problems)
-	
-	NSError *error;
-	if([self.httpServer start:&error])
-	{
-		DDLogInfo(@"Started HTTP Server on port %hu", [self.httpServer listeningPort]);
-	}
-	else
-	{
-		DDLogError(@"Error starting HTTP Server: %@", error);
-	}
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [self startServer];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [self.httpServer stop];
-}
-
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    NSError *error = nil;
+    /*NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *files = [fileManager contentsOfDirectoryAtPath:self.cacheDirectoryPath error:&error];
     for (NSString *file in files) {
@@ -211,7 +149,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         if (![fileManager removeItemAtPath:[self.cacheDirectoryPath stringByAppendingFormat:@"/%@", file] error:&error]) {
             NSLog(@"%@", error);
         }
-    }
+    }*/
 }
 
 #pragma mark - Table view data source
@@ -255,9 +193,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     // set the device manager and the media controller for the destination view controller
     destination.deviceManager = self.deviceManager;
     destination.mediaControlChannel = self.mediaControlChannel;
-    
-    // set the http server
-    destination.httpServer = self.httpServer;
 }
 
 - (void)scanDirectories
@@ -334,7 +269,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         [sheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
         
-        [sheet showInView:_chromecastButton];
+        [sheet showInView:self.chromecastButton];
     } else {
         // Already connected information
         NSString *str = [NSString stringWithFormat:NSLocalizedString(@"Casting to %@", nil),
@@ -352,7 +287,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         sheet.destructiveButtonIndex = (mediaTitle != nil ? 1 : 0);
         sheet.cancelButtonIndex = (mediaTitle != nil ? 2 : 1);
         
-        [sheet showInView:_chromecastButton];
+        [sheet showInView:self.chromecastButton];
     }
 }
 
@@ -385,19 +320,19 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 {
     if (self.deviceScanner.devices.count == 0) {
         // Hide the cast button
-        [_chromecastButton setImage:_btnImage forState:UIControlStateNormal];
-        _chromecastButton.hidden = YES;
+        [self.chromecastButton setImage:_btnImage forState:UIControlStateNormal];
+        self.chromecastButton.hidden = YES;
     } else {
         if (self.deviceManager && self.deviceManager.isConnected) {
             // Enabled state for cast button
-            [_chromecastButton setImage:_btnImageSelected forState:UIControlStateNormal];
-            [_chromecastButton setTintColor:[UIColor blueColor]];
-            _chromecastButton.hidden = NO;
+            [self.chromecastButton setImage:self.btnImageSelected forState:UIControlStateNormal];
+            [self.chromecastButton setTintColor:[UIColor blueColor]];
+            self.chromecastButton.hidden = NO;
         } else {
             // Disabled state for cast button
-            [_chromecastButton setImage:_btnImage forState:UIControlStateNormal];
-            [_chromecastButton setTintColor:[UIColor grayColor]];
-            _chromecastButton.hidden = NO;
+            [self.chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
+            [self.chromecastButton setTintColor:[UIColor grayColor]];
+            self.chromecastButton.hidden = NO;
         }
     }
     

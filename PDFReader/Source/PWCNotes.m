@@ -3,21 +3,21 @@
 //  Slidecast
 //
 //  Created by Chayson Hurst on 3/17/14.
-//  Copyright (c) 2014 toxicsoftware.com. All rights reserved.
+//  Copyright (c) 2014 Purple Works. All rights reserved.
 //
 
-#import "PWCUtilities.h"
+#import "PWCNotes.h"
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
 
-@interface PWCUtilities()
+@interface PWCNotes()
 
 @property NSString * filePath;
 @property NSMutableArray * notes;
 
 @end
 
-@implementation PWCUtilities
+@implementation PWCNotes
 
 - (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(int)numberOfPages
 {

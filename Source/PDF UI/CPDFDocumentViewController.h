@@ -48,7 +48,6 @@
 
 @property GCKDeviceManager *deviceManager;
 @property GCKMediaControlChannel *mediaControlChannel;
-@property HTTPServer *httpServer;
 
 - (BOOL)openPage:(CPDFPage *)inPage;
 

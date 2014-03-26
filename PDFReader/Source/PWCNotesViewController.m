@@ -3,15 +3,15 @@
 //  Slidecast
 //
 //  Created by moea on 3/17/14.
-//  Copyright (c) 2014 toxicsoftware.com. All rights reserved.
+//  Copyright (c) 2014 Purple Works. All rights reserved.
 //
 
 #import "PWCNotesViewController.h"
-#import "PWCUtilities.h"
+#import "PWCNotes.h"
 
 @interface PWCNotesViewController ()
 
-@property PWCUtilities * notes;
+@property PWCNotes * notes;
 @property int index;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
@@ -29,8 +29,8 @@
     [super viewDidLoad];
 	// load notes
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.notes      = [[PWCUtilities alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
-    self.index      = 0;
+    _notes      = [[PWCNotes alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
+    _index      = 0;
     NSString * text = [self.notes getNoteAtIndex:self.index];
     if ([text isEqualToString:@"empty"])
     {
@@ -42,11 +42,13 @@
     }
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
     
-    // disable previous button
-    self.previousButton.enabled = NO;
+    // if there is only one slide, disable the next button
     if (self.numberOfPages <= 1) {
         self.nextButton.enabled = NO;
     }
+    
+    // set the delegate of the text field to be the view controller
+    
 }
 
 - (IBAction)addAndSaveNotes:(id)sender
@@ -116,15 +118,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [super prepareForSegue:segue sender:sender];
-    if([sender tag] == 1)
-    {
-        [self.notes addNote:self.noteText.text atIndex:self.index];
-        [self.notes saveNotes];
-    }
-}*/
 
 @end

@@ -44,8 +44,8 @@
 #import "CContentScrollView.h"
 #import "Geometry.h"
 #import "CPreviewCollectionViewCell.h"
-#import "PWCUtilities.h"
-#import "HTTPServer.h"
+#import "PWCFileServer.h"
+#import "PWCNotes.h"
 
 @interface CPDFDocumentViewController () <CPDFDocumentDelegate, UIPageViewControllerDelegate,
                                           UIPageViewControllerDataSource, UIGestureRecognizerDelegate,
@@ -55,17 +55,17 @@
 @property (readwrite, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) IBOutlet CContentScrollView *scrollView;
 @property (readwrite, nonatomic, strong) IBOutlet UICollectionView *previewCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
 @property (readwrite, nonatomic, assign) BOOL chromeHidden;
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
 @property (readwrite, nonatomic, strong) UIImage *pagePlaceholderImage;
 @property (readonly, nonatomic, strong) NSArray *pages;
 @property (strong, nonatomic) NSTimer * timer;
 @property (strong, nonatomic) NSDate * date;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextView *noteText;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property PWCUtilities * notes;
-@property NSString *cacheDirectoryPath;
+@property PWCNotes * notes;
 @property NSString *ipAddress;
 @property UInt16 port;
 
@@ -213,12 +213,8 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // find the image directory in the documents folder
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imageDirectoryPath = [documentsPath stringByAppendingFormat:@"/%@", self.document.title];
-    
     // copy images over to the cache directory
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    /*NSFileManager *fileManager = [NSFileManager defaultManager];
     self.cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     int numberOfPages = [self.document numberOfPages];
     NSError *error = nil;
@@ -229,11 +225,12 @@
         if (!copied) {
             //NSLog(@"%@", error);
         }
-    }
+    }*/
     
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
-    self.port = [self.httpServer listeningPort];
+    PWCFileServer *fileServer = [PWCFileServer getSharedServer];
+    self.port = [fileServer listeningPort];
     //NSLog(@"%@", self.ipAddress);
     //NSLog(@"%d", self.port);
     //NSLog([self.httpServer isRunning]? @"YES" : @"NO");
@@ -241,7 +238,7 @@
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     CPDFPageViewController *theFirstViewController = theViewControllers[0];
-    self.notes = [[PWCUtilities alloc] initNotesWithFilename:theFirstViewController.page.document.title
+    self.notes = [[PWCNotes alloc] initNotesWithFilename:theFirstViewController.page.document.title
                                  path:path
                               numberOfPages:theFirstViewController.page.document.numberOfPages];
     [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
@@ -348,6 +345,7 @@
         [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
         // cast image of the page
         [self castImageOfPageNumber:pageNumber];
+        [self imageWebPathOfPageNumber:pageNumber];
     } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
@@ -359,14 +357,10 @@
 {
     // send images to the device if connected
     if (self.deviceManager && self.deviceManager.isConnected) {
-        // search for the image
-        NSString *imageName = [NSString stringWithFormat:@"/%d.jpeg", pageNumber];
-        NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d%@", self.ipAddress, self.port, imageName];
-        
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
         GCKMediaInformation *mediaInformation =
-        [[GCKMediaInformation alloc] initWithContentID:imageWebPath
+        [[GCKMediaInformation alloc] initWithContentID:[self imageWebPathOfPageNumber:pageNumber]
                                             streamType:GCKMediaStreamTypeNone
                                            contentType:@"image/jpeg"
                                               metadata:metadata
@@ -376,6 +370,17 @@
         // cast the image
         [self.mediaControlChannel loadMedia:mediaInformation];
     }
+}
+
+- (NSString *)imageWebPathOfPageNumber:(NSInteger)pageNumber
+{
+    // search for the image
+    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
+    NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d/%@/%@",
+                              self.ipAddress, self.port, self.document.title, imageName];
+    NSLog(@"%@", imageWebPath);
+    
+    return imageWebPath;
 }
 
 - (void)resizePageViewControllerForOrientation:(UIInterfaceOrientation)inOrientation

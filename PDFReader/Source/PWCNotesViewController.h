@@ -3,7 +3,7 @@
 //  Slidecast
 //
 //  Created by moea on 3/17/14.
-//  Copyright (c) 2014 toxicsoftware.com. All rights reserved.
+//  Copyright (c) 2014 Purple Works. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

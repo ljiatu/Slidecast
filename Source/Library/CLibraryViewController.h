@@ -32,8 +32,6 @@
 #import <UIKit/UIKit.h>
 #import <GoogleCast/GoogleCast.h>
 
-@class HTTPServer;
-
 @interface CLibraryViewController : UITableViewController<GCKDeviceScannerListener,
                                                           GCKDeviceManagerDelegate,
                                                           GCKMediaControlChannelDelegate,
@@ -45,8 +43,6 @@
 @property(nonatomic, strong) UIButton* chromecastButton;
 @property(nonatomic, strong) GCKDeviceManager* deviceManager;
 @property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
-
-@property HTTPServer *httpServer;
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
