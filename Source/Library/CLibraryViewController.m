@@ -75,7 +75,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     //self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // set up chromecast button
     _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
@@ -184,7 +184,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     NSError *error = nil;
     id errorHandler = ^(NSURL *url, NSError *error) { NSLog(@"ERROR: %@", error); return(YES); };
     
-    // first move all documents waiting in the Documents/Inbox folder to the Documents foler
+    // first move all documents waiting in the Documents/Inbox folder to the Documents folder
     if ([fileManager fileExistsAtPath:inboxURL.path])
     {
         for (NSURL *URL in [fileManager tx_enumeratorAtURL:inboxURL includingPropertiesForKeys:NULL options:0 errorHandler:errorHandler])
