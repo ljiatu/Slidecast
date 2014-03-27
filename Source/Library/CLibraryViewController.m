@@ -189,7 +189,17 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     {
         for (NSURL *URL in [fileManager tx_enumeratorAtURL:inboxURL includingPropertiesForKeys:NULL options:0 errorHandler:errorHandler])
         {
-            NSURL *destinationURL = [documentsURL URLByAppendingPathComponent:[URL lastPathComponent]];
+            // first create a dedicated folder for the presentation
+            CPDFDocument *document = [[CPDFDocument alloc] initWithURL:URL];
+            NSString *folderName = [NSString stringWithFormat:@"/%@", document.title];
+            NSURL *folderURL = [documentsURL URLByAppendingPathComponent:folderName];
+            BOOL result = [fileManager createDirectoryAtURL:folderURL withIntermediateDirectories:NO
+                           attributes:nil error:&error];
+            if (!result) {
+                NSLog(@"%@", error);
+            }
+            // now move the presentation
+            NSURL *destinationURL = [folderURL URLByAppendingPathComponent:[URL lastPathComponent]];
             BOOL moveResult = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
             NSLog(@"MOVING: %@ %d %@", URL, moveResult, error);
         }
@@ -204,7 +214,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     [self.URLs filterUsingPredicate:[NSPredicate predicateWithFormat:@"lastPathComponent LIKE '*.pdf'"]];
     
     [self.URLs filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return ([[NSFileManager defaultManager] fileExistsAtPath:[evaluatedObject path]]);
+        return ([fileManager fileExistsAtPath:[evaluatedObject path]]);
     }]];
     
     [self.URLs sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {

@@ -31,7 +31,6 @@
 
 #import "PWCAppDelegate.h"
 #import "CPDFDocument.h"
-#import "CPDFPage.h"
 
 @implementation PWCAppDelegate
 
@@ -40,19 +39,31 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)URL sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if ([url isFileURL])
+    if ([URL isFileURL])
     {
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        // create a folder to hod the document
+        
         NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        CPDFDocument *document = [[CPDFDocument alloc] initWithURL:URL];
+
+        // create a folder to hold the document
+        NSError *error = nil;
+        BOOL result = [fileManager createDirectoryAtPath:[documentsPath stringByAppendingFormat:@"/%@", document.title]
+                             withIntermediateDirectories:NO attributes:nil error:&error];
+        if (!result) {
+            NSLog(@"%@", error);
+            return result;
+        }
         
-        
-        NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath] URLByAppendingPathComponent:[url lastPathComponent]];
-        
-        BOOL result = [fileManager moveItemAtURL:url toURL:destinationURL error:nil];
-        if (result == YES)
+        // move the document to the folder
+        NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath]
+                                 URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",
+                                                              document.title, [URL lastPathComponent]]];
+        NSLog(@"%@", destinationURL);
+        result = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
+        if (result)
         {
             NSMutableDictionary *theUserInfo = [NSMutableDictionary dictionary];
             if (destinationURL != NULL)
@@ -68,6 +79,8 @@
                 theUserInfo[@"annotation"] = annotation;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidOpenURL" object:application userInfo:theUserInfo];
+        } else {
+            NSLog(@"%@", error);
         }
         
         return result;

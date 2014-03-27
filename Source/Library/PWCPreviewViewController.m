@@ -88,15 +88,12 @@
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *imageDirectoryPath = [documentsPath stringByAppendingFormat:@"/%@", self.document.title];
     
-    if ([manager fileExistsAtPath:imageDirectoryPath]) {
+    // test if the images have been generated
+    if ([manager fileExistsAtPath:[imageDirectoryPath stringByAppendingFormat:@"/1.jpeg"]]) {
         // if exists, do nothing
         return YES;
     } else {
-        // otherwise, create new folder
-        if (![manager createDirectoryAtPath:imageDirectoryPath withIntermediateDirectories:NO attributes:nil error:nil]) {
-            return NO;
-        }
-        
+        // otherwise, generate the images
         NSError *error = nil;
         // create a jpeg file for each page of the pdf file
         for (int i = 1; i <= self.document.numberOfPages; ++i) {
