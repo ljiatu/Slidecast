@@ -748,6 +748,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
+					"/Users/chaysonhurst/Desktop/desktopFolder/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -782,6 +783,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/ljiatu/Desktop/Slidecast/GoogleCastFramework-2.0-Release",
+					"/Users/chaysonhurst/Desktop/desktopFolder/Slidecast/GoogleCastFramework-2.0-Release",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
