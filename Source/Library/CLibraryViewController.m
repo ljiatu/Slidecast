@@ -64,9 +64,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (id)init
 {
     if (self = [super init]) {
-        _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
-        _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
-        _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     }
     
     return self;
@@ -87,6 +84,10 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
+    _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
+    _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     // set up chromecast button
     [self.chromecastButton addTarget:self
