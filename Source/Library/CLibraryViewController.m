@@ -157,6 +157,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView beginUpdates];
         // locate the cell and presentation folder
         UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -173,11 +174,11 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         }
 
         // delete the specific cell in table view
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
         // reload the data
         [self scanDirectories];
-        [tableView reloadData];
+        [tableView endUpdates];
     }
 }
 
