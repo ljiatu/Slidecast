@@ -46,15 +46,16 @@
     if (self.numberOfPages <= 1) {
         self.nextButton.enabled = NO;
     }
-    
-    // set the delegate of the text field to be the view controller
-    
 }
 
 - (IBAction)addAndSaveNotes:(id)sender
 {
     [self.notes addNote:self.noteText.text atIndex:self.index];
     [self.notes saveNotes];
+    if ([self.noteText isFirstResponder]) {
+        // dismiss the keyboard when hitting save
+        [self.noteText resignFirstResponder];
+    }
 }
 
 - (IBAction)prevAction:(id)sender

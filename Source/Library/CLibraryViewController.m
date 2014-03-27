@@ -176,50 +176,40 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 - (void)scanDirectories
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
+    _URLs = [[NSMutableArray alloc] init];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsURL = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *inboxURL = [documentsURL URLByAppendingPathComponent:@"Inbox"];
+    NSError *error = nil;
+    id errorHandler = ^(NSURL *url, NSError *error) { NSLog(@"ERROR: %@", error); return(YES); };
     
-    NSURL *theDocumentsURL = [[theFileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
-    NSURL *theInboxURL = [theDocumentsURL URLByAppendingPathComponent:@"Inbox"];
-    NSError *theError = NULL;
-    NSEnumerator *theEnumerator = NULL;
-    id theErrorHandler = ^(NSURL *url, NSError *error) { NSLog(@"ERROR: %@", error); return(YES); };
-    
-    if ([theFileManager fileExistsAtPath:theInboxURL.path])
+    // first move all documents waiting in the Documents/Inbox folder to the Documents foler
+    if ([fileManager fileExistsAtPath:inboxURL.path])
     {
-        for (NSURL *theURL in [theFileManager tx_enumeratorAtURL:theInboxURL includingPropertiesForKeys:NULL options:0 errorHandler:theErrorHandler])
+        for (NSURL *URL in [fileManager tx_enumeratorAtURL:inboxURL includingPropertiesForKeys:NULL options:0 errorHandler:errorHandler])
         {
-            NSURL *theDestinationURL = [theDocumentsURL URLByAppendingPathComponent:[theURL lastPathComponent]];
-            BOOL theResult = [theFileManager moveItemAtURL:theURL toURL:theDestinationURL error:&theError];
-            NSLog(@"MOVING: %@ %d %@", theURL, theResult, theError);
+            NSURL *destinationURL = [documentsURL URLByAppendingPathComponent:[URL lastPathComponent]];
+            BOOL moveResult = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
+            NSLog(@"MOVING: %@ %d %@", URL, moveResult, error);
         }
     }
     
-    NSArray *theAllURLs = @[];
-    NSArray *theURLs = NULL;
+    // then add URLs of all documents in the Documents folder into the array of URLs
+    for (NSURL *URL in [fileManager tx_enumeratorAtURL:documentsURL includingPropertiesForKeys:NULL options:0 errorHandler:errorHandler]) {
+        [self.URLs addObject:URL];
+    }
     
-    NSURL *theBundleURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
-    theBundleURL = [theBundleURL URLByStandardizingPath];
-    theEnumerator = [theFileManager tx_enumeratorAtURL:theBundleURL includingPropertiesForKeys:NULL options:0 errorHandler:theErrorHandler];
-    theURLs = [theEnumerator allObjects];
-    theAllURLs = [theAllURLs arrayByAddingObjectsFromArray:theURLs];
+    // finally filter the array and sort it
+    [self.URLs filterUsingPredicate:[NSPredicate predicateWithFormat:@"lastPathComponent LIKE '*.pdf'"]];
     
-    theEnumerator = [theFileManager tx_enumeratorAtURL:theDocumentsURL includingPropertiesForKeys:NULL options:0 errorHandler:theErrorHandler];
-    theURLs = [theEnumerator allObjects];
-    theAllURLs = [theAllURLs arrayByAddingObjectsFromArray:theURLs];
-    
-    
-    theAllURLs = [theAllURLs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"lastPathComponent LIKE '*.pdf'"]];
-    
-    theAllURLs = [theAllURLs filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    [self.URLs filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return ([[NSFileManager defaultManager] fileExistsAtPath:[evaluatedObject path]]);
     }]];
     
-    theAllURLs = [theAllURLs sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    [self.URLs sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return([[obj1 lastPathComponent] compare:[obj2 lastPathComponent]]);
     }];
-    
-    self.URLs = theAllURLs;
 }
 
 - (void)applicationDidOpenURL:(NSNotification *)inNotification

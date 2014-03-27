@@ -71,7 +71,6 @@
 		455699F8155071A5009E52FE /* CPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699EE155071A5009E52FE /* CPagingView.m */; };
 		455699F9155071A5009E52FE /* CPersistentCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699F0155071A5009E52FE /* CPersistentCache.m */; };
 		455699FB155071A5009E52FE /* NSFileManager_BugFixExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699F4155071A5009E52FE /* NSFileManager_BugFixExtensions.m */; };
-		455699FD155071BB009E52FE /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 455699FC155071BB009E52FE /* Samples */; };
 		45C25DD6155335AC001BA233 /* CPDFStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD5155335AC001BA233 /* CPDFStream.m */; };
 		45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		45D9699B1552F8F600338688 /* CPDFAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D9699A1552F8F600338688 /* CPDFAnnotation.m */; };
@@ -198,7 +197,6 @@
 		455699F0155071A5009E52FE /* CPersistentCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPersistentCache.m; sourceTree = "<group>"; };
 		455699F3155071A5009E52FE /* NSFileManager_BugFixExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_BugFixExtensions.h; sourceTree = "<group>"; };
 		455699F4155071A5009E52FE /* NSFileManager_BugFixExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManager_BugFixExtensions.m; sourceTree = "<group>"; };
-		455699FC155071BB009E52FE /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		45C25DD4155335AC001BA233 /* CPDFStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFStream.h; sourceTree = "<group>"; };
 		45C25DD5155335AC001BA233 /* CPDFStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFStream.m; sourceTree = "<group>"; };
 		45C25DD7155335BD001BA233 /* PDFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFUtilities.h; sourceTree = "<group>"; };
@@ -428,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				132CC53018DBB10C00FFD22D /* en.lproj */,
-				455699FC155071BB009E52FE /* Samples */,
 				4556998C15507139009E52FE /* Resources */,
 				4556999515507139009E52FE /* Source */,
 			);
@@ -625,7 +622,6 @@
 				132CC59618DBBD7100FFD22D /* About.txt in Resources */,
 				132CC53618DBB10C00FFD22D /* icon-cast-identified.png in Resources */,
 				130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */,
-				455699FD155071BB009E52FE /* Samples in Resources */,
 				132CC53418DBB10C00FFD22D /* Default-568h@2x.png in Resources */,
 				132CC53518DBB10C00FFD22D /* icon-cast-connected.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,

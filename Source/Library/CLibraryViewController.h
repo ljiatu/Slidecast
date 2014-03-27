@@ -37,7 +37,7 @@
                                                           GCKMediaControlChannelDelegate,
                                                           UIActionSheetDelegate>
 
-@property (readwrite, nonatomic, strong) NSArray *URLs;
+@property (readwrite, nonatomic, strong) NSMutableArray *URLs;
 
 @property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
 @property(nonatomic, strong) UIButton* chromecastButton;
