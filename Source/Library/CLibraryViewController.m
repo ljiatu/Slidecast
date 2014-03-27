@@ -35,6 +35,7 @@
 #import "CPDFDocument.h"
 #import "NSFileManager_BugFixExtensions.h"
 #import "PWCPreviewViewController.h"
+#import "PWCUtilities.h"
 
 static NSString *const kReceiverAppID = @"2CFA780B";
 
@@ -75,7 +76,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     //self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // set up chromecast button
     _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
@@ -153,6 +154,33 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     return theCell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // locate the cell and presentation folder
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *folderPath = [documentsPath stringByAppendingFormat:@"/%@",
+                                [PWCUtilities presentationTitleForDocumentName:cell.textLabel.text]];
+        NSError *error = nil;
+        
+        // delete the entire folder
+        BOOL deleteResult = [fileManager removeItemAtPath:folderPath error:&error];
+        if (!deleteResult) {
+            NSLog(@"%@", error);
+            return;
+        }
+
+        // delete the specific cell in table view
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        
+        // reload the data
+        [self scanDirectories];
+        [tableView reloadData];
+    }
+}
+
 #pragma mark - Table view delegate
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)inSection
@@ -190,8 +218,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         for (NSURL *URL in [fileManager tx_enumeratorAtURL:inboxURL includingPropertiesForKeys:NULL options:0 errorHandler:errorHandler])
         {
             // first create a dedicated folder for the presentation
-            CPDFDocument *document = [[CPDFDocument alloc] initWithURL:URL];
-            NSString *folderName = [NSString stringWithFormat:@"/%@", document.title];
+            NSString *folderName = [NSString stringWithFormat:@"/%@", [PWCUtilities presentationTitleAtURL:URL]];
             NSURL *folderURL = [documentsURL URLByAppendingPathComponent:folderName];
             BOOL result = [fileManager createDirectoryAtURL:folderURL withIntermediateDirectories:NO
                            attributes:nil error:&error];

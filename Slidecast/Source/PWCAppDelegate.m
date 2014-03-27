@@ -30,7 +30,8 @@
 //  or implied, of Jonathan Wight.
 
 #import "PWCAppDelegate.h"
-#import "CPDFDocument.h"
+
+#import "PWCUtilities.h"
 
 @implementation PWCAppDelegate
 
@@ -46,11 +47,11 @@
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        CPDFDocument *document = [[CPDFDocument alloc] initWithURL:URL];
+        NSString *folderName = [PWCUtilities presentationTitleAtURL:URL];
 
         // create a folder to hold the document
         NSError *error = nil;
-        BOOL result = [fileManager createDirectoryAtPath:[documentsPath stringByAppendingFormat:@"/%@", document.title]
+        BOOL result = [fileManager createDirectoryAtPath:[documentsPath stringByAppendingFormat:@"/%@", folderName]
                              withIntermediateDirectories:NO attributes:nil error:&error];
         if (!result) {
             NSLog(@"%@", error);
@@ -59,8 +60,8 @@
         
         // move the document to the folder
         NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath]
-                                 URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",
-                                                              document.title, [URL lastPathComponent]]];
+                                 URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@", folderName,
+                                                              [URL lastPathComponent]]];
         NSLog(@"%@", destinationURL);
         result = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
         if (result)

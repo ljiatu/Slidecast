@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130D9FB018D4D6E7000B07A6 /* Main.storyboard */; };
+		132109CF18E490DD0041E394 /* PWCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 132109CE18E490DD0041E394 /* PWCUtilities.m */; };
 		132CC52E18DBB0F500FFD22D /* PWCNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC52D18DBB0F500FFD22D /* PWCNotes.m */; };
 		132CC53418DBB10C00FFD22D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 132CC52F18DBB10C00FFD22D /* Default-568h@2x.png */; };
 		132CC53518DBB10C00FFD22D /* icon-cast-connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 132CC53118DBB10C00FFD22D /* icon-cast-connected.png */; };
@@ -82,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		130D9FB018D4D6E7000B07A6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		132109CD18E490DD0041E394 /* PWCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCUtilities.h; sourceTree = "<group>"; };
+		132109CE18E490DD0041E394 /* PWCUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCUtilities.m; sourceTree = "<group>"; };
 		132CC52B18DBB0F500FFD22D /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = "<group>"; };
 		132CC52C18DBB0F500FFD22D /* PWCNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCNotes.h; sourceTree = "<group>"; };
 		132CC52D18DBB0F500FFD22D /* PWCNotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCNotes.m; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				455699A115507139009E52FE /* PWCAppDelegate.m */,
 				13FE0A9518E39A3D000AA6E0 /* PWCFileServer.h */,
 				13FE0A9618E39A3D000AA6E0 /* PWCFileServer.m */,
+				132109CD18E490DD0041E394 /* PWCUtilities.h */,
+				132109CE18E490DD0041E394 /* PWCUtilities.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				132CC58F18DBBD7100FFD22D /* HTTPFileResponse.m in Sources */,
 				132CC58C18DBBD7100FFD22D /* HTTPDataResponse.m in Sources */,
 				132CC58818DBBD7100FFD22D /* MultipartFormDataParser.m in Sources */,
+				132109CF18E490DD0041E394 /* PWCUtilities.m in Sources */,
 				132CC59018DBBD7100FFD22D /* HTTPRedirectResponse.m in Sources */,
 				45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */,
 				132CC59918DBBD7100FFD22D /* DDAbstractDatabaseLogger.m in Sources */,
