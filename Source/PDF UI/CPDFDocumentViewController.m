@@ -81,7 +81,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) != NULL)
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         _document.delegate = self;
         _renderedPageCache = [[NSCache alloc] init];
@@ -213,27 +213,10 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // copy images over to the cache directory
-    /*NSFileManager *fileManager = [NSFileManager defaultManager];
-    self.cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    int numberOfPages = [self.document numberOfPages];
-    NSError *error = nil;
-    for (int i = 1; i <= numberOfPages; ++i) {
-        NSString *imageSourcePath = [imageDirectoryPath stringByAppendingFormat:@"/%d.jpeg", i];
-        NSString *imageDestinationPath = [self.cacheDirectoryPath stringByAppendingFormat:@"/%d.jpeg", i];
-        BOOL copied = [fileManager copyItemAtPath:imageSourcePath toPath:imageDestinationPath error:&error];
-        if (!copied) {
-            //NSLog(@"%@", error);
-        }
-    }*/
-    
     // get the ip address of the phone
     self.ipAddress = [self getIPAddress];
     PWCFileServer *fileServer = [PWCFileServer getSharedServer];
     self.port = [fileServer listeningPort];
-    //NSLog(@"%@", self.ipAddress);
-    //NSLog(@"%d", self.port);
-    //NSLog([self.httpServer isRunning]? @"YES" : @"NO");
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -268,7 +251,8 @@
     [self performSelector:@selector(hideChrome) withObject:NULL afterDelay:0.5];
 }
 
-- (NSString *)getIPAddress {
+- (NSString *)getIPAddress
+{
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
@@ -283,7 +267,8 @@
                 // check if interface is en0 which is the wifi connection on the iPhone
                 if([[NSString stringWithUTF8String:temp_addr -> ifa_name] isEqualToString:@"en0"]) {
                     // get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr -> ifa_addr) -> sin_addr)];
+                    address = [NSString
+                               stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr -> ifa_addr) -> sin_addr)];
                 }
             }
             temp_addr = temp_addr -> ifa_next;
@@ -378,7 +363,6 @@
     NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
     NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d/%@/%@",
                               self.ipAddress, self.port, self.document.title, imageName];
-    NSLog(@"%@", imageWebPath);
     
     return imageWebPath;
 }
@@ -710,6 +694,5 @@
 {
     return(self.pageViewController.view);
 }
-
 
 @end

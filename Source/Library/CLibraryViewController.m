@@ -61,14 +61,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 #pragma mark - View lifecycle
 
-- (id)init
-{
-    if (self = [super init]) {
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,11 +77,10 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    // set up chromecast button
     _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
     _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
     _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    // set up chromecast button
     [self.chromecastButton addTarget:self
                           action:@selector(chooseDevice:)
                 forControlEvents:UIControlEventTouchDown];
@@ -138,20 +129,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 }
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
-    /*NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:self.cacheDirectoryPath error:&error];
-    for (NSString *file in files) {
-        if ([file rangeOfString:@".jpeg"].location == NSNotFound) {
-            // don't remove something without .jpeg in it
-            continue;
-        }
-        if (![fileManager removeItemAtPath:[self.cacheDirectoryPath stringByAppendingFormat:@"/%@", file] error:&error]) {
-            NSLog(@"%@", error);
-        }
-    }*/
-}
+{}
 
 #pragma mark - Table view data source
 
