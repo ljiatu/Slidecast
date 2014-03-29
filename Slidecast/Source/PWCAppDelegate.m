@@ -69,7 +69,6 @@
         
         // move the document to the folder
         NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@.pdf", folderName, folderName]];
-        NSLog(@"%@", destinationURL);
         result = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
         if (result)
         {
