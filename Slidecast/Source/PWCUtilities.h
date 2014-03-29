@@ -12,5 +12,6 @@
 
 + (NSString *)presentationTitleAtURL:(NSURL *)URL;
 + (NSString *)presentationTitleForDocumentName:(NSString *)documentName;
++ (void)adjustFolderName:(NSString **)name andPath:(NSString **)path;
 
 @end

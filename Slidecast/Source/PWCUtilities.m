@@ -26,4 +26,20 @@
     }
 }
 
++ (void)adjustFolderName:(NSString **)name andPath:(NSString **)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *folderName;
+    NSInteger suffix = 2;
+    
+    // keep changing the name and path until the folder at the specified path does not exist
+    do {
+        folderName = [NSString stringWithFormat:@"%@ (%d)", *name, suffix++];
+        *path = [documentsPath stringByAppendingFormat:@"/%@", folderName];
+    } while ([fileManager fileExistsAtPath:*path]);
+    
+    *name = folderName;
+}
+
 @end

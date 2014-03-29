@@ -1,5 +1,6 @@
 //
 //  PWCAppDelegate.m
+//  Slidecast
 //
 //  Created by Jonathan Wight on 02/19/11.
 //  Modified by Jiatu Liu to be used in Slidecast.
@@ -48,20 +49,26 @@
         
         NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *folderName = [PWCUtilities presentationTitleAtURL:URL];
-
+        NSString *folderPath = [documentsPath stringByAppendingFormat:@"/%@", folderName];
+        
+        if ([fileManager fileExistsAtPath:folderPath]) {
+            // modify the folder name to aovid name collision
+            [PWCUtilities adjustFolderName:&folderName andPath:&folderPath];
+        }
+        
         // create a folder to hold the document
         NSError *error = nil;
-        BOOL result = [fileManager createDirectoryAtPath:[documentsPath stringByAppendingFormat:@"/%@", folderName]
-                             withIntermediateDirectories:NO attributes:nil error:&error];
+        BOOL result = [fileManager createDirectoryAtPath:folderPath
+                             withIntermediateDirectories:NO
+                                              attributes:nil
+                                                   error:&error];
         if (!result) {
             NSLog(@"%@", error);
             return result;
         }
         
         // move the document to the folder
-        NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath]
-                                 URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@", folderName,
-                                                              [URL lastPathComponent]]];
+        NSURL *destinationURL = [[NSURL fileURLWithPath:documentsPath] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@.pdf", folderName, folderName]];
         NSLog(@"%@", destinationURL);
         result = [fileManager moveItemAtURL:URL toURL:destinationURL error:&error];
         if (result)
