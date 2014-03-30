@@ -12,7 +12,7 @@
 @interface PWCNotesViewController ()
 
 @property PWCNotes * notes;
-@property int index;
+@property NSInteger index;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousButton;
@@ -27,25 +27,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// load notes
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    _notes      = [[PWCNotes alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
-    _index      = 0;
+    _notes = [[PWCNotes alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
+    _index = 0;
     NSString * text = [self.notes getNoteAtIndex:self.index];
-    if ([text isEqualToString:@"empty"])
-    {
-        [self.noteText setText:@"Add Notes Here!"];
-    }
-    else
-    {
-        [self.noteText setText:text];
-    }
+    [self.noteText setText:text];
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
     
     // if there is only one slide, disable the next button
     if (self.numberOfPages <= 1) {
         self.nextButton.enabled = NO;
     }
+    
+    // set the note text delegate to the view controller
+    self.noteText.delegate = self;
 }
 
 - (IBAction)addAndSaveNotes:(id)sender
@@ -75,14 +70,7 @@
     [self.notes saveNotes];
     --self.index;
     NSString * text = [self.notes getNoteAtIndex:self.index];
-    if ([text isEqualToString:@"empty"])
-    {
-        [self.noteText setText:@"Add Notes Here!"];
-    }
-    else
-    {
-        [self.noteText setText:text];
-    }
+    [self.noteText setText:text];
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
 }
 
@@ -103,14 +91,7 @@
     [self.notes saveNotes];
     ++self.index;
     NSString * text = [self.notes getNoteAtIndex:self.index];
-    if ([text isEqualToString:@"empty"])
-    {
-        [self.noteText setText:@"Add Notes Here!"];
-    }
-    else
-    {
-        [self.noteText setText:text];
-    }
+    [self.noteText setText:text];
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
 }
 

@@ -10,7 +10,7 @@
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
 
-@interface PWCNotes()
+@interface PWCNotes ()
 
 @property NSString * filePath;
 @property NSMutableArray * notes;
@@ -28,12 +28,12 @@
     _filePath = [path stringByAppendingString:[NSString stringWithFormat:@"/%@/notes.txt", fileName]];
     
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
-    if (exists == NO)
+    if (!exists)
     {
         // if file does not exist, create one and initialize the content
         _notes = [[NSMutableArray alloc] init];
         [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:nil attributes:nil];
-        NSString * emptyString = @"empty";
+        NSString * emptyString = @"Add Notes Here!";
         for (int i = 0; i < numberOfPages; ++i)
         {
             [self.notes addObject:emptyString];

@@ -11,6 +11,7 @@
 #import "CPDFDocumentViewController.h"
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
+#include "Googlecast/Googlecast.h"
 #import "PWCNotesViewController.h"
 
 @interface PWCPreviewViewController ()
@@ -114,6 +115,8 @@
 }
 
 - (IBAction)unwindToPreview:(UIStoryboardSegue *)segue
-{}
+{
+    [self.mediaControlChannel stop];
+}
 
 @end

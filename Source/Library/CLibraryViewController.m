@@ -79,8 +79,8 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // set up chromecast button
-    _btnImage = [UIImage imageNamed:@"icon-cast-identified.png"];
-    _btnImageSelected = [UIImage imageNamed:@"icon-cast-connected.png"];
+    _btnImage = [UIImage imageNamed:@"cast_off.png"];
+    _btnImageSelected = [UIImage imageNamed:@"cast-on.png"];
     _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.chromecastButton addTarget:self
                           action:@selector(chooseDevice:)

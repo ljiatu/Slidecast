@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PWCNotesViewController : UIViewController
+@interface PWCNotesViewController : UIViewController <UITextViewDelegate>
 
 @property NSString * docTitle;
-@property int numberOfPages;
+@property NSInteger numberOfPages;
 
 - (void)setDocTitle:(NSString *)title;
 - (IBAction)prevAction:(id)sender;

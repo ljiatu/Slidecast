@@ -3,7 +3,7 @@
 //  Slidecast
 //
 //  Created by Jonathan Wight on 02/19/11.
-// Modified by Jiatu Liu to be used in Slidecast.
+//  Modified by Jiatu Liu to be used in Slidecast.
 //  Copyright 2012 Jonathan Wight. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are
@@ -213,7 +213,7 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // get the ip address of the phone
+    // get the ip address of the device
     self.ipAddress = [self getIPAddress];
     PWCFileServer *fileServer = [PWCFileServer getSharedServer];
     self.port = [fileServer listeningPort];
