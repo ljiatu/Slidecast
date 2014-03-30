@@ -314,6 +314,15 @@ static NSString *const kReceiverAppID = @"2CFA780B";
                            clientPackageName:[info objectForKey:@"CFBundleIdentifier"]];
     self.deviceManager.delegate = self;
     [self.deviceManager connect];
+    
+    
+    // start animating the cast connect images.
+    self.chromecastButton.tintColor = [UIColor whiteColor];
+    self.chromecastButton.imageView.animationImages =
+    @[ [UIImage imageNamed:@"cast_on0.png"], [UIImage imageNamed:@"cast_on1.png"],
+       [UIImage imageNamed:@"cast_on2.png"], [UIImage imageNamed:@"cast_on1.png"] ];
+    self.chromecastButton.imageView.animationDuration = 2;
+    [self.chromecastButton.imageView startAnimating];
 }
 
 - (void)deviceDisconnected
@@ -332,13 +341,14 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     } else {
         if (self.deviceManager && self.deviceManager.isConnected) {
             // Enabled state for cast button
+            [self.chromecastButton.imageView stopAnimating];
             [self.chromecastButton setImage:self.btnImageSelected forState:UIControlStateNormal];
-            [self.chromecastButton setTintColor:[UIColor blueColor]];
+            //[self.chromecastButton setTintColor:[UIColor blueColor]];
             self.chromecastButton.hidden = NO;
         } else {
             // Disabled state for cast button
             [self.chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
-            [self.chromecastButton setTintColor:[UIColor grayColor]];
+            //[self.chromecastButton setTintColor:[UIColor grayColor]];
             self.chromecastButton.hidden = NO;
         }
     }
