@@ -46,7 +46,7 @@
 {
     CGPDFDataFormat theFormat;
     NSData *theData = (__bridge_transfer NSData *)CGPDFStreamCopyData(_stream, &theFormat);
-    return([NSString stringWithFormat:@"%@ (format: %d, length: %d)", [super description], theFormat, theData.length]);
+    return([NSString stringWithFormat:@"%@ (format: %d, length: %lu)", [super description], theFormat, (unsigned long)theData.length]);
 }
 
 - (NSData *)data

@@ -338,17 +338,18 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         [self.chromecastButton setImage:_btnImage forState:UIControlStateNormal];
         self.chromecastButton.hidden = YES;
     } else {
+        self.chromecastButton.hidden = NO;
         if (self.deviceManager && self.deviceManager.isConnected) {
             // Enabled state for cast button
             [self.chromecastButton.imageView stopAnimating];
+            self.chromecastButton.imageView.animationImages = nil;
             [self.chromecastButton setImage:self.btnImageSelected forState:UIControlStateNormal];
             //[self.chromecastButton setTintColor:[UIColor blueColor]];
-            self.chromecastButton.hidden = NO;
+            
         } else {
             // Disabled state for cast button
             [self.chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
             //[self.chromecastButton setTintColor:[UIColor grayColor]];
-            self.chromecastButton.hidden = NO;
         }
     }
     
@@ -409,7 +410,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager didConnectToCastApplication:(GCKApplicationMetadata *)applicationMetadata sessionID:(NSString *)sessionID launchedApplication:(BOOL)launchedApplication
 {
-    NSLog(@"application has launched %hhd", launchedApplication);
+    NSLog(@"application has launched %d", launchedApplication);
     
     // add media channel here
     self.mediaControlChannel = [[GCKMediaControlChannel alloc] init];

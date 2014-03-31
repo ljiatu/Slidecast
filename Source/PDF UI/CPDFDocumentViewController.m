@@ -325,7 +325,7 @@
     if (theViewControllers.count == 1) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         NSInteger pageNumber = theFirstViewController.page.pageNumber;
-        self.title = [NSString stringWithFormat:@"Page %d", pageNumber];
+        self.title = [NSString stringWithFormat:@"Page %ld", (long)pageNumber];
         // load notes for that page
         [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
         // cast image of the page
@@ -334,7 +334,7 @@
     } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
-        self.title = [NSString stringWithFormat:@"Pages %d-%d", theFirstViewController.page.pageNumber, theSecondViewController.page.pageNumber];
+        self.title = [NSString stringWithFormat:@"Pages %ld-%ld", (long)theFirstViewController.page.pageNumber, (long)theSecondViewController.page.pageNumber];
     }
 }
 
@@ -360,7 +360,7 @@
 - (NSString *)imageWebPathOfPageNumber:(NSInteger)pageNumber
 {
     // search for the image
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", pageNumber];
+    NSString *imageName = [NSString stringWithFormat:@"%ld.jpeg", (long)pageNumber];
     NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d/%@/%@",
                               self.ipAddress, self.port, self.document.title, imageName];
     
@@ -529,7 +529,7 @@
     
     for (NSInteger thePageNumber = theStartPageNumber; thePageNumber <= theLastPageNumber; ++thePageNumber)
     {
-        NSString *theKey = [NSString stringWithFormat:@"%d[%d,%d]", thePageNumber, (int)theBounds.size.width, (int)theBounds.size.height];
+        NSString *theKey = [NSString stringWithFormat:@"%ld[%d,%d]", (long)thePageNumber, (int)theBounds.size.width, (int)theBounds.size.height];
         if ([self.renderedPageCache objectForKey:theKey] == NULL)
         {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -602,7 +602,7 @@
         NSMutableIndexSet *theIndexSet = [NSMutableIndexSet indexSet];
         for (NSNumber *thePageNumber in thePageNumbers)
         {
-            int N = [thePageNumber integerValue] - 1;
+            NSInteger N = [thePageNumber integerValue] - 1;
             if (N != 0)
             {
                 [theIndexSet addIndex:N];

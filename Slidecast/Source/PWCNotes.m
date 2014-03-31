@@ -19,7 +19,7 @@
 
 @implementation PWCNotes
 
-- (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(int)numberOfPages
+- (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(NSInteger)numberOfPages
 {
     if (!(self = [super init])) {
         return nil;
@@ -50,7 +50,7 @@
     return self;
 }
 
-- (void)addNote:(NSString *)note atIndex:(int)index
+- (void)addNote:(NSString *)note atIndex:(NSInteger)index
 {
     [self.notes replaceObjectAtIndex:index withObject:note];
 }
@@ -64,7 +64,7 @@
     [writeFile closeFile];
 }
 
-- (NSString *)getNoteAtIndex:(int)index
+- (NSString *)getNoteAtIndex:(NSInteger)index
 {
     return [self.notes objectAtIndex:index];
 }

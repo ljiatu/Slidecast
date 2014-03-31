@@ -59,7 +59,7 @@
 
 - (NSString *)description
 {
-    return([NSString stringWithFormat:@"%@ (#%d, %@)", [super description], self.pageNumber, NSStringFromCGRect(self.mediaBox)]);
+    return([NSString stringWithFormat:@"%@ (#%ld, %@)", [super description], (long)self.pageNumber, NSStringFromCGRect(self.mediaBox)]);
 }
 
 - (CGPDFPageRef)cg
@@ -137,14 +137,14 @@
 
 - (UIImage *)thumbnail
 {
-    NSString *theKey = [NSString stringWithFormat:@"page_%d_image_128x128", self.pageNumber];
+    NSString *theKey = [NSString stringWithFormat:@"page_%ld_image_128x128", (long)self.pageNumber];
     UIImage *theImage = [self.document.cache objectForKey:theKey];
     return(theImage);
 }
 
 - (UIImage *)preview
 {
-    NSString *theKey = [NSString stringWithFormat:@"page_%d_image_preview2", self.pageNumber];
+    NSString *theKey = [NSString stringWithFormat:@"page_%ld_image_preview2", (long)self.pageNumber];
     UIImage *theImage = [self.document.cache objectForKey:theKey];
     if (theImage == NULL)
     {

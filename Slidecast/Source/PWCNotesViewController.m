@@ -32,7 +32,7 @@
     _index = 0;
     NSString * text = [self.notes getNoteAtIndex:self.index];
     [self.noteText setText:text];
-    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
+    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(self.index + 1)]];
     
     // if there is only one slide, disable the next button
     if (self.numberOfPages <= 1) {
@@ -71,7 +71,7 @@
     --self.index;
     NSString * text = [self.notes getNoteAtIndex:self.index];
     [self.noteText setText:text];
-    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
+    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(self.index + 1)]];
 }
 
 - (IBAction)nextAction:(id)sender
@@ -92,7 +92,7 @@
     ++self.index;
     NSString * text = [self.notes getNoteAtIndex:self.index];
     [self.noteText setText:text];
-    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %d", (self.index + 1)]];
+    [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(self.index + 1)]];
 }
 
 - (void)didReceiveMemoryWarning

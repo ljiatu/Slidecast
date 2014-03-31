@@ -23,17 +23,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahO-rZ-hEy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahO-rZ-hEy">
                                 <rect key="frame" x="20" y="73" width="280" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="##" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSz-0g-zEP">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="##" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSz-0g-zEP">
                                 <rect key="frame" x="280" y="343" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xg-Pi-8vf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xg-Pi-8vf">
                                 <rect key="frame" x="124" y="518" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Notes">
@@ -44,6 +44,15 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ahO-rZ-hEy" secondAttribute="trailing" constant="20" id="3Ww-eN-ki2"/>
+                            <constraint firstItem="ahO-rZ-hEy" firstAttribute="leading" secondItem="glx-lN-Ht7" secondAttribute="leading" constant="20" id="A8y-zC-W77"/>
+                            <constraint firstAttribute="trailing" secondItem="LSz-0g-zEP" secondAttribute="trailing" constant="20" id="OYB-Yj-yHP"/>
+                            <constraint firstItem="ahO-rZ-hEy" firstAttribute="top" secondItem="AnJ-uD-iTr" secondAttribute="bottom" constant="9" id="X7h-AG-p7F"/>
+                            <constraint firstItem="2xg-Pi-8vf" firstAttribute="leading" secondItem="glx-lN-Ht7" secondAttribute="leading" constant="124" id="boO-Y5-feW"/>
+                            <constraint firstItem="ELe-c9-JLG" firstAttribute="top" secondItem="2xg-Pi-8vf" secondAttribute="bottom" constant="20" id="g8Z-rR-7J3"/>
+                            <constraint firstAttribute="trailing" secondItem="2xg-Pi-8vf" secondAttribute="trailing" constant="123" id="wmh-Wg-9AK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="(Name of Presentation)" id="70b-H1-6QW">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="J2Z-9H-pF5">

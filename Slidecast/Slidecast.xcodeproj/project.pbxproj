@@ -42,6 +42,7 @@
 		132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m */; };
 		132CC5A018DBBD7100FFD22D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 132CC58018DBBD7100FFD22D /* README.txt */; };
 		132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132CC5A118DBC2D800FFD22D /* libxml2.dylib */; };
+		135CA21E18E9CFC2000ACB6B /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */; };
 		135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */; };
 		135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAC18E8E90B0077DDF3 /* cast_off.png */; };
 		135EFFB318E8E90B0077DDF3 /* cast_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAD18E8E90B0077DDF3 /* cast_on.png */; };
@@ -49,7 +50,6 @@
 		135EFFB518E8E90B0077DDF3 /* cast_on1.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAF18E8E90B0077DDF3 /* cast_on1.png */; };
 		135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB018E8E90B0077DDF3 /* cast_on2.png */; };
 		135EFFB718E8E90B0077DDF3 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB118E8E90B0077DDF3 /* Icon */; };
-		1393FFAF18DF55E900A4F915 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1B26D518DE936E00BED3B6 /* GoogleCast.framework */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
 		13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */; };
@@ -156,6 +156,7 @@
 		132CC57F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		132CC58018DBBD7100FFD22D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		132CC5A118DBC2D800FFD22D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		135EFFAC18E8E90B0077DDF3 /* cast_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_off.png; sourceTree = "<group>"; };
 		135EFFAD18E8E90B0077DDF3 /* cast_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on.png; sourceTree = "<group>"; };
@@ -220,7 +221,6 @@
 		45D969CC1553177800338688 /* CPDFAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFAnnotationView.m; sourceTree = "<group>"; };
 		45F9FAF81582D495004D267B /* CFadelessTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFadelessTiledLayer.h; sourceTree = "<group>"; };
 		45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFadelessTiledLayer.m; sourceTree = "<group>"; };
-		5F1B26D518DE936E00BED3B6 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "../GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		5F5E603E18D9431B00485259 /* PWCNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCNotesViewController.h; sourceTree = "<group>"; };
 		5F5E603F18D9431C00485259 /* PWCNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCNotesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,7 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1393FFAF18DF55E900A4F915 /* GoogleCast.framework in Frameworks */,
+				135CA21E18E9CFC2000ACB6B /* GoogleCast.framework in Frameworks */,
 				132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */,
 				13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */,
 				13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */,
@@ -451,7 +451,7 @@
 		45024C381310CEC100BB3E3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F1B26D518DE936E00BED3B6 /* GoogleCast.framework */,
+				135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */,
 				132CC5A118DBC2D800FFD22D /* libxml2.dylib */,
 				13964DD118D7EC7F00E21E15 /* CFNetwork.framework */,
 				13B713AE18D7E21F00B00D20 /* Security.framework */,
@@ -791,6 +791,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/GoogleCastFramework-2.0-Release",
+					"$(PROJECT_DIR)/GoogleCastFramework-2.0-Release",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -825,6 +826,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/GoogleCastFramework-2.0-Release",
+					"$(PROJECT_DIR)/GoogleCastFramework-2.0-Release",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
