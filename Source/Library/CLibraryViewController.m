@@ -86,8 +86,8 @@ static NSString *const kReceiverAppID = @"2CFA780B";
                           action:@selector(chooseDevice:)
                 forControlEvents:UIControlEventTouchDown];
     self.chromecastButton.frame = CGRectMake(0, 0, self.btnImage.size.width, self.btnImage.size.height);
-    [self.chromecastButton setImage:nil forState:UIControlStateNormal];
-    self.chromecastButton.hidden = NO;
+    [self.chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
+    self.chromecastButton.hidden = YES;
     
     // add cast button to navigation bar
     self.navigationItem.rightBarButtonItem =
