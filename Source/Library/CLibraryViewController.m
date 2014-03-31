@@ -87,7 +87,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
                 forControlEvents:UIControlEventTouchDown];
     self.chromecastButton.frame = CGRectMake(0, 0, self.btnImage.size.width, self.btnImage.size.height);
     [self.chromecastButton setImage:nil forState:UIControlStateNormal];
-    self.chromecastButton.hidden = YES;
+    self.chromecastButton.hidden = NO;
     
     // add cast button to navigation bar
     self.navigationItem.rightBarButtonItem =
@@ -314,7 +314,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
                            clientPackageName:[info objectForKey:@"CFBundleIdentifier"]];
     self.deviceManager.delegate = self;
     [self.deviceManager connect];
-    
     
     // start animating the cast connect images.
     self.chromecastButton.tintColor = [UIColor whiteColor];
