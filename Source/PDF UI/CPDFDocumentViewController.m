@@ -363,6 +363,11 @@
     NSString *imageName = [NSString stringWithFormat:@"%ld.jpeg", (long)pageNumber];
     NSString *imageWebPath = [NSString stringWithFormat:@"http://%@:%d/%@/%@",
                               self.ipAddress, self.port, self.document.title, imageName];
+    NSLog(@"%@", imageWebPath);
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imagePath = [documentsPath stringByAppendingFormat:@"/%@/%@", self.document.title, imageName];
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+    NSLog(@"%@ %d", imagePath, exists);
     
     return imageWebPath;
 }

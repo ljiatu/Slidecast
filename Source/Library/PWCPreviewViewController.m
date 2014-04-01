@@ -48,7 +48,7 @@
     
     // display preview of the presentation
     CPDFPage *firstPage = [self.document pageForPageNumber:1];
-    UIImage *firstPageImage = [firstPage imageWithSize:CGSizeMake(280, 220) scale:[UIScreen mainScreen].scale];
+    UIImage *firstPageImage = [firstPage imageWithSize:CGSizeMake(200, 157) scale:[UIScreen mainScreen].scale];
     self.presentationPreview.image = firstPageImage;
     self.presentationPreview.contentMode = UIViewContentModeScaleAspectFit;
     

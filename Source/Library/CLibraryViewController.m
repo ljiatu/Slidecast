@@ -76,11 +76,11 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     //self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // set up chromecast button
     _btnImage = [UIImage imageNamed:@"cast_off.png"];
-    _btnImageSelected = [UIImage imageNamed:@"cast-on.png"];
+    _btnImageSelected = [UIImage imageNamed:@"cast_on.png"];
     _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.chromecastButton addTarget:self
                           action:@selector(chooseDevice:)
@@ -316,7 +316,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     [self.deviceManager connect];
     
     // start animating the cast connect images.
-    self.chromecastButton.tintColor = [UIColor whiteColor];
     self.chromecastButton.imageView.animationImages =
     @[ [UIImage imageNamed:@"cast_on0.png"], [UIImage imageNamed:@"cast_on1.png"],
        [UIImage imageNamed:@"cast_on2.png"], [UIImage imageNamed:@"cast_on1.png"] ];
@@ -342,14 +341,11 @@ static NSString *const kReceiverAppID = @"2CFA780B";
         if (self.deviceManager && self.deviceManager.isConnected) {
             // Enabled state for cast button
             [self.chromecastButton.imageView stopAnimating];
-            self.chromecastButton.imageView.animationImages = nil;
             [self.chromecastButton setImage:self.btnImageSelected forState:UIControlStateNormal];
-            //[self.chromecastButton setTintColor:[UIColor blueColor]];
             
         } else {
             // Disabled state for cast button
             [self.chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
-            //[self.chromecastButton setTintColor:[UIColor grayColor]];
         }
     }
     

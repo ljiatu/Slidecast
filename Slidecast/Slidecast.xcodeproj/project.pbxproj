@@ -42,6 +42,7 @@
 		132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC57F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m */; };
 		132CC5A018DBBD7100FFD22D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 132CC58018DBBD7100FFD22D /* README.txt */; };
 		132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132CC5A118DBC2D800FFD22D /* libxml2.dylib */; };
+		1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */; };
 		135CA21E18E9CFC2000ACB6B /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */; };
 		135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */; };
 		135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAC18E8E90B0077DDF3 /* cast_off.png */; };
@@ -49,7 +50,6 @@
 		135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAE18E8E90B0077DDF3 /* cast_on0.png */; };
 		135EFFB518E8E90B0077DDF3 /* cast_on1.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAF18E8E90B0077DDF3 /* cast_on1.png */; };
 		135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB018E8E90B0077DDF3 /* cast_on2.png */; };
-		135EFFB718E8E90B0077DDF3 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB118E8E90B0077DDF3 /* Icon */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
 		13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */; };
@@ -86,7 +86,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		130D9FB018D4D6E7000B07A6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		130D9FB018D4D6E7000B07A6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Resources/Main.storyboard; sourceTree = "<group>"; };
 		132109CD18E490DD0041E394 /* PWCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCUtilities.h; sourceTree = "<group>"; };
 		132109CE18E490DD0041E394 /* PWCUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCUtilities.m; sourceTree = "<group>"; };
 		132CC52B18DBB0F500FFD22D /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = "<group>"; };
@@ -156,6 +156,8 @@
 		132CC57F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		132CC58018DBBD7100FFD22D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		132CC5A118DBC2D800FFD22D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		1339F18118EA289700A14F1C /* PWCChromecastDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCChromecastDeviceController.h; sourceTree = "<group>"; };
+		1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCChromecastDeviceController.m; sourceTree = "<group>"; };
 		135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		135EFFAC18E8E90B0077DDF3 /* cast_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_off.png; sourceTree = "<group>"; };
@@ -163,7 +165,6 @@
 		135EFFAE18E8E90B0077DDF3 /* cast_on0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on0.png; sourceTree = "<group>"; };
 		135EFFAF18E8E90B0077DDF3 /* cast_on1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on1.png; sourceTree = "<group>"; };
 		135EFFB018E8E90B0077DDF3 /* cast_on2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on2.png; sourceTree = "<group>"; };
-		135EFFB118E8E90B0077DDF3 /* Icon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13B713AE18D7E21F00B00D20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWCPreviewViewController.h; path = ../../Source/Library/PWCPreviewViewController.h; sourceTree = "<group>"; };
@@ -183,7 +184,7 @@
 		45454DEF1558429B004AC470 /* CContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CContentScrollView.h; sourceTree = "<group>"; };
 		45454DF01558429B004AC470 /* CContentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CContentScrollView.m; sourceTree = "<group>"; };
 		454BF5B31554B92600E7DE1D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		4556999115507139009E52FE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4556999115507139009E52FE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		4556999E15507139009E52FE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
 		455699A015507139009E52FE /* PWCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCAppDelegate.h; sourceTree = "<group>"; };
 		455699A115507139009E52FE /* PWCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCAppDelegate.m; sourceTree = "<group>"; };
@@ -249,6 +250,7 @@
 		132109CC18E47DC10041E394 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4556999115507139009E52FE /* Info.plist */,
 				132CC52B18DBB0F500FFD22D /* Prefix.pch */,
 				4556999E15507139009E52FE /* main.m */,
 			);
@@ -423,7 +425,6 @@
 				135EFFAE18E8E90B0077DDF3 /* cast_on0.png */,
 				135EFFAF18E8E90B0077DDF3 /* cast_on1.png */,
 				135EFFB018E8E90B0077DDF3 /* cast_on2.png */,
-				135EFFB118E8E90B0077DDF3 /* Icon */,
 			);
 			name = 1x;
 			path = Images/Cast_Icons/ios/exported/blue_blue/cast_icon/1x;
@@ -471,24 +472,15 @@
 				135EFC5918E8B8540077DDF3 /* Images */,
 				132109CC18E47DC10041E394 /* Supporting Files */,
 				132CC53018DBB10C00FFD22D /* en.lproj */,
-				4556998C15507139009E52FE /* Resources */,
 				4556999515507139009E52FE /* Source */,
 			);
 			name = Slidecast;
 			sourceTree = "<group>";
 		};
-		4556998C15507139009E52FE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				130D9FB018D4D6E7000B07A6 /* Main.storyboard */,
-				4556999115507139009E52FE /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		4556999515507139009E52FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				130D9FB018D4D6E7000B07A6 /* Main.storyboard */,
 				13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */,
 				13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */,
 				132CC52C18DBB0F500FFD22D /* PWCNotes.h */,
@@ -501,6 +493,8 @@
 				13FE0A9618E39A3D000AA6E0 /* PWCFileServer.m */,
 				132109CD18E490DD0041E394 /* PWCUtilities.h */,
 				132109CE18E490DD0041E394 /* PWCUtilities.m */,
+				1339F18118EA289700A14F1C /* PWCChromecastDeviceController.h */,
+				1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -662,7 +656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */,
-				135EFFB718E8E90B0077DDF3 /* Icon in Resources */,
 				135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */,
 				132CC59618DBBD7100FFD22D /* About.txt in Resources */,
 				130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */,
@@ -729,6 +722,7 @@
 				5F5E604018D9431C00485259 /* PWCNotesViewController.m in Sources */,
 				45C25DD6155335AC001BA233 /* CPDFStream.m in Sources */,
 				132CC59D18DBBD7100FFD22D /* DDTTYLogger.m in Sources */,
+				1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */,
 				45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */,
 				45454DF11558429C004AC470 /* CContentScrollView.m in Sources */,
 				132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */,

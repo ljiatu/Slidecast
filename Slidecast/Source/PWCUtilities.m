@@ -35,7 +35,7 @@
     
     // keep changing the name and path until the folder at the specified path does not exist
     do {
-        folderName = [NSString stringWithFormat:@"%@ (%ld)", *name, (long)suffix++];
+        folderName = [NSString stringWithFormat:@"%@ [%ld]", *name, (long)suffix++];
         *path = [documentsPath stringByAppendingFormat:@"/%@", folderName];
     } while ([fileManager fileExistsAtPath:*path]);
     
