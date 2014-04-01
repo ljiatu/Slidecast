@@ -32,8 +32,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class PWCChromecastDeviceController;
+@class PWCFileServer;
+
 @interface PWCAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
+@property PWCChromecastDeviceController *chromecastController;
+@property PWCFileServer *server;
 
 @end

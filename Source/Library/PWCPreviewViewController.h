@@ -7,18 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PWCChromecastDeviceController.h"
 
 @class CPDFDocument;
-@class GCKMediaControlChannel;
-@class GCKDeviceManager;
 
-@interface PWCPreviewViewController : UIViewController
+@interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate>
 
 @property (strong, nonatomic) NSURL *documentURL;
 @property (strong, nonatomic) CPDFDocument *document;
 
-@property GCKDeviceManager *deviceManager;
-@property GCKMediaControlChannel *mediaControlChannel;
+//@property GCKDeviceManager *deviceManager;
+//@property GCKMediaControlChannel *mediaControlChannel;
 
 // for save/cancel notes to go back to preview
 - (IBAction)unwindToPreview:(UIStoryboardSegue *)segue;

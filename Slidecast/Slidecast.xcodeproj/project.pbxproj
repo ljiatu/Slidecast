@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1309E5D018EB1ABF007952F9 /* PWCDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */; };
 		130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130D9FB018D4D6E7000B07A6 /* Main.storyboard */; };
 		132109CF18E490DD0041E394 /* PWCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 132109CE18E490DD0041E394 /* PWCUtilities.m */; };
 		132CC52E18DBB0F500FFD22D /* PWCNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 132CC52D18DBB0F500FFD22D /* PWCNotes.m */; };
@@ -86,6 +87,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1309E5CE18EB1ABF007952F9 /* PWCDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCDeviceTableViewController.h; sourceTree = "<group>"; };
+		1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCDeviceTableViewController.m; sourceTree = "<group>"; };
 		130D9FB018D4D6E7000B07A6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Resources/Main.storyboard; sourceTree = "<group>"; };
 		132109CD18E490DD0041E394 /* PWCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCUtilities.h; sourceTree = "<group>"; };
 		132109CE18E490DD0041E394 /* PWCUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCUtilities.m; sourceTree = "<group>"; };
@@ -481,6 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				130D9FB018D4D6E7000B07A6 /* Main.storyboard */,
+				1309E5CE18EB1ABF007952F9 /* PWCDeviceTableViewController.h */,
+				1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */,
 				13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */,
 				13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */,
 				132CC52C18DBB0F500FFD22D /* PWCNotes.h */,
@@ -704,6 +709,7 @@
 				132CC52E18DBB0F500FFD22D /* PWCNotes.m in Sources */,
 				132CC58918DBBD7100FFD22D /* MultipartMessageHeader.m in Sources */,
 				132CC59418DBBD7100FFD22D /* DELETEResponse.m in Sources */,
+				1309E5D018EB1ABF007952F9 /* PWCDeviceTableViewController.m in Sources */,
 				132CC58518DBBD7100FFD22D /* HTTPConnection.m in Sources */,
 				132CC59318DBBD7100FFD22D /* DAVResponse.m in Sources */,
 				455699F9155071A5009E52FE /* CPersistentCache.m in Sources */,
