@@ -319,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHf-Zn-0lD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-611" y="-3096"/>
+            <point key="canvasLocation" x="-611" y="-3080"/>
         </scene>
         <!--Device Table View Controller - Connect to-->
         <scene sceneID="0PO-WC-bze">

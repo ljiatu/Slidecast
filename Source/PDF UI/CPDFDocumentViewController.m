@@ -34,8 +34,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <GoogleCast/GoogleCast.h>
-#import <ifaddrs.h>
 #import <arpa/inet.h>
+#import <ifaddrs.h>
 
 #import "CContentScrollView.h"
 #import "CPDFDocument.h"
