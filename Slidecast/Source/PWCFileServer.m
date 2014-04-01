@@ -25,16 +25,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 # pragma mark Singleton Getter
 
-+ (id)getSharedServer
-{
-    static PWCFileServer *sharedServer = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedServer = [[self alloc] init];
-    });
-    return sharedServer;
-}
-
 - (UInt16)listeningPort
 {
     return [self.httpServer listeningPort];
@@ -84,14 +74,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 	}
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [self startServer];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)stopServer
 {
     [self.httpServer stop];
+    NSLog(@"The server is stoped");
 }
 
 @end

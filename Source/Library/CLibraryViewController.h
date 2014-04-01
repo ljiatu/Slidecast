@@ -31,18 +31,16 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleCast/GoogleCast.h>
+#import "PWCChromecastDeviceController.h"
 
-@interface CLibraryViewController : UITableViewController<GCKDeviceScannerListener,
-                                                          GCKDeviceManagerDelegate,
-                                                          GCKMediaControlChannelDelegate,
-                                                          UIActionSheetDelegate>
+@interface CLibraryViewController : UITableViewController <PWCChromecastControllerDelegate>
 
 @property (readwrite, nonatomic, strong) NSMutableArray *URLs;
 
-@property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
-@property(nonatomic, strong) UIButton* chromecastButton;
-@property(nonatomic, strong) GCKDeviceManager* deviceManager;
-@property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
+//@property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
+//@property(nonatomic, strong) UIButton* chromecastButton;
+//@property(nonatomic, strong) GCKDeviceManager* deviceManager;
+//@property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 

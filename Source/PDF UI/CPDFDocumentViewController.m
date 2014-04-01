@@ -37,13 +37,14 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 
+#import "CContentScrollView.h"
 #import "CPDFDocument.h"
 #import "CPDFPageViewController.h"
 #import "CPDFPage.h"
 #import "CPDFPageView.h"
-#import "CContentScrollView.h"
-#import "Geometry.h"
 #import "CPreviewCollectionViewCell.h"
+#import "Geometry.h"
+#import "PWCAppDelegate.h"
 #import "PWCFileServer.h"
 #import "PWCNotes.h"
 
@@ -51,6 +52,8 @@
                                           UIPageViewControllerDataSource, UIGestureRecognizerDelegate,
                                           CPDFPageViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource,
                                           UICollectionViewDelegate>
+
+@property (weak, nonatomic) PWCChromecastDeviceController *chromecastController;
 
 @property (readwrite, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) IBOutlet CContentScrollView *scrollView;
@@ -141,6 +144,10 @@
 {
     [super viewDidLoad];
     
+    // store a reference to the chromecast controller
+    PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    _chromecastController = delegate.chromecastController;
+    
     // #########################################################################
     
     UIPageViewControllerSpineLocation theSpineLocation;
@@ -213,10 +220,9 @@
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
     
-    // get the ip address of the device
+    // get the ip address and port of the device
     self.ipAddress = [self getIPAddress];
-    PWCFileServer *fileServer = [PWCFileServer getSharedServer];
-    self.port = [fileServer listeningPort];
+    self.port = [delegate.server listeningPort];
     
     // set up notes
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -242,6 +248,9 @@
         [self populateCache];
         [self.document startGeneratingThumbnails];
     });
+    
+    // assign ourselves as delegate ONLY in viewWillAppear of a view controller.
+    self.chromecastController.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -249,6 +258,14 @@
     [super viewDidAppear:animated];
     
     [self performSelector:@selector(hideChrome) withObject:NULL afterDelay:0.5];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    // return to the homepage
+    [self.chromecastController stopCastMedia];
 }
 
 - (NSString *)getIPAddress
@@ -329,8 +346,9 @@
         // load notes for that page
         [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
         // cast image of the page
-        [self castImageOfPageNumber:pageNumber];
-        [self imageWebPathOfPageNumber:pageNumber];
+        //[self castImageOfPageNumber:pageNumber];
+        BOOL result = [self.chromecastController loadMedia:[self imageWebPathOfPageNumber:pageNumber]];
+        NSLog(result? @"Image casted" : @"Image not casted");
     } else if (theViewControllers.count == 2) {
         CPDFPageViewController *theFirstViewController = theViewControllers[0];
         CPDFPageViewController *theSecondViewController = theViewControllers[1];
@@ -340,7 +358,7 @@
 
 - (void)castImageOfPageNumber:(NSInteger)pageNumber
 {
-    // send images to the device if connected
+    /*// send images to the device if connected
     if (self.deviceManager && self.deviceManager.isConnected) {
         // load the data
         GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
@@ -354,7 +372,8 @@
         
         // cast the image
         [self.mediaControlChannel loadMedia:mediaInformation];
-    }
+    }*/
+    [self.chromecastController loadMedia:[self imageWebPathOfPageNumber:pageNumber]];
 }
 
 - (NSString *)imageWebPathOfPageNumber:(NSInteger)pageNumber

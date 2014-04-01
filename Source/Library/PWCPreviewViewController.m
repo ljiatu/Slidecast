@@ -8,13 +8,17 @@
 
 #import "PWCPreviewViewController.h"
 
+#include <Googlecast/Googlecast.h>
+
 #import "CPDFDocumentViewController.h"
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
-#include "Googlecast/Googlecast.h"
+#import "PWCAppDelegate.h"
 #import "PWCNotesViewController.h"
 
 @interface PWCPreviewViewController ()
+
+@property (weak, nonatomic) PWCChromecastDeviceController *chromecastController;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *presentationTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *presentationPreview;
@@ -24,18 +28,13 @@
 
 @implementation PWCPreviewViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // store a reference to the chromecast controller
+    PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    _chromecastController = delegate.chromecastController;
     
     // initialize the document
     self.document = [[CPDFDocument alloc] initWithURL:self.documentURL];
@@ -59,6 +58,14 @@
     [self createImagesForSlides];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // assign ourselves as delegate ONLY in viewWillAppear of a view controller.
+    self.chromecastController.delegate = self;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -73,8 +80,8 @@
         destination.document = self.document;
         
         // pass the device manager and the media control channel to the document view controller
-        destination.deviceManager = self.deviceManager;
-        destination.mediaControlChannel = self.mediaControlChannel;
+        //destination.deviceManager = self.deviceManager;
+        //destination.mediaControlChannel = self.mediaControlChannel;
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
         PWCNotesViewController * dest = segue.destinationViewController;
         dest.docTitle = self.document.title;

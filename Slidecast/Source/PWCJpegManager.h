@@ -11,7 +11,7 @@
 @interface PWCJpegManager : NSObject
 
 - (id) init;
-- (void) makeJpegWithPdfTitle:(NSString *) pdfTitle;
-- (NSString *) getJpegWithPdfTitle:(NSString *) pdfTitle andPage:(int) page;
+- (BOOL) makeJpegFromPdfTitle:(NSString *) pdfTitle andURL:(NSURL *) URL;
+- (NSString *) getJpegWithTitle:(NSString *) title andPage:(int) page;
 
 @end

@@ -11,7 +11,8 @@
 // Singleton File Server
 @interface PWCFileServer : NSObject
 
-+ (id)getSharedServer;
 - (UInt16)listeningPort;
+- (void)startServer;
+- (void)stopServer;
 
 @end

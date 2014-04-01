@@ -32,12 +32,21 @@
 
 #import "PWCAppDelegate.h"
 
+#import "PWCChromecastDeviceController.h"
+#import "PWCFileServer.h"
 #import "PWCUtilities.h"
 
 @implementation PWCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _chromecastController = [[PWCChromecastDeviceController alloc] init];
+    // scan the available devices
+    [self.chromecastController performScan:YES];
+    
+    // initialize the server
+    _server = [[PWCFileServer alloc] init];
+    
     return YES;
 }
 
@@ -94,6 +103,16 @@
     }
 
     return NO;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self.server startServer];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [self.server stopServer];
 }
 
 @end

@@ -30,24 +30,23 @@
 //  or implied, of Jonathan Wight.
 
 #import <UIKit/UIKit.h>
+#import "PWCChromecastDeviceController.h"
 
 @class CPDFDocument;
 @class CContentScrollView;
 @class CPreviewBar;
 @class CPDFPage;
-@class GCKMediaControlChannel;
-@class GCKDeviceManager;
 @class HTTPServer;
 
-@interface CPDFDocumentViewController : UIViewController
+@interface CPDFDocumentViewController : UIViewController <PWCChromecastControllerDelegate>
 
 @property (readwrite, nonatomic, strong) CPDFDocument *document;
 @property (readonly, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) UIView *backgroundView;
 @property (readwrite, nonatomic, assign) BOOL magazineMode;
 
-@property GCKDeviceManager *deviceManager;
-@property GCKMediaControlChannel *mediaControlChannel;
+//@property GCKDeviceManager *deviceManager;
+//@property GCKMediaControlChannel *mediaControlChannel;
 
 - (BOOL)openPage:(CPDFPage *)inPage;
 

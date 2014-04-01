@@ -34,19 +34,20 @@
 #import "CPDFDocumentViewController.h"
 #import "CPDFDocument.h"
 #import "NSFileManager_BugFixExtensions.h"
+#import "PWCAppDelegate.h"
 #import "PWCPreviewViewController.h"
 #import "PWCUtilities.h"
 
-static NSString *const kReceiverAppID = @"2CFA780B";
-
 @interface CLibraryViewController ()
 
-@property UIImage *btnImage;
+/*@property UIImage *btnImage;
 @property UIImage *btnImageSelected;
 
 @property GCKApplicationMetadata *applicationMetadata;
 @property GCKDevice *selectedDevice;
-@property GCKMediaControlChannel *mediaControlChannel;
+@property GCKMediaControlChannel *mediaControlChannel;*/
+
+@property (weak, nonatomic) PWCChromecastDeviceController *chromecastController;
 
 @end
 
@@ -78,7 +79,16 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    // set up chromecast button
+    // store a reference to the chromecast controller
+    PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    _chromecastController = delegate.chromecastController;
+    
+    // display cast icon in the right nav bar button, if we have devices
+    if (self.chromecastController.deviceScanner.devices.count > 0) {
+        self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
+    }
+    
+    /*// set up chromecast button
     _btnImage = [UIImage imageNamed:@"cast_off.png"];
     _btnImageSelected = [UIImage imageNamed:@"cast_on.png"];
     _chromecastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -96,7 +106,7 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     // initialize device scanner
     self.deviceScanner = [[GCKDeviceScanner alloc] init];
     [self.deviceScanner addListener:self];
-    [self.deviceScanner startScan];
+    [self.deviceScanner startScan];*/
 }
 
 - (void)viewDidUnload
@@ -107,6 +117,9 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // assign ourselves as delegate ONLY in viewWillAppear of a view controller
+    self.chromecastController.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -199,8 +212,8 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     destination.documentURL = theURL;
     
     // set the device manager and the media controller for the destination view controller
-    destination.deviceManager = self.deviceManager;
-    destination.mediaControlChannel = self.mediaControlChannel;
+    //destination.deviceManager = self.chromecastController.deviceManager;
+    //destination.mediaControlChannel = self.chromecastController.mediaControlChannel;
 }
 
 - (void)scanDirectories
@@ -256,7 +269,20 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     [self.tableView reloadData];
 }
 
-#pragma mark chromecast
+#pragma mark - PWCChromecastControllerDelegate
+
+- (void)didDiscoverDeviceOnNetwork
+{
+    // display the chromecast button on the top right corner
+    self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
+}
+
+- (void)shouldDisplayModalDeviceController
+{
+    [self performSegueWithIdentifier:@"devicesSegue" sender:self];
+}
+
+/*#pragma mark chromecast
 - (void)chooseDevice:(id)sender
 {
     // choose device
@@ -462,6 +488,6 @@ didReceiveStatusForApplication:(GCKApplicationMetadata *)applicationMetadata
                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                           otherButtonTitles:nil];
     [alert show];
-}
+}*/
 
 @end
