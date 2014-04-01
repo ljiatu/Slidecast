@@ -115,8 +115,6 @@
 }
 
 - (IBAction)unwindToPreview:(UIStoryboardSegue *)segue
-{
-    [self.mediaControlChannel stop];
-}
+{}
 
 @end
