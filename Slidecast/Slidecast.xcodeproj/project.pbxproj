@@ -83,6 +83,7 @@
 		45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D969CC1553177800338688 /* CPDFAnnotationView.m */; };
 		45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */; };
 		5F5E604018D9431C00485259 /* PWCNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E603F18D9431C00485259 /* PWCNotesViewController.m */; };
+		9FD5BD3118EA985C00B55EC3 /* PWCJpegManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD5BD3018EA985C00B55EC3 /* PWCJpegManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +225,8 @@
 		45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFadelessTiledLayer.m; sourceTree = "<group>"; };
 		5F5E603E18D9431B00485259 /* PWCNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCNotesViewController.h; sourceTree = "<group>"; };
 		5F5E603F18D9431C00485259 /* PWCNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCNotesViewController.m; sourceTree = "<group>"; };
+		9FD5BD2F18EA985C00B55EC3 /* PWCJpegManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCJpegManager.h; sourceTree = "<group>"; };
+		9FD5BD3018EA985C00B55EC3 /* PWCJpegManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCJpegManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +498,8 @@
 				132109CE18E490DD0041E394 /* PWCUtilities.m */,
 				1339F18118EA289700A14F1C /* PWCChromecastDeviceController.h */,
 				1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */,
+				9FD5BD2F18EA985C00B55EC3 /* PWCJpegManager.h */,
+				9FD5BD3018EA985C00B55EC3 /* PWCJpegManager.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				5F5E604018D9431C00485259 /* PWCNotesViewController.m in Sources */,
 				45C25DD6155335AC001BA233 /* CPDFStream.m in Sources */,
 				132CC59D18DBBD7100FFD22D /* DDTTYLogger.m in Sources */,
+				9FD5BD3118EA985C00B55EC3 /* PWCJpegManager.m in Sources */,
 				1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */,
 				45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */,
 				45454DF11558429C004AC470 /* CContentScrollView.m in Sources */,
@@ -798,7 +804,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
 				PROVISIONING_PROFILE = "";
@@ -832,7 +838,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
 				PROVISIONING_PROFILE = "";
