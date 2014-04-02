@@ -53,6 +53,26 @@
     }
 }
 
+- (IBAction)handleRightSwipe
+{
+    if (self.index > 0) {
+        // go to the previous page if this is not the first page
+        NSString * text = [self.notes getNoteAtIndex:(--self.index)];
+        [self.noteText setText:text];
+        [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(self.index + 1)]];
+    }
+}
+
+- (IBAction)handleLeftSwipe
+{
+    if (self.index < self.numberOfPages - 1) {
+        // go to the next page if this is not the last page
+        NSString * text = [self.notes getNoteAtIndex:(++self.index)];
+        [self.noteText setText:text];
+        [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(self.index + 1)]];
+    }
+}
+
 - (IBAction)prevAction:(id)sender
 {
     if (self.index == 1)

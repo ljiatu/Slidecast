@@ -8,8 +8,7 @@
 
 #import "PWCPreviewViewController.h"
 
-#include <Googlecast/Googlecast.h>
-
+#import <Googlecast/Googlecast.h>
 #import "CPDFDocumentViewController.h"
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
