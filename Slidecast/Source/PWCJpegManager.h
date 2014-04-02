@@ -12,6 +12,6 @@
 
 - (id) init;
 - (BOOL) makeJpegFromPdfTitle:(NSString *) pdfTitle andURL:(NSURL *) URL;
-- (NSString *) getJpegWithTitle:(NSString *) title andPage:(int) page;
+- (NSString *) getJpegPathWithTitle:(NSString *) title andPage:(int) page;
 
 @end
