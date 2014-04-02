@@ -9,6 +9,7 @@
 #import "PWCJpegManager.h"
 #import "PWCUtilities.h"
 #import "CPDFDocument.h"
+#import "CPDFPage.h"
 
 @interface PWCJpegManager()
 
@@ -65,13 +66,15 @@
     // create a jpeg file for each page of the pdf file
     /*for (int i = 1; i <= self.document.numberOfPages; ++i)
     {
-      NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", imageDirectoryPath, i];
-      // most likely we have to change the size of the images
-      UIImage *image = [[self.document pageForPageNumber:i] imageWithSize:CGSizeMake(280, 220) scale:[UIScreen mainScreen].scale];
+      NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", folderPath, i];
+      UIImage *image = [[document pageForPageNumber:i]
+                        imageWithSize:CGSizeMake(1920, 1080)
+                        scale:[UIScreen mainScreen].scale];
+      
       if (![UIImageJPEGRepresentation(image, 1.0) writeToFile:jpegPath atomically:YES])
       {
         // if fail for one of the images, delete the whole directory
-        if (![manager removeItemAtPath:imageDirectoryPath error:&error])
+        if (![fileManager removeItemAtPath:folderPath error:&error])
         {
           NSLog(@"%@", error);
         }
@@ -85,10 +88,12 @@
   return YES;
 }
 
-- (NSString *) getJpegWithTitle:(NSString *) title andPage:(int) page
+- (NSString *) getJpegPathWithTitle:(NSString *) title andPage:(int) page
 {
-  //write function
-  return @"placeholder";
+  
+  NSString *folderPath = [self.documentsPath stringByAppendingFormat:@"/%@", title];
+  NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", folderPath, page];
+  return jpegPath;
 }
 
 @end
