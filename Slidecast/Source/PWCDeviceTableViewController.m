@@ -108,8 +108,7 @@ static NSString *const CellIdForDeviceName = @"deviceName";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)tableView:(UITableView *)tableView
-accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Accesory button tapped");
 }

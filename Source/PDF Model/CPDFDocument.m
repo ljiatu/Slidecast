@@ -87,14 +87,6 @@
 
 - (NSString *)title
 {
-    /*CGPDFDictionaryRef theInfo = CGPDFDocumentGetInfo(self.cg);
-    CGPDFStringRef thePDFTitle = NULL;
-    CGPDFDictionaryGetString(theInfo, "Title", &thePDFTitle);
-    NSString *title = (__bridge_transfer NSString *)CGPDFStringCopyTextString(thePDFTitle);
-    if ([title isEqualToString:@""] || title == nil) {
-        // if there is no title, assign the last path component to be the title
-        title = [self.URL lastPathComponent];
-    }*/
     return [PWCUtilities presentationTitleAtURL:self.URL];
 }
 

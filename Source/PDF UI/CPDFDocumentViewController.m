@@ -171,7 +171,7 @@
     
     NSDictionary *theOptions = @{ UIPageViewControllerOptionSpineLocationKey: [NSNumber numberWithInt:theSpineLocation] };
     
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:theOptions];
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:theOptions];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
