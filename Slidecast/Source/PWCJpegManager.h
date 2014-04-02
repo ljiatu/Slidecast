@@ -2,7 +2,7 @@
 //  PWCJpegManager.h
 //  Slidecast
 //
-//  Created by Elliot Soloway on 4/1/14.
+//  Created by Mohammad Asgari on 4/1/14.
 //  Copyright (c) 2014 Purple Works. All rights reserved.
 //
 

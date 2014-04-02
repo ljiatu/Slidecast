@@ -2,7 +2,7 @@
 //  PWCJpegManager.m
 //  Slidecast
 //
-//  Created by Elliot Soloway on 4/1/14.
+//  Created by Mohammad Asgari on 4/1/14.
 //  Copyright (c) 2014 Purple Works. All rights reserved.
 //
 
@@ -63,7 +63,7 @@
     // otherwise, generate the images
     NSError *error = nil;
     // create a jpeg file for each page of the pdf file
-    for (int i = 1; i <= self.document.numberOfPages; ++i)
+    /*for (int i = 1; i <= self.document.numberOfPages; ++i)
     {
       NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", imageDirectoryPath, i];
       // most likely we have to change the size of the images
@@ -77,7 +77,7 @@
         }
         return NO;
       }
-    }
+    }*/
     
     return YES;
   }

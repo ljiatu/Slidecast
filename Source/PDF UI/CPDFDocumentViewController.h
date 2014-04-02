@@ -36,7 +36,6 @@
 @class CContentScrollView;
 @class CPreviewBar;
 @class CPDFPage;
-@class HTTPServer;
 
 @interface CPDFDocumentViewController : UIViewController <PWCChromecastControllerDelegate>
 
