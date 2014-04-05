@@ -204,12 +204,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // pass the document URL to preview controller
-    UINavigationController *navigationController = segue.destinationViewController;
-    PWCPreviewViewController *destination = (PWCPreviewViewController *)navigationController.visibleViewController;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSURL *theURL = (self.URLs)[indexPath.row];
-    destination.documentURL = theURL;
+    if ([segue.identifier isEqualToString:@"previewSegue"]) {
+        // pass the document URL to preview controller
+        UINavigationController *navigationController = segue.destinationViewController;
+        PWCPreviewViewController *destination = (PWCPreviewViewController *)navigationController.visibleViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSURL *theURL = (self.URLs)[indexPath.row];
+        destination.documentURL = theURL;
+    }
     
     // set the device manager and the media controller for the destination view controller
     //destination.deviceManager = self.chromecastController.deviceManager;
