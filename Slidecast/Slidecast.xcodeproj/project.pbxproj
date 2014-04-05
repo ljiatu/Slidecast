@@ -84,6 +84,8 @@
 		45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D969CC1553177800338688 /* CPDFAnnotationView.m */; };
 		45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */; };
 		5F5E604018D9431C00485259 /* PWCNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E603F18D9431C00485259 /* PWCNotesViewController.m */; };
+		9F0C06ED18EC9EB900DA7726 /* design.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0C06EC18EC9EB900DA7726 /* design.storyboard */; };
+		9F90A98B18ECA13100EC2E94 /* PWCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A98A18ECA13100EC2E94 /* PWCTableViewCell.m */; };
 		9FD5BD3118EA985C00B55EC3 /* PWCJpegManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD5BD3018EA985C00B55EC3 /* PWCJpegManager.m */; };
 /* End PBXBuildFile section */
 
@@ -228,6 +230,9 @@
 		45F9FAF91582D495004D267B /* CFadelessTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFadelessTiledLayer.m; sourceTree = "<group>"; };
 		5F5E603E18D9431B00485259 /* PWCNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCNotesViewController.h; sourceTree = "<group>"; };
 		5F5E603F18D9431C00485259 /* PWCNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCNotesViewController.m; sourceTree = "<group>"; };
+		9F0C06EC18EC9EB900DA7726 /* design.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = design.storyboard; sourceTree = "<group>"; };
+		9F90A98918ECA13100EC2E94 /* PWCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCTableViewCell.h; sourceTree = "<group>"; };
+		9F90A98A18ECA13100EC2E94 /* PWCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCTableViewCell.m; sourceTree = "<group>"; };
 		9FD5BD2F18EA985C00B55EC3 /* PWCJpegManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCJpegManager.h; sourceTree = "<group>"; };
 		9FD5BD3018EA985C00B55EC3 /* PWCJpegManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCJpegManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -486,6 +491,7 @@
 		4556999515507139009E52FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9F90A98718ECA04400EC2E94 /* Design */,
 				130D9FB018D4D6E7000B07A6 /* Main.storyboard */,
 				1309E5CE18EB1ABF007952F9 /* PWCDeviceTableViewController.h */,
 				1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */,
@@ -608,6 +614,16 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		9F90A98718ECA04400EC2E94 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				9F0C06EC18EC9EB900DA7726 /* design.storyboard */,
+				9F90A98918ECA13100EC2E94 /* PWCTableViewCell.h */,
+				9F90A98A18ECA13100EC2E94 /* PWCTableViewCell.m */,
+			);
+			name = Design;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -669,6 +685,7 @@
 				135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */,
 				132CC59618DBBD7100FFD22D /* About.txt in Resources */,
 				130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */,
+				9F0C06ED18EC9EB900DA7726 /* design.storyboard in Resources */,
 				135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */,
 				135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,
@@ -742,6 +759,7 @@
 				45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */,
 				132CC58B18DBBD7100FFD22D /* HTTPAsyncFileResponse.m in Sources */,
 				132CC59718DBBD7100FFD22D /* GCDAsyncSocket.m in Sources */,
+				9F90A98B18ECA13100EC2E94 /* PWCTableViewCell.m in Sources */,
 				13FE0A9718E39A3D000AA6E0 /* PWCFileServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
