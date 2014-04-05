@@ -148,38 +148,20 @@
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
     
-    // #########################################################################
     
-    UIPageViewControllerSpineLocation theSpineLocation;
-    if ([self canDoubleSpreadForOrientation:self.interfaceOrientation] == YES)
-    {
-        theSpineLocation = UIPageViewControllerSpineLocationMid;
-    }
-    else
-    {
-        theSpineLocation = UIPageViewControllerSpineLocationMin;
-    }
-    
-    // #########################################################################
-    
+    // set up the timer
+    self.date = [NSDate date];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
                                                   target:self
                                                 selector:@selector(updateTimer)
                                                 userInfo:nil
                                                  repeats:YES];
-    self.date = [NSDate date];
     
-    NSDictionary *theOptions = @{ UIPageViewControllerOptionSpineLocationKey: [NSNumber numberWithInt:theSpineLocation] };
-    
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:theOptions];
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
     NSRange theRange = { .location = 1, .length = 1 };
-    if (self.pageViewController.spineLocation == UIPageViewControllerSpineLocationMid)
-    {
-        theRange = (NSRange){ .location = 0, .length = 2 };
-    }
     NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
     [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
@@ -470,15 +452,11 @@
     }
     
     NSRange theRange = { .location = inPage.pageNumber, .length = 1 };
-    if (self.pageViewController.spineLocation == UIPageViewControllerSpineLocationMid)
-    {
-        theRange.length = 2;
-    }
     NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
     
     UIPageViewControllerNavigationDirection theDirection = inPage.pageNumber > theCurrentPageViewController.pageNumber ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
-    [self.pageViewController setViewControllers:theViewControllers direction:theDirection animated:YES completion:NULL];
+    [self.pageViewController setViewControllers:theViewControllers direction:theDirection animated:NO completion:NULL];
     [self updateTitleAndCastImage];
     
     [self populateCache];
@@ -592,18 +570,13 @@
     NSUInteger theNextPageNumber = theViewController.page.pageNumber + 1;
     if (theNextPageNumber > self.document.numberOfPages)
     {
-        //thealch3m1st: if we are in two page mode and the document has an even number of pages if it would just return NULL it woudln't flip to that last page so we have to return a an empty page for the (number of pages + 1)th page.
-        if(self.document.numberOfPages % 2 == 0 &&
-           theNextPageNumber == self.document.numberOfPages + 1 &&
-           self.pageViewController.spineLocation == UIPageViewControllerSpineLocationMid)
-            return [self pageViewControllerWithPage:NULL];
-        return(NULL);
+        return nil;
     }
     
     CPDFPage *thePage = theNextPageNumber > 0 ? [self.document pageForPageNumber:theNextPageNumber] : NULL;
     theViewController = [self pageViewControllerWithPage:thePage];
     
-    return(theViewController);
+    return theViewController;
 }
 
 #pragma mark -
@@ -632,43 +605,6 @@
             [self.previewCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
         }];
     }
-}
-
-- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    UIPageViewControllerSpineLocation theSpineLocation;
-    NSArray *theViewControllers = NULL;
-    
-	if (UIInterfaceOrientationIsPortrait(orientation) || self.document.numberOfPages == 1)
-    {
-		theSpineLocation = UIPageViewControllerSpineLocationMin;
-        self.pageViewController.doubleSided = NO;
-        
-        CPDFPageViewController *theCurrentViewController = (self.pageViewController.viewControllers)[0];
-        if (theCurrentViewController.page == NULL)
-        {
-            theViewControllers = [self pageViewControllersForRange:(NSRange){ 1, 1 }];
-        }
-        else
-        {
-            theViewControllers = [self pageViewControllersForRange:(NSRange){ theCurrentViewController.page.pageNumber, 1 }];
-        }
-    }
-    else
-    {
-        theSpineLocation = UIPageViewControllerSpineLocationMid;
-        self.pageViewController.doubleSided = YES;
-        
-        CPDFPageViewController *theCurrentViewController = (self.pageViewController.viewControllers)[0];
-        NSUInteger theCurrentPageNumber = theCurrentViewController.page.pageNumber;
-        
-        theCurrentPageNumber = theCurrentPageNumber / 2 * 2;
-        
-        theViewControllers = [self pageViewControllersForRange:(NSRange){ theCurrentPageNumber, 2 }];
-    }
-    
-    [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-    return(theSpineLocation);
 }
 
 #pragma mark -
