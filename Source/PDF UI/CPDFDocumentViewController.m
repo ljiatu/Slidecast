@@ -72,12 +72,6 @@
 @property NSString *ipAddress;
 @property UInt16 port;
 
-- (void)hideChrome;
-- (void)toggleChrome;
-- (BOOL)canDoubleSpreadForOrientation:(UIInterfaceOrientation)inOrientation;
-- (void)resizePageViewControllerForOrientation:(UIInterfaceOrientation)inOrientation;
-- (CPDFPageViewController *)pageViewControllerWithPage:(CPDFPage *)inPage;
-
 @end
 
 @implementation CPDFDocumentViewController
@@ -157,12 +151,11 @@
                                                 userInfo:nil
                                                  repeats:YES];
     
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
-    NSRange theRange = { .location = 1, .length = 1 };
-    NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
+    NSArray *theViewControllers = [self pageViewControllersForPageNumber:1];
     [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     [self addChildViewController:self.pageViewController];
@@ -321,40 +314,12 @@
 - (void)updateTitleAndCastImage
 {
     NSArray *theViewControllers = self.pageViewController.viewControllers;
-    if (theViewControllers.count == 1) {
-        CPDFPageViewController *theFirstViewController = theViewControllers[0];
-        NSInteger pageNumber = theFirstViewController.page.pageNumber;
-        self.title = [NSString stringWithFormat:@"Page %ld", (long)pageNumber];
-        // load notes for that page
-        [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
-        // cast image of the page
-        //[self castImageOfPageNumber:pageNumber];
-        BOOL result = [self.chromecastController loadMedia:[self imageWebPathOfPageNumber:pageNumber]];
-        NSLog(result? @"Image casted" : @"Image not casted");
-    } else if (theViewControllers.count == 2) {
-        CPDFPageViewController *theFirstViewController = theViewControllers[0];
-        CPDFPageViewController *theSecondViewController = theViewControllers[1];
-        self.title = [NSString stringWithFormat:@"Pages %ld-%ld", (long)theFirstViewController.page.pageNumber, (long)theSecondViewController.page.pageNumber];
-    }
-}
-
-- (void)castImageOfPageNumber:(NSInteger)pageNumber
-{
-    /*// send images to the device if connected
-    if (self.deviceManager && self.deviceManager.isConnected) {
-        // load the data
-        GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
-        GCKMediaInformation *mediaInformation =
-        [[GCKMediaInformation alloc] initWithContentID:[self imageWebPathOfPageNumber:pageNumber]
-                                            streamType:GCKMediaStreamTypeNone
-                                           contentType:@"image/jpeg"
-                                              metadata:metadata
-                                        streamDuration:0
-                                            customData:nil];
-        
-        // cast the image
-        [self.mediaControlChannel loadMedia:mediaInformation];
-    }*/
+    CPDFPageViewController *theFirstViewController = theViewControllers[0];
+    NSInteger pageNumber = theFirstViewController.page.pageNumber;
+    self.title = [NSString stringWithFormat:@"Page %ld", (long)pageNumber];
+    // load notes for that page
+    [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
+    // cast image of the page
     [self.chromecastController loadMedia:[self imageWebPathOfPageNumber:pageNumber]];
 }
 
@@ -402,17 +367,15 @@
 
 #pragma mark -
 
-- (NSArray *)pageViewControllersForRange:(NSRange)inRange
+- (NSArray *)pageViewControllersForPageNumber:(NSInteger)pageNumber
 {
-    NSMutableArray *thePages = [NSMutableArray array];
-    for (NSUInteger N = inRange.location; N != inRange.location + inRange.length; ++N)
-    {
-        //thealch3m1st: if you do this on the last page of a document with an even number of pages it causes the assertion to fail because the last document is not a valid document (number of pages + 1)
-        NSUInteger pageNumber = N > self.document.numberOfPages ? 0 : N;
-        CPDFPage *thePage = pageNumber > 0 ? [self.document pageForPageNumber:pageNumber] : NULL;
-        [thePages addObject:[self pageViewControllerWithPage:thePage]];
+    NSMutableArray *pages = [NSMutableArray array];
+    CPDFPage *page;
+    if (pageNumber <= self.document.numberOfPages) {
+        page = [self.document pageForPageNumber:pageNumber];
     }
-    return(thePages);
+    [pages addObject:[self pageViewControllerWithPage:page]];
+    return pages ;
 }
 
 - (BOOL)canDoubleSpreadForOrientation:(UIInterfaceOrientation)inOrientation
@@ -451,8 +414,7 @@
         return(YES);
     }
     
-    NSRange theRange = { .location = inPage.pageNumber, .length = 1 };
-    NSArray *theViewControllers = [self pageViewControllersForRange:theRange];
+    NSArray *theViewControllers = [self pageViewControllersForPageNumber:inPage.pageNumber];
     
     UIPageViewControllerNavigationDirection theDirection = inPage.pageNumber > theCurrentPageViewController.pageNumber ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
@@ -479,20 +441,6 @@
     {
         [self.scrollView setZoomScale:[UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone ? 2.6 : 1.66 animated:YES];
     }
-}
-
-- (IBAction)gotoPage:(id)sender
-{
-    //    NSUInteger thePageNumber = [self.previewBar.selectedPreviewIndexes firstIndex] + 1;
-    //    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-    //        {
-    //        thePageNumber = thePageNumber / 2 * 2;
-    //        }
-    //
-    //    NSUInteger theLength = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 1 : ( thePageNumber < self.document.numberOfPages ? 2 : 1 );
-    //    self.previewBar.selectedPreviewIndexes = [NSIndexSet indexSetWithIndexesInRange:(NSRange){ .location = thePageNumber - 1, .length = theLength }];
-    //
-    //    [self openPage:[self.document pageForPageNumber:thePageNumber]];
 }
 
 - (void)populateCache
