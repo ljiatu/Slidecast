@@ -56,13 +56,13 @@
 @property (weak, nonatomic) PWCChromecastDeviceController *chromecastController;
 
 @property (readwrite, nonatomic, strong) UIPageViewController *pageViewController;
-@property (readwrite, nonatomic, strong) IBOutlet CContentScrollView *scrollView;
+@property (readwrite, nonatomic, strong) CContentScrollView *scrollView;
 @property (readwrite, nonatomic, strong) IBOutlet UICollectionView *previewCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
-@property (readwrite, nonatomic, assign) BOOL chromeHidden;
+@property (readwrite, nonatomic, assign) BOOL navigationBarHidden;
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
 @property (readwrite, nonatomic, strong) UIImage *pagePlaceholderImage;
 @property (readonly, nonatomic, strong) NSArray *pages;
@@ -76,15 +76,16 @@
 
 @implementation CPDFDocumentViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
-    {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
         _document.delegate = self;
         _renderedPageCache = [[NSCache alloc] init];
         _renderedPageCache.countLimit = 8;
     }
-    return(self);
+    
+    return self;
 }
 
 #pragma mark -
@@ -100,7 +101,6 @@
     }
 }
 
-#pragma mark -
 - (void)updateTimer
 {
     // Create date from the elapsed time
@@ -122,13 +122,12 @@
 {
     if([self.segmentedControl selectedSegmentIndex] == 0)
     {
-        self.scrollView.hidden = NO;
+        //self.scrollView.hidden = NO;
         self.previewCollectionView.hidden = NO;
         self.noteText.hidden = YES;
-    }
-    if([self.segmentedControl selectedSegmentIndex] == 1)
+    } else if([self.segmentedControl selectedSegmentIndex] == 1)
     {
-        self.scrollView.hidden = YES;
+        //self.scrollView.hidden = YES;
         self.previewCollectionView.hidden = YES;
         self.noteText.hidden = NO;
     }
@@ -142,7 +141,6 @@
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
     
-    
     // set up the timer
     self.date = [NSDate date];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
@@ -151,6 +149,7 @@
                                                 userInfo:nil
                                                  repeats:YES];
     
+    // set up page view controller
     _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
@@ -170,11 +169,9 @@
     [self.scrollView addSubview:self.scrollView.contentView];
     [self.view insertSubview:self.scrollView atIndex:0];
     
-    
     NSDictionary *theViews = @{
                                @"scrollView": self.scrollView,
                                @"pageView": self.scrollView,
-                               
                                };
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:NULL views:theViews]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollView]-0-|" options:0 metrics:NULL views:theViews]];
@@ -194,6 +191,10 @@
     [self.view addGestureRecognizer:theDoubleTapGestureRecognizer];
     
     [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
+    
+    // add a border for text field
+    [[self.noteText layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[self.noteText layer] setBorderWidth:1];
     
     // get the ip address and port of the device
     self.ipAddress = [self getIPAddress];
@@ -231,15 +232,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self performSelector:@selector(hideChrome) withObject:NULL afterDelay:0.5];
+    [self performSelector:@selector(hideNavigationBar) withObject:NULL afterDelay:0.5];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
-    // return to the homepage
     [self.chromecastController stopCastMedia];
 }
 
@@ -288,26 +286,26 @@
     [self populateCache];
 }
 
-- (void)hideChrome
+- (void)hideNavigationBar
 {
-    if (self.chromeHidden == NO)
+    if (self.navigationBarHidden == NO)
     {
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             self.navigationController.navigationBar.alpha = 0.0;
             self.previewCollectionView.alpha = 0.0;
         } completion:^(BOOL finished) {
-            self.chromeHidden = YES;
+            self.navigationBarHidden = YES;
         }];
     }
 }
 
-- (void)toggleChrome
+- (void)toggleNavigationBar
 {
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-        self.navigationController.navigationBar.alpha = (1.0 - !self.chromeHidden);
-        self.previewCollectionView.alpha = (1.0 - !self.chromeHidden);
+        self.navigationController.navigationBar.alpha = (1.0 - !self.navigationBarHidden);
+        self.previewCollectionView.alpha = (1.0 - !self.navigationBarHidden);
     } completion:^(BOOL finished) {
-        self.chromeHidden = !self.chromeHidden;
+        self.navigationBarHidden = !self.navigationBarHidden;
     }];
 }
 
@@ -428,7 +426,7 @@
 
 - (void)tap:(UITapGestureRecognizer *)inRecognizer
 {
-    [self toggleChrome];
+    [self toggleNavigationBar];
 }
 
 - (void)doubleTap:(UITapGestureRecognizer *)inRecognizer
@@ -445,7 +443,6 @@
 
 - (void)populateCache
 {
-    //    NSLog(@"POPULATING CACHE")
     
     CPDFPage *theStartPage = (self.pages)[0] != [NSNull null] ? (self.pages)[0] : NULL;
     CPDFPage *theLastPage = [self.pages lastObject] != [NSNull null] ? [self.pages lastObject] : NULL;
@@ -461,9 +458,7 @@
     
     theStartPageNumber = MAX(theStartPageNumber - pageSpanToLoad, 0);
     theLastPageNumber = MIN(theLastPageNumber + pageSpanToLoad, self.document.numberOfPages);
-    
-    //    NSLog(@"(Potentially) Fetching: %d - %d", theStartPageNumber, theLastPageNumber);
-    
+        
     UIView *thePageView = [(self.pageViewController.viewControllers)[0] pageView];
     if (thePageView == NULL)
     {
@@ -488,7 +483,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - PageViewcontroller Delegate Methods
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
@@ -533,7 +528,7 @@
 {
     [self updateTitleAndCastImage];
     [self populateCache];
-    [self hideChrome];
+    [self hideNavigationBar];
     
     CPDFPageViewController *theFirstViewController = (self.pageViewController.viewControllers)[0];
     if (theFirstViewController.page)
@@ -548,7 +543,6 @@
                 [theIndexSet addIndex:N];
             }
         }
-        //        self.previewBar.selectedPreviewIndexes = theIndexSet;
         [theIndexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
             [self.previewCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
         }];
@@ -576,7 +570,7 @@
     [self openPage:thePage];
 }
 
-#pragma mark -
+#pragma mark - Document Delegate Method
 
 - (void)PDFDocument:(CPDFDocument *)inDocument didUpdateThumbnailForPage:(CPDFPage *)inPage
 {

@@ -124,11 +124,6 @@
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" title="(Notes for Slide #)" id="sna-3U-zr1">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I4Y-hB-KlR">
-                            <connections>
-                                <segue destination="59t-eK-Q5H" kind="unwind" unwindAction="unwindToPreview:" id="Yak-x6-MYz"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uI8-P8-ngY">
                             <connections>
                                 <action selector="addAndSaveNotes:" destination="hTT-Uf-dNu" id="qg8-7b-d0Y"/>
@@ -137,14 +132,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nextButton" destination="f6y-P9-GeS" id="BrR-XJ-xcY"/>
-                        <outlet property="noteText" destination="lHO-Vf-fyg" id="JP6-2I-O3y"/>
+                        <outlet property="noteText" destination="lHO-Vf-fyg" id="l1L-1e-kIr"/>
                         <outlet property="pageTitle" destination="sna-3U-zr1" id="yQn-4W-JM7"/>
                         <outlet property="previousButton" destination="o1X-oz-P0V" id="sm7-dt-Su5"/>
                         <outlet property="saveButton" destination="uI8-P8-ngY" id="TVv-da-GzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLp-XA-LiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="59t-eK-Q5H" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="left" id="x2b-Cy-w47" userLabel="Swipe Gesture Recognizer Left">
                     <connections>
                         <action selector="handleLeftSwipe" destination="hTT-Uf-dNu" id="y2h-ZP-QYa"/>
@@ -156,7 +150,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-611" y="-2516"/>
+            <point key="canvasLocation" x="-611" y="-2544"/>
         </scene>
         <!--Library View Controller - Presentations-->
         <scene sceneID="Gnc-Vv-tqy">
@@ -195,10 +189,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Presentations" id="BjV-Sq-uiM"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="yW0-N5-Gn3" id="a16-TF-lha"/>
                         <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="xnQ-a4-Jtl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTi-mQ-NUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="yW0-N5-Gn3">
+                    <connections>
+                        <outlet property="delegate" destination="jLl-nS-bAu" id="IS5-wN-PS4"/>
+                        <outlet property="searchContentsController" destination="jLl-nS-bAu" id="o1x-9B-Skd"/>
+                        <outlet property="searchResultsDataSource" destination="jLl-nS-bAu" id="ELw-vN-O2t"/>
+                        <outlet property="searchResultsDelegate" destination="jLl-nS-bAu" id="4jK-ny-J7Y"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-2033" y="-2592"/>
         </scene>
@@ -298,7 +301,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFa-RO-zlC">
-                                <rect key="frame" x="10" y="105" width="301" height="355"/>
+                                <rect key="frame" x="0.0" y="462" width="320" height="106"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -317,7 +320,7 @@
                     <navigationItem key="navigationItem" id="g4G-dH-KEp">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Bng-Gg-fKa">
-                            <rect key="frame" x="47" y="7" width="226" height="31"/>
+                            <rect key="frame" x="67" y="6" width="187" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Current Slide"/>
@@ -335,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHf-Zn-0lD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-611" y="-3274"/>
+            <point key="canvasLocation" x="-611" y="-3260"/>
         </scene>
         <!--Device Table View Controller - Connect to-->
         <scene sceneID="0PO-WC-bze">

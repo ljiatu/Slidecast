@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PWCNotesViewController : UIViewController <UITextViewDelegate, UIGestureRecognizerDelegate>
+@interface PWCNotesViewController : UIViewController <UITextViewDelegate>
 
 @property NSString * docTitle;
 @property NSInteger numberOfPages;

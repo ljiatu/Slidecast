@@ -38,7 +38,7 @@
     if (self.numberOfPages <= 1) {
         self.nextButton.enabled = NO;
     }
-    
+
     // set the note text delegate to the view controller
     self.noteText.delegate = self;
 }

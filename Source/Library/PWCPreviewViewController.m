@@ -55,6 +55,8 @@
     
     // create images for each slide if not created yet
     [self createImagesForSlides];
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated

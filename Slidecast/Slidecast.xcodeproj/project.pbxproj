@@ -51,6 +51,8 @@
 		135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAE18E8E90B0077DDF3 /* cast_on0.png */; };
 		135EFFB518E8E90B0077DDF3 /* cast_on1.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAF18E8E90B0077DDF3 /* cast_on1.png */; };
 		135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB018E8E90B0077DDF3 /* cast_on2.png */; };
+		1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
+		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
 		13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */; };
@@ -60,7 +62,6 @@
 		45024C3E1310CEC100BB3E3D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45024C3D1310CEC100BB3E3D /* CoreGraphics.framework */; };
 		45024C731310CF1700BB3E3D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45024C721310CF1700BB3E3D /* QuartzCore.framework */; };
 		4527B3BC1398C5F400F3ECC8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4527B3BB1398C5F400F3ECC8 /* MobileCoreServices.framework */; };
-		453902361780A1C800C3CC47 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 453902351780A1C800C3CC47 /* CPDFObjectReference.m */; };
 		4539023B1780B39D00C3CC47 /* CPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4539023A1780B39D00C3CC47 /* CPreviewCollectionViewCell.m */; };
 		45454DF11558429C004AC470 /* CContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45454DF01558429B004AC470 /* CContentScrollView.m */; };
 		454BF5B41554B92600E7DE1D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454BF5B31554B92600E7DE1D /* MediaPlayer.framework */; };
@@ -78,7 +79,6 @@
 		455699F9155071A5009E52FE /* CPersistentCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699F0155071A5009E52FE /* CPersistentCache.m */; };
 		455699FB155071A5009E52FE /* NSFileManager_BugFixExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699F4155071A5009E52FE /* NSFileManager_BugFixExtensions.m */; };
 		45C25DD6155335AC001BA233 /* CPDFStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD5155335AC001BA233 /* CPDFStream.m */; };
-		45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		45D9699B1552F8F600338688 /* CPDFAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D9699A1552F8F600338688 /* CPDFAnnotation.m */; };
 		45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D9699E1553058E00338688 /* CPDFPageViewController.m */; };
 		45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D969CC1553177800338688 /* CPDFAnnotationView.m */; };
@@ -171,6 +171,8 @@
 		135EFFAE18E8E90B0077DDF3 /* cast_on0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on0.png; sourceTree = "<group>"; };
 		135EFFAF18E8E90B0077DDF3 /* cast_on1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on1.png; sourceTree = "<group>"; };
 		135EFFB018E8E90B0077DDF3 /* cast_on2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on2.png; sourceTree = "<group>"; };
+		1375979318F0BF7900A32C40 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
+		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13B713AE18D7E21F00B00D20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWCPreviewViewController.h; path = ../../Source/Library/PWCPreviewViewController.h; sourceTree = "<group>"; };
@@ -183,8 +185,6 @@
 		45024C3D1310CEC100BB3E3D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		45024C721310CF1700BB3E3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4527B3BB1398C5F400F3ECC8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		453902341780A1C800C3CC47 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
-		453902351780A1C800C3CC47 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		453902391780B39D00C3CC47 /* CPreviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPreviewCollectionViewCell.h; sourceTree = "<group>"; };
 		4539023A1780B39D00C3CC47 /* CPreviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPreviewCollectionViewCell.m; sourceTree = "<group>"; };
 		45454DEF1558429B004AC470 /* CContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CContentScrollView.h; sourceTree = "<group>"; };
@@ -544,6 +544,8 @@
 		455699BE15507141009E52FE /* PDF Model */ = {
 			isa = PBXGroup;
 			children = (
+				1375979318F0BF7900A32C40 /* CPDFObjectReference.h */,
+				1375979418F0BF7900A32C40 /* CPDFObjectReference.m */,
 				455699BF15507141009E52FE /* CPDFDocument.h */,
 				455699C015507141009E52FE /* CPDFDocument.m */,
 				455699C115507141009E52FE /* CPDFDocument_Private.h */,
@@ -556,8 +558,6 @@
 				45C25DD5155335AC001BA233 /* CPDFStream.m */,
 				45C25DD7155335BD001BA233 /* PDFUtilities.h */,
 				45C25DD8155335BD001BA233 /* PDFUtilities.m */,
-				453902341780A1C800C3CC47 /* CPDFObjectReference.h */,
-				453902351780A1C800C3CC47 /* CPDFObjectReference.m */,
 			);
 			path = "PDF Model";
 			sourceTree = "<group>";
@@ -656,6 +656,17 @@
 				TargetAttributes = {
 					45024C341310CEC100BB3E3D = {
 						DevelopmentTeam = TV47C9J6ME;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+							com.apple.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -701,6 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */,
 				132CC59E18DBBD7100FFD22D /* ContextFilterLogFormatter.m in Sources */,
 				132CC58D18DBBD7100FFD22D /* HTTPDynamicFileResponse.m in Sources */,
 				455699B215507139009E52FE /* main.m in Sources */,
@@ -721,7 +733,6 @@
 				455699D815507141009E52FE /* CPDFDocument_Private.m in Sources */,
 				132CC58418DBBD7100FFD22D /* HTTPAuthenticationRequest.m in Sources */,
 				455699D915507141009E52FE /* CPDFPage.m in Sources */,
-				453902361780A1C800C3CC47 /* CPDFObjectReference.m in Sources */,
 				132CC59B18DBBD7100FFD22D /* DDFileLogger.m in Sources */,
 				132CC59118DBBD7100FFD22D /* WebSocket.m in Sources */,
 				455699DA15507141009E52FE /* CPDFDocumentViewController.m in Sources */,
@@ -744,6 +755,7 @@
 				132109CF18E490DD0041E394 /* PWCUtilities.m in Sources */,
 				132CC59018DBBD7100FFD22D /* HTTPRedirectResponse.m in Sources */,
 				45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */,
+				1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */,
 				132CC59918DBBD7100FFD22D /* DDAbstractDatabaseLogger.m in Sources */,
 				45D969CD1553177800338688 /* CPDFAnnotationView.m in Sources */,
 				132CC59A18DBBD7100FFD22D /* DDASLLogger.m in Sources */,
@@ -752,7 +764,6 @@
 				132CC59D18DBBD7100FFD22D /* DDTTYLogger.m in Sources */,
 				9FD5BD3118EA985C00B55EC3 /* PWCJpegManager.m in Sources */,
 				1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */,
-				45C25DD9155335BD001BA233 /* PDFUtilities.m in Sources */,
 				45454DF11558429C004AC470 /* CContentScrollView.m in Sources */,
 				132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */,
 				132CC58718DBBD7100FFD22D /* HTTPServer.m in Sources */,
