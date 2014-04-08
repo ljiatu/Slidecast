@@ -56,6 +56,7 @@
     // create images for each slide if not created yet
     [self createImagesForSlides];
     
+    // disable interactive view controller dismissal
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 
@@ -124,8 +125,5 @@
         return YES;
     }
 }
-
-- (IBAction)unwindToPreview:(UIStoryboardSegue *)segue
-{}
 
 @end

@@ -55,8 +55,8 @@
 		1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
+		13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
-		13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */; };
 		13FE0A9718E39A3D000AA6E0 /* PWCFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FE0A9618E39A3D000AA6E0 /* PWCFileServer.m */; };
 		45024C3A1310CEC100BB3E3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45024C391310CEC100BB3E3D /* UIKit.framework */; };
 		45024C3C1310CEC100BB3E3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45024C3B1310CEC100BB3E3D /* Foundation.framework */; };
@@ -68,7 +68,6 @@
 		454BF5B41554B92600E7DE1D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454BF5B31554B92600E7DE1D /* MediaPlayer.framework */; };
 		455699B215507139009E52FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4556999E15507139009E52FE /* main.m */; };
 		455699B315507139009E52FE /* PWCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699A115507139009E52FE /* PWCAppDelegate.m */; };
-		455699D415507141009E52FE /* CLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699BA15507141009E52FE /* CLibrary.m */; };
 		455699D515507141009E52FE /* CLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699BC15507141009E52FE /* CLibraryViewController.m */; };
 		455699D715507141009E52FE /* CPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699C015507141009E52FE /* CPDFDocument.m */; };
 		455699D815507141009E52FE /* CPDFDocument_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 455699C215507141009E52FE /* CPDFDocument_Private.m */; };
@@ -177,9 +176,9 @@
 		1375979318F0BF7900A32C40 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
 		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
+		13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
 		13B713AE18D7E21F00B00D20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWCPreviewViewController.h; path = ../../Source/Library/PWCPreviewViewController.h; sourceTree = "<group>"; };
-		13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PWCPreviewViewController.m; path = ../../Source/Library/PWCPreviewViewController.m; sourceTree = "<group>"; };
 		13FE0A9518E39A3D000AA6E0 /* PWCFileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCFileServer.h; sourceTree = "<group>"; };
 		13FE0A9618E39A3D000AA6E0 /* PWCFileServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCFileServer.m; sourceTree = "<group>"; };
 		45024C351310CEC100BB3E3D /* Slidecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,8 +196,6 @@
 		4556999E15507139009E52FE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
 		455699A015507139009E52FE /* PWCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCAppDelegate.h; sourceTree = "<group>"; };
 		455699A115507139009E52FE /* PWCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCAppDelegate.m; sourceTree = "<group>"; };
-		455699B915507141009E52FE /* CLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLibrary.h; sourceTree = "<group>"; };
-		455699BA15507141009E52FE /* CLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLibrary.m; sourceTree = "<group>"; };
 		455699BB15507141009E52FE /* CLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLibraryViewController.h; sourceTree = "<group>"; };
 		455699BC15507141009E52FE /* CLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLibraryViewController.m; sourceTree = "<group>"; };
 		455699BF15507141009E52FE /* CPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFDocument.h; sourceTree = "<group>"; };
@@ -494,12 +491,12 @@
 		4556999515507139009E52FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */,
+				13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */,
 				9F90A98718ECA04400EC2E94 /* Design */,
 				130D9FB018D4D6E7000B07A6 /* Main.storyboard */,
 				1309E5CE18EB1ABF007952F9 /* PWCDeviceTableViewController.h */,
 				1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */,
-				13D2595018D518C700E1E6EB /* PWCPreviewViewController.h */,
-				13D2595118D518C700E1E6EB /* PWCPreviewViewController.m */,
 				132CC52C18DBB0F500FFD22D /* PWCNotes.h */,
 				132CC52D18DBB0F500FFD22D /* PWCNotes.m */,
 				5F5E603E18D9431B00485259 /* PWCNotesViewController.h */,
@@ -538,8 +535,6 @@
 		455699B815507141009E52FE /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				455699B915507141009E52FE /* CLibrary.h */,
-				455699BA15507141009E52FE /* CLibrary.m */,
 				455699BB15507141009E52FE /* CLibraryViewController.h */,
 				455699BC15507141009E52FE /* CLibraryViewController.m */,
 			);
@@ -717,6 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */,
 				1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */,
 				132CC59E18DBBD7100FFD22D /* ContextFilterLogFormatter.m in Sources */,
 				132CC58D18DBBD7100FFD22D /* HTTPDynamicFileResponse.m in Sources */,
@@ -726,12 +722,10 @@
 				132CC58218DBBD7100FFD22D /* DDNumber.m in Sources */,
 				132CC58E18DBBD7100FFD22D /* HTTPErrorResponse.m in Sources */,
 				132CC59C18DBBD7100FFD22D /* DDLog.m in Sources */,
-				455699D415507141009E52FE /* CLibrary.m in Sources */,
 				455699D515507141009E52FE /* CLibraryViewController.m in Sources */,
 				132CC59518DBBD7100FFD22D /* PUTResponse.m in Sources */,
 				4539023B1780B39D00C3CC47 /* CPreviewCollectionViewCell.m in Sources */,
 				132CC58118DBBD7100FFD22D /* DDData.m in Sources */,
-				13D2595218D518C700E1E6EB /* PWCPreviewViewController.m in Sources */,
 				132CC58A18DBBD7100FFD22D /* MultipartMessageHeaderField.m in Sources */,
 				455699D715507141009E52FE /* CPDFDocument.m in Sources */,
 				132CC58318DBBD7100FFD22D /* DDRange.m in Sources */,

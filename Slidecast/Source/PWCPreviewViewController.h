@@ -13,10 +13,7 @@
 
 @interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate>
 
-@property (strong, nonatomic) NSURL *documentURL;
-@property (strong, nonatomic) CPDFDocument *document;
-
-// for save/cancel notes to go back to preview
-- (IBAction)unwindToPreview:(UIStoryboardSegue *)segue;
+@property (nonatomic) NSURL *documentURL;
+@property (nonatomic) CPDFDocument *document;
 
 @end

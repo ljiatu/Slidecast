@@ -77,7 +77,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)stopServer
 {
     [self.httpServer stop];
-    NSLog(@"The server is stoped");
 }
 
 @end
