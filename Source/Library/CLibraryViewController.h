@@ -37,11 +37,6 @@
 
 @property (readwrite, nonatomic, strong) NSMutableArray *URLs;
 
-//@property(nonatomic, strong) GCKDeviceScanner* deviceScanner;
-//@property(nonatomic, strong) UIButton* chromecastButton;
-//@property(nonatomic, strong) GCKDeviceManager* deviceManager;
-//@property(nonatomic, readonly) GCKMediaInformation* mediaInformation;
-
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
 @end

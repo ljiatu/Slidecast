@@ -79,10 +79,6 @@
         // pass the document to the document view controller
         CPDFDocumentViewController *destination = segue.destinationViewController;
         destination.document = self.document;
-        
-        // pass the device manager and the media control channel to the document view controller
-        //destination.deviceManager = self.deviceManager;
-        //destination.mediaControlChannel = self.mediaControlChannel;
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
         PWCNotesViewController * dest = segue.destinationViewController;
         dest.docTitle = self.document.title;

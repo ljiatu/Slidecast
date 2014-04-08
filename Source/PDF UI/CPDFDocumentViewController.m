@@ -61,6 +61,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapRecognizer;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapRecognizer;
 
 @property (readwrite, nonatomic, assign) BOOL navigationBarHidden;
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
@@ -122,12 +124,10 @@
 {
     if([self.segmentedControl selectedSegmentIndex] == 0)
     {
-        //self.scrollView.hidden = NO;
         self.previewCollectionView.hidden = NO;
         self.noteText.hidden = YES;
     } else if([self.segmentedControl selectedSegmentIndex] == 1)
     {
-        //self.scrollView.hidden = YES;
         self.previewCollectionView.hidden = YES;
         self.noteText.hidden = NO;
     }
@@ -155,7 +155,10 @@
     self.pageViewController.dataSource = self;
     
     NSArray *theViewControllers = [self pageViewControllersForPageNumber:1];
-    [self.pageViewController setViewControllers:theViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    [self.pageViewController setViewControllers:theViewControllers
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
     
     [self addChildViewController:self.pageViewController];
     
@@ -183,16 +186,9 @@
     self.previewCollectionView.dataSource = self;
     self.previewCollectionView.delegate = self;
     
-    UITapGestureRecognizer *theSingleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [self.view addGestureRecognizer:theSingleTapGestureRecognizer];
+    [self.singleTapRecognizer requireGestureRecognizerToFail:self.doubleTapRecognizer];
     
-    UITapGestureRecognizer *theDoubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-    theDoubleTapGestureRecognizer.numberOfTapsRequired = 2;
-    [self.view addGestureRecognizer:theDoubleTapGestureRecognizer];
-    
-    [theSingleTapGestureRecognizer requireGestureRecognizerToFail:theDoubleTapGestureRecognizer];
-    
-    // add a border for text field
+    // add a border for text view
     [[self.noteText layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.noteText layer] setBorderWidth:1];
     
@@ -424,12 +420,12 @@
     return(YES);
 }
 
-- (void)tap:(UITapGestureRecognizer *)inRecognizer
+- (IBAction)tap:(UITapGestureRecognizer *)inRecognizer
 {
     [self toggleNavigationBar];
 }
 
-- (void)doubleTap:(UITapGestureRecognizer *)inRecognizer
+- (IBAction)doubleTap:(UITapGestureRecognizer *)inRecognizer
 {
     if (self.scrollView.zoomScale != 1.0)
     {
@@ -483,7 +479,7 @@
     }
 }
 
-#pragma mark - PageViewcontroller Delegate Methods
+#pragma mark - Page View Controller Data Source Methods
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
@@ -522,7 +518,7 @@
     return theViewController;
 }
 
-#pragma mark -
+#pragma mark - Page View Controller Delegate Methods
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed;
 {

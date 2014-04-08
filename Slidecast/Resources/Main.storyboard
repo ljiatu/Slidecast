@@ -89,19 +89,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lHO-Vf-fyg">
-                                <rect key="frame" x="0.0" y="63" width="320" height="461"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="x2b-Cy-w47" appends="YES" id="VzV-cn-6Ez"/>
-                                    <outletCollection property="gestureRecognizers" destination="NGm-JV-JGw" appends="YES" id="TRm-E5-8eX"/>
-                                </connections>
-                            </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LSf-46-ynN">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -132,31 +119,52 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nextButton" destination="f6y-P9-GeS" id="BrR-XJ-xcY"/>
-                        <outlet property="noteText" destination="lHO-Vf-fyg" id="l1L-1e-kIr"/>
                         <outlet property="pageTitle" destination="sna-3U-zr1" id="yQn-4W-JM7"/>
                         <outlet property="previousButton" destination="o1X-oz-P0V" id="sm7-dt-Su5"/>
                         <outlet property="saveButton" destination="uI8-P8-ngY" id="TVv-da-GzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLp-XA-LiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="x2b-Cy-w47" userLabel="Swipe Gesture Recognizer Left">
-                    <connections>
-                        <action selector="handleLeftSwipe" destination="hTT-Uf-dNu" id="y2h-ZP-QYa"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="NGm-JV-JGw" userLabel="Swipe Gesture Recognizer Right">
-                    <connections>
-                        <action selector="handleRightSwipe" destination="hTT-Uf-dNu" id="Pbe-Yq-X3s"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-611" y="-2544"/>
+        </scene>
+        <!--Page Content View Controller-->
+        <scene sceneID="noT-aQ-alh">
+            <objects>
+                <viewController storyboardIdentifier="PageContentViewController" id="l1z-18-K5t" customClass="PWCPageContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4LX-AL-YeL"/>
+                        <viewControllerLayoutGuide type="bottom" id="fsu-Nh-VDz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Dr-m0-il1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lHO-Vf-fyg">
+                                <rect key="frame" x="0.0" y="69" width="320" height="461"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NyS-xx-W7n"/>
+                    <connections>
+                        <outlet property="textView" destination="lHO-Vf-fyg" id="5BA-N6-eVN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQo-cn-vq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-611" y="-1872"/>
         </scene>
         <!--Library View Controller - Presentations-->
         <scene sceneID="Gnc-Vv-tqy">
             <objects>
                 <tableViewController id="jLl-nS-bAu" customClass="CLibraryViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VwD-W1-7fH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VwD-W1-7fH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -309,6 +317,7 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fZC-x5-eXJ" firstAttribute="leading" secondItem="Y7Q-zV-Ua7" secondAttribute="leading" id="MzS-3Q-Dhu"/>
                             <constraint firstAttribute="trailing" secondItem="fZC-x5-eXJ" secondAttribute="trailing" id="TTK-Ce-TD9"/>
@@ -316,6 +325,10 @@
                             <constraint firstItem="fZC-x5-eXJ" firstAttribute="leading" secondItem="Y7Q-zV-Ua7" secondAttribute="leading" id="fiH-zo-YCk"/>
                             <constraint firstAttribute="trailing" secondItem="fZC-x5-eXJ" secondAttribute="trailing" id="x1d-Lb-nxt"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="S7f-kS-X8m" appends="YES" id="zlG-Uf-cTD"/>
+                            <outletCollection property="gestureRecognizers" destination="VSg-99-qdL" appends="YES" id="duk-87-S4K"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="g4G-dH-KEp">
                         <nil key="title"/>
@@ -329,14 +342,26 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="doubleTapRecognizer" destination="VSg-99-qdL" id="xBI-ig-Ax2"/>
                         <outlet property="noteText" destination="SFa-RO-zlC" id="1FK-XV-eeQ"/>
                         <outlet property="previewCollectionView" destination="fZC-x5-eXJ" id="ydh-bd-Zgg"/>
                         <outlet property="segmentedControl" destination="Bng-Gg-fKa" id="Fd5-kp-fv3"/>
+                        <outlet property="singleTapRecognizer" destination="S7f-kS-X8m" id="uZh-7C-aZn"/>
                         <outlet property="timeLabel" destination="kUG-Uh-WkB" id="opY-rY-Mh9"/>
                         <outlet property="timer" destination="kUG-Uh-WkB" id="6xz-kd-EFH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHf-Zn-0lD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="S7f-kS-X8m" userLabel="Single Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="tap:" destination="e00-ps-v49" id="EuF-O2-ZNd"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="VSg-99-qdL" userLabel="Double Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="doubleTap:" destination="e00-ps-v49" id="WBT-c9-zXU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-611" y="-3260"/>
         </scene>

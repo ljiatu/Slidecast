@@ -11,8 +11,7 @@
 @interface PWCNotes : NSObject
 
 - (id)initNotesWithFilename:(NSString *)fileName path:(NSString *)path numberOfPages:(NSInteger)numberOfPages;
-- (void)addNote:(NSString *) note atIndex:(NSInteger) index;
-- (void)saveNotes;
+- (void)addAndSaveNote:(NSString *) note atIndex:(NSInteger) index;
 - (NSString *)getNoteAtIndex:(NSInteger) index;
 
 @end

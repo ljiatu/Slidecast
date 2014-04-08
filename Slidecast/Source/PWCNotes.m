@@ -50,13 +50,10 @@
     return self;
 }
 
-- (void)addNote:(NSString *)note atIndex:(NSInteger)index
+- (void)addAndSaveNote:(NSString *)note atIndex:(NSInteger)index
 {
+    // replace the old note with new
     [self.notes replaceObjectAtIndex:index withObject:note];
-}
-
-- (void)saveNotes
-{
     // clear text file if you want to save
     NSFileHandle * writeFile = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
     [writeFile truncateFileAtOffset:0];
