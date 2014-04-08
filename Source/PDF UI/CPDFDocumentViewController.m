@@ -70,9 +70,9 @@
 @property (readonly, nonatomic, strong) NSArray *pages;
 @property (strong, nonatomic) NSTimer * timer;
 @property (strong, nonatomic) NSDate * date;
-@property PWCNotes * notes;
-@property NSString *ipAddress;
-@property UInt16 port;
+@property (nonatomic) PWCNotes * notes;
+@property (nonatomic) NSString *ipAddress;
+@property (nonatomic) UInt16 port;
 
 @end
 

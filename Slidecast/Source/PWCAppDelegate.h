@@ -37,8 +37,8 @@
 
 @interface PWCAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property PWCChromecastDeviceController *chromecastController;
-@property PWCFileServer *server;
+@property (nonatomic) UIWindow *window;
+@property (nonatomic) PWCChromecastDeviceController *chromecastController;
+@property (nonatomic) PWCFileServer *server;
 
 @end

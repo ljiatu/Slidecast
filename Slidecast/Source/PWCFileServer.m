@@ -17,7 +17,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface PWCFileServer ()
 
-@property HTTPServer *httpServer;
+@property (nonatomic) HTTPServer *httpServer;
 
 @end
 

@@ -11,7 +11,7 @@
 @interface PWCNotesViewController : UIViewController <UIPageViewControllerDelegate,
                                                       UIPageViewControllerDataSource>
 
-@property NSString * docTitle;
-@property NSInteger numberOfPages;
+@property (nonatomic) NSString * docTitle;
+@property (nonatomic) NSInteger numberOfPages;
 
 @end

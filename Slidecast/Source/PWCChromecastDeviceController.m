@@ -12,12 +12,12 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 @interface PWCChromecastDeviceController ()
 
-@property UIImage *btnImage;
-@property UIImage *btnImageConnected;
+@property (nonatomic) UIImage *btnImage;
+@property (nonatomic) UIImage *btnImageConnected;
 
-@property GCKMediaControlChannel *mediaControlChannel;
-@property GCKApplicationMetadata *applicationMetadata;
-@property GCKDevice *selectedDevice;
+@property (nonatomic) GCKMediaControlChannel *mediaControlChannel;
+@property (nonatomic) GCKApplicationMetadata *applicationMetadata;
+@property (nonatomic) GCKDevice *selectedDevice;
 
 @end
 
@@ -52,7 +52,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 
 - (void)performScan:(BOOL)start
 {
-    
     if (start) {
         [self.deviceScanner addListener:self];
         [self.deviceScanner startScan];

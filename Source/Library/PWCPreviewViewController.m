@@ -63,6 +63,13 @@
 {
     [super viewWillAppear:animated];
     
+    // change the title of the back button item
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:nil
+                                                                  action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    
     // assign ourselves as delegate ONLY in viewWillAppear of a view controller.
     self.chromecastController.delegate = self;
 }

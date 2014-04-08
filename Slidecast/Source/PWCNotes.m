@@ -12,8 +12,8 @@
 
 @interface PWCNotes ()
 
-@property NSString * filePath;
-@property NSMutableArray * notes;
+@property (nonatomic) NSString * filePath;
+@property (nonatomic) NSMutableArray * notes;
 
 @end
 

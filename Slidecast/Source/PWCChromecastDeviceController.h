@@ -52,25 +52,25 @@
                                                      GCKMediaControlChannelDelegate>
 
 /** The device scanner used to detect devices on the network. */
-@property(nonatomic, strong) GCKDeviceScanner *deviceScanner;
+@property (nonatomic, strong) GCKDeviceScanner *deviceScanner;
 
 /** The device manager used to manage conencted chromecast device. */
-@property(nonatomic, strong) GCKDeviceManager *deviceManager;
+@property (nonatomic, strong) GCKDeviceManager *deviceManager;
 
 /** Get the friendly name of the device. */
-@property(readonly, getter=getDeviceName) NSString*  deviceName;
+@property (readonly, getter=getDeviceName) NSString *deviceName;
 
 /** The media player state of the media on the device. */
-@property(nonatomic, readonly) GCKMediaPlayerState playerState;
+@property (nonatomic, readonly) GCKMediaPlayerState playerState;
 
 /** The media information of the loaded media on the device. */
-@property(nonatomic, readonly) GCKMediaInformation *mediaInformation;
+@property (nonatomic, readonly) GCKMediaInformation *mediaInformation;
 
 /** The UIBarButtonItem denoting the chromecast device. */
-@property(nonatomic, readonly) UIBarButtonItem *chromecastBarButton;
+@property (nonatomic, readonly) UIBarButtonItem *chromecastBarButton;
 
 /** The delegate attached to this controller. */
-@property(nonatomic, weak) id<PWCChromecastControllerDelegate> delegate;
+@property (nonatomic, weak) id<PWCChromecastControllerDelegate> delegate;
 
 /** Update the toolbar representing the playback state of media on the device. */
 //- (void)updateToolbarForViewController:(UIViewController *)viewController;
