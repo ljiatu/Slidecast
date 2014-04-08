@@ -109,7 +109,7 @@
     // update title
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %ld", (long)(index + 1)]];
     
-    //disable/enable buttons accordingly
+    // disable/enable buttons accordingly
     if (index == 1) {
         // if we're transitioning into the second page
         self.previousButton.enabled = YES;
