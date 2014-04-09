@@ -206,6 +206,9 @@
     
     // update title and cast the image of the first page
     [self updateTitleAndCastImage];
+    
+    // display cast icon in the right navigation bar button
+    self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -587,5 +590,13 @@
 {
     return(self.pageViewController.view);
 }
+
+#pragma mark - Chromecast Controller Delegate Methods
+
+- (void)shouldDisplayModalDeviceController
+{
+    [self performSegueWithIdentifier:@"devicesSegue" sender:self];
+}
+
 
 @end

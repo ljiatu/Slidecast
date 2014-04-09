@@ -76,7 +76,7 @@
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
     
-    // display cast icon in the right nav bar button, if we have devices
+    // display cast icon in the right navigation bar button, if we have devices
     if (self.chromecastController.deviceScanner.devices.count > 0) {
         self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
     }
@@ -240,7 +240,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - PWCChromecastControllerDelegate
+#pragma mark - Chromecast Controller Delegate Methods
 
 - (void)didDiscoverDeviceOnNetwork
 {
