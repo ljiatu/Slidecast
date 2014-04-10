@@ -62,7 +62,7 @@
     size_t theBufferLength = strlen([thePath UTF8String]) + 1;
     char thePathBuffer[theBufferLength];
     strncpy(thePathBuffer, [thePath UTF8String], theBufferLength);
-    int theFileDescriptor = mkstemps(thePathBuffer, inPathExtension.length + 1);
+    int theFileDescriptor = mkstemps(thePathBuffer, (int)inPathExtension.length + 1);
     
     NSData *theData = self.data;
     write(theFileDescriptor, theData.bytes, inPathExtension.length + 1);

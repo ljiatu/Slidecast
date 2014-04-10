@@ -45,7 +45,6 @@
 		132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132CC5A118DBC2D800FFD22D /* libxml2.dylib */; };
 		1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */; };
 		1349528518F37C0E003C8759 /* PWCPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1349528418F37C0E003C8759 /* PWCPageContentViewController.m */; };
-		135CA21E18E9CFC2000ACB6B /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */; };
 		135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */; };
 		135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAC18E8E90B0077DDF3 /* cast_off.png */; };
 		135EFFB318E8E90B0077DDF3 /* cast_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAD18E8E90B0077DDF3 /* cast_on.png */; };
@@ -54,6 +53,7 @@
 		135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFB018E8E90B0077DDF3 /* cast_on2.png */; };
 		1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
+		1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1376E0FD18F6524E00B3018E /* GoogleCast.framework */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
@@ -166,7 +166,6 @@
 		1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCChromecastDeviceController.m; sourceTree = "<group>"; };
 		1349528318F37C0E003C8759 /* PWCPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPageContentViewController.h; sourceTree = "<group>"; };
 		1349528418F37C0E003C8759 /* PWCPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPageContentViewController.m; sourceTree = "<group>"; };
-		135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		135EFFAC18E8E90B0077DDF3 /* cast_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_off.png; sourceTree = "<group>"; };
 		135EFFAD18E8E90B0077DDF3 /* cast_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on.png; sourceTree = "<group>"; };
@@ -175,6 +174,7 @@
 		135EFFB018E8E90B0077DDF3 /* cast_on2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on2.png; sourceTree = "<group>"; };
 		1375979318F0BF7900A32C40 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
 		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
+		1376E0FD18F6524E00B3018E /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.1.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
 		13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				135CA21E18E9CFC2000ACB6B /* GoogleCast.framework in Frameworks */,
+				1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */,
 				132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */,
 				13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */,
 				13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */,
@@ -463,7 +463,7 @@
 		45024C381310CEC100BB3E3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				135CA21D18E9CFC2000ACB6B /* GoogleCast.framework */,
+				1376E0FD18F6524E00B3018E /* GoogleCast.framework */,
 				132CC5A118DBC2D800FFD22D /* libxml2.dylib */,
 				13964DD118D7EC7F00E21E15 /* CFNetwork.framework */,
 				13B713AE18D7E21F00B00D20 /* Security.framework */,
@@ -824,8 +824,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/GoogleCastFramework-2.0-Release",
-					"$(PROJECT_DIR)/GoogleCastFramework-2.0-Release",
+					"$(PROJECT_DIR)/GoogleCastFramework-2.1.0-Release",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -858,8 +857,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/GoogleCastFramework-2.0-Release",
-					"$(PROJECT_DIR)/GoogleCastFramework-2.0-Release",
+					"$(PROJECT_DIR)/GoogleCastFramework-2.1.0-Release",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;

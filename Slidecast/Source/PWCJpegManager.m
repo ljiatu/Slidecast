@@ -91,7 +91,7 @@
 - (NSString *) getJpegPathWithTitle:(NSString *)title page:(NSInteger)page
 {
     NSString *folderPath = [self.documentsPath stringByAppendingFormat:@"/%@", title];
-    NSString *jpegPath = [NSString stringWithFormat:@"%@/%d.jpeg", folderPath, page];
+    NSString *jpegPath = [NSString stringWithFormat:@"%@/%ld.jpeg", folderPath, (long)page];
     return jpegPath;
 }
 
