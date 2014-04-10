@@ -11,8 +11,6 @@
 #import "PWCAppDelegate.h"
 #import "PWCChromecastDeviceController.h"
 
-static NSString *const CellIdForDeviceName = @"deviceName";
-
 @interface PWCDeviceTableViewController ()
 
 @end
@@ -60,10 +58,10 @@ static NSString *const CellIdForDeviceName = @"deviceName";
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdForDeviceName = @"deviceName";
-    static NSString *CellIdForReadyStatus = @"readyStatus";
-    static NSString *CellIdForDisconnectButton = @"disconnectButton";
-    static NSString *CellIdForCastingStatus = @"castingStatus";
+    static NSString *const CellIdForDeviceName = @"deviceName";
+    static NSString *const CellIdForReadyStatus = @"readyStatus";
+    static NSString *const CellIdForDisconnectButton = @"disconnectButton";
+    static NSString *const CellIdForCastingStatus = @"castingStatus";
     
     UITableViewCell *cell;
     if (!self.castDeviceController.isConnected) {

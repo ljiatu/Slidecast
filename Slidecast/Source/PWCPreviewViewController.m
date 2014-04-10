@@ -71,6 +71,9 @@
                                                                   action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     
+    // force the navigation bar to be shown
+    self.navigationController.navigationBar.alpha = 1.0;
+    
     // assign ourselves as delegate ONLY in viewWillAppear of a view controller.
     self.chromecastController.delegate = self;
 }
