@@ -154,7 +154,7 @@
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
-    NSArray *theViewControllers = [self pageViewControllersForPageNumber:1];
+    NSArray *theViewControllers = [self pageViewControllerForPageNumber:1];
     [self.pageViewController setViewControllers:theViewControllers
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
@@ -295,6 +295,8 @@
         } completion:^(BOOL finished) {
             self.navigationBarHidden = YES;
         }];
+        //[self.navigationController setNavigationBarHidden:YES animated:YES];
+        //self.navigationBarHidden = YES;
     }
 }
 
@@ -306,6 +308,9 @@
     } completion:^(BOOL finished) {
         self.navigationBarHidden = !self.navigationBarHidden;
     }];
+    
+    //[self.navigationController setNavigationBarHidden:!self.navigationBarHidden animated:YES];
+    //self.navigationBarHidden = !self.navigationBarHidden;
 }
 
 - (void)updateTitleAndCastImage
@@ -335,13 +340,12 @@
     CGRect theBounds = self.view.bounds;
     CGRect theFrame;
     CGRect theMediaBox = [self.document pageForPageNumber:1].mediaBox;
-    if ([self canDoubleSpreadForOrientation:inOrientation] == YES) {
+    /*if ([self canDoubleSpreadForOrientation:inOrientation] == YES) {
         theMediaBox.size.width *= 2;
-        theFrame = ScaleAndAlignRectToRect(theMediaBox, theBounds, ImageScaling_Proportionally, ImageAlignment_Center);
     } else {
         theFrame = ScaleAndAlignRectToRect(theMediaBox, theBounds, ImageScaling_Proportionally, ImageAlignment_Center);
-    }
-    
+    }*/
+    theFrame = ScaleAndAlignRectToRect(theMediaBox, theBounds, ImageScaling_Proportionally, ImageAlignment_Center);
     theFrame = CGRectIntegral(theFrame);
     
     self.pageViewController.view.frame = theFrame;
@@ -364,25 +368,13 @@
 
 #pragma mark -
 
-- (NSArray *)pageViewControllersForPageNumber:(NSInteger)pageNumber
+- (NSArray *)pageViewControllerForPageNumber:(NSInteger)pageNumber
 {
-    NSMutableArray *pages = [NSMutableArray array];
     CPDFPage *page;
     if (pageNumber <= self.document.numberOfPages) {
         page = [self.document pageForPageNumber:pageNumber];
     }
-    [pages addObject:[self pageViewControllerWithPage:page]];
-    return pages ;
-}
-
-- (BOOL)canDoubleSpreadForOrientation:(UIInterfaceOrientation)inOrientation
-{
-    if (UIInterfaceOrientationIsPortrait(inOrientation) || self.document.numberOfPages == 1)
-    {
-        return NO;
-    } else {
-        return YES;
-    }
+    return @[[self pageViewControllerWithPage:page]];
 }
 
 - (CPDFPageViewController *)pageViewControllerWithPage:(CPDFPage *)inPage
@@ -411,7 +403,7 @@
         return(YES);
     }
     
-    NSArray *theViewControllers = [self pageViewControllersForPageNumber:inPage.pageNumber];
+    NSArray *theViewControllers = [self pageViewControllerForPageNumber:inPage.pageNumber];
     
     UIPageViewControllerNavigationDirection theDirection = inPage.pageNumber > theCurrentPageViewController.pageNumber ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
@@ -442,21 +434,19 @@
 
 - (void)populateCache
 {
-    
-    CPDFPage *theStartPage = (self.pages)[0] != [NSNull null] ? (self.pages)[0] : NULL;
-    CPDFPage *theLastPage = [self.pages lastObject] != [NSNull null] ? [self.pages lastObject] : NULL;
+    CPDFPage *theStartPage = (self.pages)[0] != [NSNull null]? (self.pages)[0] : nil;
+    CPDFPage *theLastPage = [self.pages lastObject] != [NSNull null]? [self.pages lastObject] : nil;
     
     NSInteger theStartPageNumber = [theStartPage pageNumber];
     NSInteger theLastPageNumber = [theLastPage pageNumber];
     
+    // get the images for the previous, current, and next page
     NSInteger pageSpanToLoad = 1;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-    {
-        pageSpanToLoad = 2;
-    }
-    
     theStartPageNumber = MAX(theStartPageNumber - pageSpanToLoad, 0);
     theLastPageNumber = MIN(theLastPageNumber + pageSpanToLoad, self.document.numberOfPages);
+    
+    NSLog(@"The start page number: %ld", (long)theStartPageNumber);
+    NSLog(@"The last page number: %ld", (long)theLastPageNumber);
         
     UIView *thePageView = [(self.pageViewController.viewControllers)[0] pageView];
     if (thePageView == NULL)
@@ -548,7 +538,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - Collection View Data Source Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 {
@@ -563,6 +553,8 @@
     return(theCell);
 }
 
+#pragma mark - Collection View Delegate Method
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPDFPage *thePage = [self.document pageForPageNumber:indexPath.item + 1];
@@ -573,7 +565,7 @@
 
 - (void)PDFDocument:(CPDFDocument *)inDocument didUpdateThumbnailForPage:(CPDFPage *)inPage
 {
-    [self.previewCollectionView reloadItemsAtIndexPaths:@[ [NSIndexPath indexPathForItem:inPage.pageNumber - 1 inSection:0] ]];
+    [self.previewCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:inPage.pageNumber - 1 inSection:0]]];
 }
 
 #pragma mark -
@@ -597,6 +589,5 @@
 {
     [self performSegueWithIdentifier:@"devicesSegue" sender:self];
 }
-
 
 @end
