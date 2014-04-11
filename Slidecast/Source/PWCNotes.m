@@ -33,7 +33,7 @@
         // if file does not exist, create one and initialize the content
         _notes = [[NSMutableArray alloc] init];
         [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:nil attributes:nil];
-        NSString * emptyString = @"Add Notes Here!";
+        NSString *emptyString = @"";
         for (int i = 0; i < numberOfPages; ++i)
         {
             [self.notes addObject:emptyString];
