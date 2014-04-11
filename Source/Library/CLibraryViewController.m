@@ -175,6 +175,11 @@
     return(@"Please select a presentation");
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // dehighlight the selected row
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"previewSegue"]) {

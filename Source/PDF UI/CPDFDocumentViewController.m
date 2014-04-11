@@ -442,7 +442,7 @@
     
     // get the images for the previous, current, and next page
     NSInteger pageSpanToLoad = 1;
-    theStartPageNumber = MAX(theStartPageNumber - pageSpanToLoad, 0);
+    theStartPageNumber = MAX(theStartPageNumber - pageSpanToLoad, 1);
     theLastPageNumber = MIN(theLastPageNumber + pageSpanToLoad, self.document.numberOfPages);
     
     NSLog(@"The start page number: %ld", (long)theStartPageNumber);
