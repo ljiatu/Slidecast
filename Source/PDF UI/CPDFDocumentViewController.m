@@ -78,18 +78,6 @@
 
 @implementation CPDFDocumentViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        _document.delegate = self;
-        _renderedPageCache = [[NSCache alloc] init];
-        _renderedPageCache.countLimit = 8;
-    }
-    
-    return self;
-}
-
 #pragma mark -
 
 - (void)setBackgroundView:(UIView *)backgroundView
@@ -136,6 +124,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set the document delegate and set up cache
+    _document.delegate = self;
+    _renderedPageCache = [[NSCache alloc] init];
+    _renderedPageCache.countLimit = 8;
     
     // store a reference to the chromecast controller
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -444,9 +437,6 @@
     NSInteger pageSpanToLoad = 1;
     theStartPageNumber = MAX(theStartPageNumber - pageSpanToLoad, 1);
     theLastPageNumber = MIN(theLastPageNumber + pageSpanToLoad, self.document.numberOfPages);
-    
-    NSLog(@"The start page number: %ld", (long)theStartPageNumber);
-    NSLog(@"The last page number: %ld", (long)theLastPageNumber);
         
     UIView *thePageView = [(self.pageViewController.viewControllers)[0] pageView];
     if (thePageView == NULL)
