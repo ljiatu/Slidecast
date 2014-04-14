@@ -145,6 +145,15 @@
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
     
+    // set the title to be white
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+
+    // set the segmented control to be white
+    self.segmentedControl.tintColor = [UIColor whiteColor];
+    
+    // set the background to be purple
+    self.view.backgroundColor = [UIColor purpleColor];
+    
     // show/hide the timer as needed
     self.timeRemainingLabel.hidden = !self.timerOn;
     self.timeLabel.hidden = !self.timerOn;
@@ -198,8 +207,8 @@
     [self.singleTapRecognizer requireGestureRecognizerToFail:self.doubleTapRecognizer];
     
     // add a border for text view
-    [[self.noteText layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[self.noteText layer] setBorderWidth:1];
+    self.noteText.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.noteText.layer.borderWidth = 1;
     
     // get the ip address and port of the device
     self.ipAddress = [self getIPAddress];

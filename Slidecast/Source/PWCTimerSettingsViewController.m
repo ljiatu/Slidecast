@@ -24,6 +24,12 @@
 {
     [super viewDidLoad];
     
+    // set the title to be white
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    
+    // set the background to be white
+    self.view.backgroundColor = [UIColor purpleColor];
+    
     // adjust the switch state
     self.timerSwitch.on = self.timerIsInitiallyOn;
     

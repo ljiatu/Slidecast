@@ -32,6 +32,9 @@
 {
     [super viewDidLoad];
     
+    // set the title to be white
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    
     // store a reference to the chromecast controller
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
@@ -40,7 +43,7 @@
     self.document = [[CPDFDocument alloc] initWithURL:self.documentURL];
     
     // set background color
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor purpleColor];
     
     // set title
     self.presentationTitle.title = self.document.title;
@@ -69,11 +72,12 @@
     [super viewWillAppear:animated];
     
     // change the title of the back button item
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@""
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@" "
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:nil
                                                                   action:nil];
     self.navigationItem.backBarButtonItem = backButton;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     // force the navigation bar to be shown
     self.navigationController.navigationBar.alpha = 1.0;

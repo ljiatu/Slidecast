@@ -27,6 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set the title to be white
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     _notes = [[PWCNotes alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
     

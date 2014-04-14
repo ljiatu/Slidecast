@@ -18,9 +18,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Slides:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcx-4e-DXE">
-                                <rect key="frame" x="20" y="287" width="138" height="21"/>
+                                <rect key="frame" x="44" y="282" width="138" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahO-rZ-hEy">
@@ -28,9 +29,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="##" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSz-0g-zEP">
-                                <rect key="frame" x="280" y="287" width="20" height="21"/>
+                                <rect key="frame" x="250" y="282" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-1r-F67">
@@ -39,28 +41,33 @@
                                 <items>
                                     <barButtonItem width="62" style="plain" systemItem="fixedSpace" id="pKr-Ed-Lw4"/>
                                     <barButtonItem systemItem="compose" id="gj7-hG-Edg">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="AxK-3e-Ylx" kind="modal" identifier="notesSegue" id="2SS-E5-HgS"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="NUg-px-P3B"/>
                                     <barButtonItem image="stopwatch.png" id="a2t-D5-MVb">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="c9g-8u-sQf" kind="modal" identifier="timerSegue" id="6E6-Me-IX4"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="0Sr-x4-xpx"/>
                                     <barButtonItem systemItem="play" id="uVA-2j-HV5">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="e00-ps-v49" kind="push" identifier="viewSegue" id="SVW-P1-tyZ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" title="(Name of Presentation)" id="70b-H1-6QW">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="J2Z-9H-pF5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="l97-IY-nHJ" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToList:" id="D5n-NR-RqU"/>
                             </connections>
@@ -95,17 +102,20 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem enabled="NO" systemItem="rewind" id="o1X-oz-P0V">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="prevAction:" destination="hTT-Uf-dNu" id="lX0-7e-UaU"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="230" style="plain" systemItem="fixedSpace" id="xlk-Dp-nED"/>
                                     <barButtonItem systemItem="fastForward" id="f6y-P9-GeS">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="nextAction:" destination="hTT-Uf-dNu" id="ak0-oT-O1Z"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -113,11 +123,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="(Notes for Slide #)" id="sna-3U-zr1">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="pMJ-8H-ICd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Qed-bG-IOK" kind="unwind" unwindAction="unwindToPreview:" id="P4O-Lh-BB6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uI8-P8-ngY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addAndSaveNotes:" destination="hTT-Uf-dNu" id="qg8-7b-d0Y"/>
                             </connections>
@@ -167,7 +179,7 @@
             </objects>
             <point key="canvasLocation" x="-187" y="-3446"/>
         </scene>
-        <!--Library View Controller - Presentations-->
+        <!--Library View Controller - Slidecast-->
         <scene sceneID="Gnc-Vv-tqy">
             <objects>
                 <tableViewController id="jLl-nS-bAu" customClass="CLibraryViewController" sceneMemberID="viewController">
@@ -202,7 +214,7 @@
                             <outlet property="delegate" destination="jLl-nS-bAu" id="QpP-91-qnx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Presentations" id="BjV-Sq-uiM"/>
+                    <navigationItem key="navigationItem" title="Slidecast" id="BjV-Sq-uiM"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="yW0-N5-Gn3" id="a16-TF-lha"/>
                         <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="xnQ-a4-Jtl"/>
@@ -228,6 +240,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zXk-lf-peI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.70786181939712911" green="0.014239679121644023" blue="0.89317255434782605" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -246,6 +259,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6hm-4a-vSe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -305,14 +319,14 @@
                                 <rect key="frame" x="53" y="76" width="129" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Uh-WkB">
                                 <rect key="frame" x="196" y="76" width="163" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.090677264760000001" green="0.088677519869999999" blue="0.93006963320000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFa-RO-zlC">
@@ -470,6 +484,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Connect to" id="cqE-zw-JJw">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="jUG-Jx-v50">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="dismissView:" destination="1Ux-Uw-C0a" id="Srm-J9-ETT"/>
                             </connections>
@@ -489,6 +504,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Oh-hi-mnD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -515,12 +531,13 @@
                                 <rect key="frame" x="20" y="114" width="101" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Ix-d8-R6y">
                                 <rect key="frame" x="251" y="109" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="66m-FT-cM6" eventType="valueChanged" id="pbD-9z-Vbw"/>
                                 </connections>
@@ -557,6 +574,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="20" y="188" width="133" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -564,6 +582,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" title="Timer Settings" id="yMH-Q6-iJV">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="gle-w7-pWm">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="akZ-aF-RFO" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToPreview:" id="J4i-bG-NQN"/>
                             </connections>
@@ -588,6 +607,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yeB-Rx-fQd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -606,6 +626,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2gG-DT-Pdt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

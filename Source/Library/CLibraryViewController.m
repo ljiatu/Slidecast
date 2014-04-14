@@ -71,10 +71,13 @@
     
     // display an Edit button in the navigation bar for this view controller.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.editButtonItem.tintColor = [UIColor whiteColor];
     
     // store a reference to the chromecast controller
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
+    
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 }
 
 - (void)viewDidUnload
