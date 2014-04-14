@@ -55,6 +55,7 @@
 		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
 		1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1376E0FD18F6524E00B3018E /* GoogleCast.framework */; };
 		1377DEE818FB8E2900D2B6E3 /* stopwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1377DEE718FB8E2900D2B6E3 /* stopwatch.png */; };
+		1377DEEC18FB917700D2B6E3 /* ic_launcher copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1377DEEB18FB917700D2B6E3 /* ic_launcher copy.png */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
@@ -177,6 +178,7 @@
 		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		1376E0FD18F6524E00B3018E /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.1.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		1377DEE718FB8E2900D2B6E3 /* stopwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stopwatch.png; path = Images/stopwatch.png; sourceTree = "<group>"; };
+		1377DEEB18FB917700D2B6E3 /* ic_launcher copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_launcher copy.png"; path = "Images/ic_launcher copy.png"; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
 		13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 		135EFC5918E8B8540077DDF3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1377DEEB18FB917700D2B6E3 /* ic_launcher copy.png */,
 				1377DEE718FB8E2900D2B6E3 /* stopwatch.png */,
 				135EFFAB18E8E90B0077DDF3 /* 1x */,
 				135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */,
@@ -702,6 +705,7 @@
 				9F0C06ED18EC9EB900DA7726 /* design.storyboard in Resources */,
 				135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */,
 				135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */,
+				1377DEEC18FB917700D2B6E3 /* ic_launcher copy.png in Resources */,
 				1377DEE818FB8E2900D2B6E3 /* stopwatch.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,
 				135EFFB318E8E90B0077DDF3 /* cast_on.png in Resources */,
@@ -841,7 +845,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
 				PROVISIONING_PROFILE = "";
@@ -873,7 +877,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Slidecast;
 				PROVISIONING_PROFILE = "";
