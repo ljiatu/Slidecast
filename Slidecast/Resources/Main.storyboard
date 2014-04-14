@@ -301,15 +301,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Elapsed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-be-ZQD">
-                                <rect key="frame" x="60" y="76" width="109" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-be-ZQD">
+                                <rect key="frame" x="53" y="76" width="129" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Uh-WkB">
-                                <rect key="frame" x="190" y="76" width="163" height="21"/>
+                                <rect key="frame" x="196" y="76" width="163" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.090677264760000001" green="0.088677519869999999" blue="0.93006963320000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -354,8 +354,8 @@
                         <outlet property="previewCollectionView" destination="fZC-x5-eXJ" id="ydh-bd-Zgg"/>
                         <outlet property="segmentedControl" destination="Bng-Gg-fKa" id="Fd5-kp-fv3"/>
                         <outlet property="singleTapRecognizer" destination="S7f-kS-X8m" id="uZh-7C-aZn"/>
-                        <outlet property="timeElapsedLabel" destination="4AL-be-ZQD" id="Njs-23-8ta"/>
                         <outlet property="timeLabel" destination="kUG-Uh-WkB" id="opY-rY-Mh9"/>
+                        <outlet property="timeRemainingLabel" destination="4AL-be-ZQD" id="XcA-i5-TEd"/>
                         <outlet property="timer" destination="kUG-Uh-WkB" id="6xz-kd-EFH"/>
                         <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="G7x-MG-ExV"/>
                     </connections>
@@ -499,7 +499,7 @@
             </objects>
             <point key="canvasLocation" x="-1561" y="-1927"/>
         </scene>
-        <!--Timer Settings View Controller-->
+        <!--Timer Settings View Controller - Timer Settings-->
         <scene sceneID="Eie-Ti-fYB">
             <objects>
                 <viewController id="66m-FT-cM6" customClass="PWCTimerSettingsViewController" sceneMemberID="viewController">
@@ -532,7 +532,7 @@
                                     <!--2014-04-14 17:24:57 +0000-->
                                 </date>
                                 <timeZone key="timeZone" name="America/Los_Angeles">
-                                    <mutableData key="data">
+                                    <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -550,7 +550,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                 </timeZone>
                             </datePicker>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose duration:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mX5-hG-als">
@@ -562,7 +562,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yMH-Q6-iJV">
+                    <navigationItem key="navigationItem" title="Timer Settings" id="yMH-Q6-iJV">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="gle-w7-pWm">
                             <connections>
                                 <segue destination="akZ-aF-RFO" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToPreview:" id="J4i-bG-NQN"/>
@@ -626,6 +626,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G7x-MG-ExV"/>
+        <segue reference="I0E-Ie-Urr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -63,7 +63,8 @@
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapRecognizer;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapRecognizer;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeElapsedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeRemainingLabel;
+@property (nonatomic) NSTimeInterval elapsedTime;
 
 @property (readwrite, nonatomic, assign) BOOL navigationBarHidden;
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
@@ -94,33 +95,27 @@
 
 - (void)updateTimer
 {
-    // Create date from the elapsed time
-    NSDate *currentDate = [NSDate date];
-    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
-    NSTimeInterval countDownInterval = self.countDownDuration - timeInterval;
-    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:countDownInterval];
+    self.elapsedTime -= 0.2;
     
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    comps.hour = 0;
-    comps.minute = 0;
-    comps.second = 0;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *zeroDate = [calendar dateFromComponents:comps];
-    NSLog(@"%@", zeroDate);
-    
-    if (![timerDate isEqualToDate:zeroDate]) {
-        // if there is still time remaining, update the timer
+    if (self.elapsedTime <= (NSTimeInterval)0) {
+        // if ther is no time remaining, invalidate the timer
+        [self.timer invalidate];
+        self.timer = nil;
+    } else {
+        // otherwise, update the timer
+        // Create date from the elapsed time
+        NSDate *currentDate = [NSDate date];
+        NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
+        NSTimeInterval countDownInterval = self.countDownDuration - timeInterval;
+        NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:countDownInterval];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
         [dateFormatter setDateFormat:@"HH:mm:ss"];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
         
         // Format the elapsed time and set it to the label
         NSString *timeString = [dateFormatter stringFromDate:timerDate];
         self.timeLabel.text = timeString;
-    } else {
-        // otherwise, invalidate it
-        [self.timer invalidate];
-        self.timer = nil;
     }
 }
 
@@ -151,7 +146,7 @@
     _chromecastController = delegate.chromecastController;
     
     // show/hide the timer as needed
-    self.timeElapsedLabel.hidden = !self.timerOn;
+    self.timeRemainingLabel.hidden = !self.timerOn;
     self.timeLabel.hidden = !self.timerOn;
     
     // set up the timer
@@ -161,6 +156,7 @@
                                                 selector:@selector(updateTimer)
                                                 userInfo:nil
                                                  repeats:YES];
+    self.elapsedTime = self.countDownDuration;
     
     // set up page view controller
     _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
