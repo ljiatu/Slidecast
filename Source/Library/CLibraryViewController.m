@@ -75,11 +75,6 @@
     // store a reference to the chromecast controller
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
-    
-    // display cast icon in the right navigation bar button, if we have devices
-    if (self.chromecastController.deviceScanner.devices.count > 0) {
-        self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
-    }
 }
 
 - (void)viewDidUnload
@@ -90,6 +85,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // display cast icon in the right navigation bar button, if we have devices
+    if (self.chromecastController.deviceScanner.devices.count > 0) {
+        self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
+    }
     
     // assign ourselves as delegate ONLY in viewWillAppear of a view controller
     self.chromecastController.delegate = self;

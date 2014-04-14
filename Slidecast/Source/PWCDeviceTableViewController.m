@@ -28,6 +28,14 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // force the navigation bar to be shown
+    self.navigationController.navigationBar.alpha = 1.0;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -71,7 +79,7 @@
         GCKDevice *device = [self.castDeviceController.deviceScanner.devices objectAtIndex:indexPath.row];
         cell.textLabel.text = device.friendlyName;
         cell.detailTextLabel.text = device.modelName;
-    } else if (!self.castDeviceController.isPlayingMedia) {
+    } else /*if (!self.castDeviceController.isPlayingMedia) {
         if (indexPath.row == 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdForReadyStatus
                                                    forIndexPath:indexPath];
@@ -79,7 +87,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdForDisconnectButton
                                                    forIndexPath:indexPath];
         }
-    } else {
+    } else */{
         if (indexPath.row == 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdForCastingStatus
                                                    forIndexPath:indexPath];

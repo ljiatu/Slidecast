@@ -54,6 +54,7 @@
 		1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
 		1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1376E0FD18F6524E00B3018E /* GoogleCast.framework */; };
+		1377DEE618FB7BD200D2B6E3 /* stopwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1377DEE518FB7BD200D2B6E3 /* stopwatch.png */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
@@ -175,6 +176,7 @@
 		1375979318F0BF7900A32C40 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
 		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		1376E0FD18F6524E00B3018E /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.1.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
+		1377DEE518FB7BD200D2B6E3 /* stopwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stopwatch.png; path = ../../../Downloads/glyphicons_free/glyphicons/png/stopwatch.png; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
 		13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		135EFC5918E8B8540077DDF3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1377DEE518FB7BD200D2B6E3 /* stopwatch.png */,
 				135EFFAB18E8E90B0077DDF3 /* 1x */,
 				135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */,
 			);
@@ -694,6 +697,7 @@
 			files = (
 				135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */,
 				135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */,
+				1377DEE618FB7BD200D2B6E3 /* stopwatch.png in Resources */,
 				132CC59618DBBD7100FFD22D /* About.txt in Resources */,
 				130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */,
 				9F0C06ED18EC9EB900DA7726 /* design.storyboard in Resources */,

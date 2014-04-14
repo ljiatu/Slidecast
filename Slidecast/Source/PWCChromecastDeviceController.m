@@ -75,7 +75,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     
     // Start animating the cast connect images.
     UIButton *chromecastButton = (UIButton *)self.chromecastBarButton.customView;
-    chromecastButton.tintColor = [UIColor whiteColor];
     chromecastButton.imageView.animationImages =
     @[ [UIImage imageNamed:@"cast_on0.png"], [UIImage imageNamed:@"cast_on1.png"],
        [UIImage imageNamed:@"cast_on2.png"], [UIImage imageNamed:@"cast_on1.png"] ];

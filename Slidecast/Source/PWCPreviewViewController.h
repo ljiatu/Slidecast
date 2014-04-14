@@ -11,7 +11,7 @@
 
 @class CPDFDocument;
 
-@interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate>
+@interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate, UIPickerViewDelegate>
 
 @property (nonatomic) NSURL *documentURL;
 @property (nonatomic) CPDFDocument *document;

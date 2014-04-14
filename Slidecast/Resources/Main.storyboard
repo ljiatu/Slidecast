@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4Do-7S-1oO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4Do-7S-1oO">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -33,22 +33,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xg-Pi-8vf">
-                                <rect key="frame" x="124" y="518" width="73" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Notes">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="hTT-Uf-dNu" kind="push" identifier="notesSegue" id="L86-Np-HgC"/>
-                                </connections>
-                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-1r-F67">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem width="62" style="plain" systemItem="fixedSpace" id="pKr-Ed-Lw4"/>
+                                    <barButtonItem systemItem="compose" id="gj7-hG-Edg">
+                                        <connections>
+                                            <segue destination="hTT-Uf-dNu" kind="push" identifier="notesSegue" id="2SS-E5-HgS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="NUg-px-P3B"/>
+                                    <barButtonItem image="stopwatch.png" id="a2t-D5-MVb"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="0Sr-x4-xpx"/>
+                                    <barButtonItem systemItem="play" id="uVA-2j-HV5">
+                                        <connections>
+                                            <segue destination="e00-ps-v49" kind="push" identifier="viewSegue" id="SVW-P1-tyZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="2xg-Pi-8vf" firstAttribute="leading" secondItem="glx-lN-Ht7" secondAttribute="leading" constant="124" id="boO-Y5-feW"/>
-                            <constraint firstItem="ELe-c9-JLG" firstAttribute="top" secondItem="2xg-Pi-8vf" secondAttribute="bottom" constant="20" id="g8Z-rR-7J3"/>
-                            <constraint firstAttribute="trailing" secondItem="2xg-Pi-8vf" secondAttribute="trailing" constant="123" id="wmh-Wg-9AK"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="(Name of Presentation)" id="70b-H1-6QW">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="J2Z-9H-pF5">
@@ -56,22 +61,18 @@
                                 <segue destination="l97-IY-nHJ" kind="unwind" unwindAction="unwindToList:" id="D5n-NR-RqU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="jke-Cw-5zW">
-                            <connections>
-                                <segue destination="e00-ps-v49" kind="push" identifier="viewSegue" id="OpV-2s-K6k"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="numberSlides" destination="LSz-0g-zEP" id="anK-Gv-FKK"/>
                         <outlet property="presentationPreview" destination="ahO-rZ-hEy" id="RhN-Lg-co8"/>
                         <outlet property="presentationTitle" destination="70b-H1-6QW" id="Euc-dZ-qev"/>
+                        <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="I0E-Ie-Urr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CYa-Xf-TXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="l97-IY-nHJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="-2918"/>
+            <point key="canvasLocation" x="-1175" y="-3152"/>
         </scene>
         <!--Notes View Controller - Notes-->
         <scene sceneID="h7b-xP-YsE">
@@ -243,7 +244,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVK-am-Tje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1561" y="-2918"/>
+            <point key="canvasLocation" x="-1561" y="-3152"/>
         </scene>
         <!--Document View Controller - Document View-->
         <scene sceneID="7Vi-LD-Cne">
@@ -345,6 +346,7 @@
                         <outlet property="singleTapRecognizer" destination="S7f-kS-X8m" id="uZh-7C-aZn"/>
                         <outlet property="timeLabel" destination="kUG-Uh-WkB" id="opY-rY-Mh9"/>
                         <outlet property="timer" destination="kUG-Uh-WkB" id="6xz-kd-EFH"/>
+                        <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="G7x-MG-ExV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHf-Zn-0lD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -465,13 +467,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cRa-2e-8e6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="-2165"/>
+            <point key="canvasLocation" x="-1175" y="-1927"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u7F-C5-riH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uWq-Tv-Tbj" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="JaE-oT-8If"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Oh-hi-mnD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -483,12 +486,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuy-L8-w8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1561" y="-2165"/>
+            <point key="canvasLocation" x="-1561" y="-1927"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="stopwatch.png" width="23" height="27"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="I0E-Ie-Urr"/>
+    </inferredMetricsTieBreakers>
 </document>

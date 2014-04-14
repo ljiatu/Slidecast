@@ -136,7 +136,7 @@
     
     // set up the timer
     self.date = [NSDate date];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                   target:self
                                                 selector:@selector(updateTimer)
                                                 userInfo:nil
@@ -231,6 +231,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.timer invalidate];
     [self.chromecastController stopCastMedia];
 }
 

@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *presentationTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *presentationPreview;
 @property (weak, nonatomic) IBOutlet UILabel *numberSlides;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIButton *setTimerButton;
 
 @end
 
@@ -58,6 +60,14 @@
     
     // disable interactive view controller dismissal
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
+    // display cast icon in the right navigation bar button
+    self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
+    
+    self.datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
+    // put the date picker outside of the view first
+    [self.datePicker setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width,
+                                         self.datePicker.frame.size.height)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,6 +137,22 @@
         
         return YES;
     }
+}
+
+- (IBAction)setTimer:(id)sender
+{
+    [self.view addSubview:self.datePicker];
+    [UIView animateWithDuration:1.0 animations:^{
+        [self.datePicker setFrame:CGRectMake(0, self.view.frame.size.height - self.datePicker.frame.size.height,
+                                             self.datePicker.frame.size.width, self.datePicker.frame.size.height)];
+    }];
+}
+
+#pragma mark - Chromecast Controller Delegate Methods
+
+- (void)shouldDisplayModalDeviceController
+{
+    [self performSegueWithIdentifier:@"devicesSegue" sender:self];
 }
 
 @end
