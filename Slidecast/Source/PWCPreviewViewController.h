@@ -11,9 +11,11 @@
 
 @class CPDFDocument;
 
-@interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate, UIPickerViewDelegate>
+@interface PWCPreviewViewController : UIViewController <PWCChromecastControllerDelegate>
 
 @property (nonatomic) NSURL *documentURL;
 @property (nonatomic) CPDFDocument *document;
+@property (nonatomic) BOOL timerOn;
+@property (nonatomic) NSTimeInterval countDownDuration;
 
 @end

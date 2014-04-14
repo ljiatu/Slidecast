@@ -56,6 +56,7 @@
 		1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1376E0FD18F6524E00B3018E /* GoogleCast.framework */; };
 		1377DEE818FB8E2900D2B6E3 /* stopwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1377DEE718FB8E2900D2B6E3 /* stopwatch.png */; };
 		1377DEEC18FB917700D2B6E3 /* ic_launcher copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1377DEEB18FB917700D2B6E3 /* ic_launcher copy.png */; };
+		1377DEEF18FC48F600D2B6E3 /* PWCTimerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1377DEEE18FC48F600D2B6E3 /* PWCTimerSettingsViewController.m */; };
 		13964DD218D7EC7F00E21E15 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13964DD118D7EC7F00E21E15 /* CFNetwork.framework */; };
 		13AFD14E18F4C1CE0001C03A /* PWCPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */; };
 		13B713AF18D7E21F00B00D20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B713AE18D7E21F00B00D20 /* Security.framework */; };
@@ -179,6 +180,8 @@
 		1376E0FD18F6524E00B3018E /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.1.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		1377DEE718FB8E2900D2B6E3 /* stopwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stopwatch.png; path = Images/stopwatch.png; sourceTree = "<group>"; };
 		1377DEEB18FB917700D2B6E3 /* ic_launcher copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_launcher copy.png"; path = "Images/ic_launcher copy.png"; sourceTree = "<group>"; };
+		1377DEED18FC48F600D2B6E3 /* PWCTimerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCTimerSettingsViewController.h; sourceTree = "<group>"; };
+		1377DEEE18FC48F600D2B6E3 /* PWCTimerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCTimerSettingsViewController.m; sourceTree = "<group>"; };
 		13964DD118D7EC7F00E21E15 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPreviewViewController.h; sourceTree = "<group>"; };
 		13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPreviewViewController.m; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 				1349528418F37C0E003C8759 /* PWCPageContentViewController.m */,
 				13AFD14C18F4C1CE0001C03A /* PWCPreviewViewController.h */,
 				13AFD14D18F4C1CE0001C03A /* PWCPreviewViewController.m */,
+				1377DEED18FC48F600D2B6E3 /* PWCTimerSettingsViewController.h */,
+				1377DEEE18FC48F600D2B6E3 /* PWCTimerSettingsViewController.m */,
 				132109CD18E490DD0041E394 /* PWCUtilities.h */,
 				132109CE18E490DD0041E394 /* PWCUtilities.m */,
 			);
@@ -761,6 +766,7 @@
 				132CC58C18DBBD7100FFD22D /* HTTPDataResponse.m in Sources */,
 				132CC58818DBBD7100FFD22D /* MultipartFormDataParser.m in Sources */,
 				132109CF18E490DD0041E394 /* PWCUtilities.m in Sources */,
+				1377DEEF18FC48F600D2B6E3 /* PWCTimerSettingsViewController.m in Sources */,
 				132CC59018DBBD7100FFD22D /* HTTPRedirectResponse.m in Sources */,
 				45D969A01553058E00338688 /* CPDFPageViewController.m in Sources */,
 				1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */,

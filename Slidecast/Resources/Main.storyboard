@@ -40,11 +40,15 @@
                                     <barButtonItem width="62" style="plain" systemItem="fixedSpace" id="pKr-Ed-Lw4"/>
                                     <barButtonItem systemItem="compose" id="gj7-hG-Edg">
                                         <connections>
-                                            <segue destination="hTT-Uf-dNu" kind="push" identifier="notesSegue" id="2SS-E5-HgS"/>
+                                            <segue destination="AxK-3e-Ylx" kind="modal" identifier="notesSegue" id="2SS-E5-HgS"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="NUg-px-P3B"/>
-                                    <barButtonItem image="stopwatch.png" id="a2t-D5-MVb"/>
+                                    <barButtonItem image="stopwatch.png" id="a2t-D5-MVb">
+                                        <connections>
+                                            <segue destination="c9g-8u-sQf" kind="modal" identifier="timerSegue" id="6E6-Me-IX4"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="0Sr-x4-xpx"/>
                                     <barButtonItem systemItem="play" id="uVA-2j-HV5">
                                         <connections>
@@ -58,7 +62,7 @@
                     <navigationItem key="navigationItem" title="(Name of Presentation)" id="70b-H1-6QW">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="J2Z-9H-pF5">
                             <connections>
-                                <segue destination="l97-IY-nHJ" kind="unwind" unwindAction="unwindToList:" id="D5n-NR-RqU"/>
+                                <segue destination="l97-IY-nHJ" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToList:" id="D5n-NR-RqU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -108,6 +112,11 @@
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" title="(Notes for Slide #)" id="sna-3U-zr1">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="pMJ-8H-ICd">
+                            <connections>
+                                <segue destination="Qed-bG-IOK" kind="unwind" unwindAction="unwindToPreview:" id="P4O-Lh-BB6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uI8-P8-ngY">
                             <connections>
                                 <action selector="addAndSaveNotes:" destination="hTT-Uf-dNu" id="qg8-7b-d0Y"/>
@@ -122,8 +131,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLp-XA-LiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Qed-bG-IOK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-611" y="-2544"/>
+            <point key="canvasLocation" x="-187" y="-2752"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="noT-aQ-alh">
@@ -155,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQo-cn-vq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-611" y="-1872"/>
+            <point key="canvasLocation" x="-187" y="-3446"/>
         </scene>
         <!--Library View Controller - Presentations-->
         <scene sceneID="Gnc-Vv-tqy">
@@ -292,14 +302,14 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Elapsed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-be-ZQD">
-                                <rect key="frame" x="20" y="76" width="109" height="21"/>
+                                <rect key="frame" x="60" y="76" width="109" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Uh-WkB">
-                                <rect key="frame" x="137" y="76" width="163" height="21"/>
+                                <rect key="frame" x="190" y="76" width="163" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.090677264760000001" green="0.088677519869999999" blue="0.93006963320000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,6 +354,7 @@
                         <outlet property="previewCollectionView" destination="fZC-x5-eXJ" id="ydh-bd-Zgg"/>
                         <outlet property="segmentedControl" destination="Bng-Gg-fKa" id="Fd5-kp-fv3"/>
                         <outlet property="singleTapRecognizer" destination="S7f-kS-X8m" id="uZh-7C-aZn"/>
+                        <outlet property="timeElapsedLabel" destination="4AL-be-ZQD" id="Njs-23-8ta"/>
                         <outlet property="timeLabel" destination="kUG-Uh-WkB" id="opY-rY-Mh9"/>
                         <outlet property="timer" destination="kUG-Uh-WkB" id="6xz-kd-EFH"/>
                         <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="G7x-MG-ExV"/>
@@ -361,7 +372,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-611" y="-3260"/>
+            <point key="canvasLocation" x="-611" y="-3446"/>
         </scene>
         <!--Device Table View Controller - Connect to-->
         <scene sceneID="0PO-WC-bze">
@@ -488,6 +499,116 @@
             </objects>
             <point key="canvasLocation" x="-1561" y="-1927"/>
         </scene>
+        <!--Timer Settings View Controller-->
+        <scene sceneID="Eie-Ti-fYB">
+            <objects>
+                <viewController id="66m-FT-cM6" customClass="PWCTimerSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1gA-IM-9hi"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mgf-zM-UKa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2iU-pY-dIF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIh-Pc-Fof">
+                                <rect key="frame" x="20" y="114" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Ix-d8-R6y">
+                                <rect key="frame" x="251" y="109" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="66m-FT-cM6" eventType="valueChanged" id="pbD-9z-Vbw"/>
+                                </connections>
+                            </switch>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cjX-sV-CVv">
+                                <rect key="frame" x="0.0" y="180" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="419189097.69763303">
+                                    <!--2014-04-14 17:24:57 +0000-->
+                                </date>
+                                <timeZone key="timeZone" name="America/Los_Angeles">
+                                    <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                                </timeZone>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yMH-Q6-iJV">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="gle-w7-pWm">
+                            <connections>
+                                <segue destination="akZ-aF-RFO" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToPreview:" id="J4i-bG-NQN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="cjX-sV-CVv" id="xtU-aY-LAc"/>
+                        <outlet property="timerSwitch" destination="5Ix-d8-R6y" id="5UO-D9-Aud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8M1-Jo-BuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="akZ-aF-RFO" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-187" y="-1927"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zjt-GN-eR0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AxK-3e-Ylx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yeB-Rx-fQd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hTT-Uf-dNu" kind="relationship" relationship="rootViewController" id="YMO-us-rtu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzT-oC-ET2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-621" y="-2752"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k3s-aj-T6J">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c9g-8u-sQf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2gG-DT-Pdt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="66m-FT-cM6" kind="relationship" relationship="rootViewController" id="5eP-uR-eVg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ysL-Th-gNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-621" y="-1927"/>
+        </scene>
     </scenes>
     <resources>
         <image name="stopwatch.png" width="23" height="27"/>
@@ -498,6 +619,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="I0E-Ie-Urr"/>
+        <segue reference="G7x-MG-ExV"/>
     </inferredMetricsTieBreakers>
 </document>

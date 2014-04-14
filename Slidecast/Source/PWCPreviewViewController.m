@@ -14,6 +14,7 @@
 #import "CPDFPage.h"
 #import "PWCAppDelegate.h"
 #import "PWCNotesViewController.h"
+#import "PWCTimerSettingsViewController.h"
 
 @interface PWCPreviewViewController ()
 
@@ -22,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *presentationTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *presentationPreview;
 @property (weak, nonatomic) IBOutlet UILabel *numberSlides;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (weak, nonatomic) IBOutlet UIButton *setTimerButton;
 
 @end
 
@@ -63,11 +62,6 @@
     
     // display cast icon in the right navigation bar button
     self.navigationItem.rightBarButtonItem = self.chromecastController.chromecastBarButton;
-    
-    self.datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
-    // put the date picker outside of the view first
-    [self.datePicker setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width,
-                                         self.datePicker.frame.size.height)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,10 +94,18 @@
         // pass the document to the document view controller
         CPDFDocumentViewController *destination = segue.destinationViewController;
         destination.document = self.document;
+        destination.timerOn = self.timerOn;
+        destination.countDownDuration = self.countDownDuration;
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
-        PWCNotesViewController * dest = segue.destinationViewController;
-        dest.docTitle = self.document.title;
-        dest.numberOfPages = self.document.numberOfPages;
+        UINavigationController *navigationController = segue.destinationViewController;
+        PWCNotesViewController *destination = (PWCNotesViewController *)navigationController.visibleViewController;
+        destination.docTitle = self.document.title;
+        destination.numberOfPages = self.document.numberOfPages;
+    } else if ([segue.identifier isEqualToString:@"timerSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PWCTimerSettingsViewController *timerController = (PWCTimerSettingsViewController *)navigationController.visibleViewController;
+        timerController.timerIsInitiallyOn = self.timerOn;
+        timerController.countDownDuration = self.countDownDuration;
     }
 }
 
@@ -139,14 +141,8 @@
     }
 }
 
-- (IBAction)setTimer:(id)sender
-{
-    [self.view addSubview:self.datePicker];
-    [UIView animateWithDuration:1.0 animations:^{
-        [self.datePicker setFrame:CGRectMake(0, self.view.frame.size.height - self.datePicker.frame.size.height,
-                                             self.datePicker.frame.size.width, self.datePicker.frame.size.height)];
-    }];
-}
+- (IBAction)unwindToPreview:(UIStoryboardSegue *)segue
+{}
 
 #pragma mark - Chromecast Controller Delegate Methods
 

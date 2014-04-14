@@ -42,10 +42,8 @@
 @property (readwrite, nonatomic, strong) CPDFDocument *document;
 @property (readonly, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) UIView *backgroundView;
-@property (readwrite, nonatomic, assign) BOOL magazineMode;
-
-//@property GCKDeviceManager *deviceManager;
-//@property GCKMediaControlChannel *mediaControlChannel;
+@property (nonatomic) BOOL timerOn;
+@property (nonatomic) NSTimeInterval countDownDuration;
 
 - (BOOL)openPage:(CPDFPage *)inPage;
 

@@ -58,11 +58,12 @@
 @property (readwrite, nonatomic, strong) UIPageViewController *pageViewController;
 @property (readwrite, nonatomic, strong) CContentScrollView *scrollView;
 @property (readwrite, nonatomic, strong) IBOutlet UICollectionView *previewCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapRecognizer;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapRecognizer;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeElapsedLabel;
 
 @property (readwrite, nonatomic, assign) BOOL navigationBarHidden;
 @property (readwrite, nonatomic, strong) NSCache *renderedPageCache;
@@ -96,16 +97,31 @@
     // Create date from the elapsed time
     NSDate *currentDate = [NSDate date];
     NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
-    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSTimeInterval countDownInterval = self.countDownDuration - timeInterval;
+    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:countDownInterval];
     
-    // Create a date formatter
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    comps.hour = 0;
+    comps.minute = 0;
+    comps.second = 0;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *zeroDate = [calendar dateFromComponents:comps];
+    NSLog(@"%@", zeroDate);
     
-    // Format the elapsed time and set it to the label
-    NSString *timeString = [dateFormatter stringFromDate:timerDate];
-    self.timeLabel.text = timeString;
+    if (![timerDate isEqualToDate:zeroDate]) {
+        // if there is still time remaining, update the timer
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+        
+        // Format the elapsed time and set it to the label
+        NSString *timeString = [dateFormatter stringFromDate:timerDate];
+        self.timeLabel.text = timeString;
+    } else {
+        // otherwise, invalidate it
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 - (void)action:(id)sender
@@ -133,6 +149,10 @@
     // store a reference to the chromecast controller
     PWCAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     _chromecastController = delegate.chromecastController;
+    
+    // show/hide the timer as needed
+    self.timeElapsedLabel.hidden = !self.timerOn;
+    self.timeLabel.hidden = !self.timerOn;
     
     // set up the timer
     self.date = [NSDate date];
@@ -232,6 +252,7 @@
 {
     [super viewWillDisappear:animated];
     [self.timer invalidate];
+    self.timer = nil;
     [self.chromecastController stopCastMedia];
 }
 
