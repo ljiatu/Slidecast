@@ -13,6 +13,7 @@
 @interface PWCTimerSettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UISwitch *timerSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
@@ -27,6 +28,7 @@
     self.timerSwitch.on = self.timerIsInitiallyOn;
     
     // set up date picker
+    self.durationLabel.hidden = !self.timerIsInitiallyOn;
     self.datePicker.hidden = !self.timerIsInitiallyOn;
     self.datePicker.countDownDuration = self.countDownDuration;
 }
@@ -41,10 +43,12 @@
 {
     if (self.timerSwitch.on) {
         [UIView animateWithDuration:1.0 animations:^{
+            self.durationLabel.hidden = NO;
             self.datePicker.hidden = NO;
         }];
     } else {
         [UIView animateWithDuration:1.0 animations:^{
+            self.durationLabel.hidden = YES;
             self.datePicker.hidden = YES;
         }];
     }
