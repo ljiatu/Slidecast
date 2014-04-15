@@ -84,7 +84,7 @@
 
 #pragma mark -
 
-- (void)setBackgroundView:(UIView *)backgroundView
+/*- (void)setBackgroundView:(UIView *)backgroundView
 {
     if (_backgroundView != backgroundView)
     {
@@ -93,48 +93,7 @@
         _backgroundView = backgroundView;
         [self.view insertSubview:_backgroundView atIndex:0];
     }
-}
-
-- (void)updateTimer
-{
-    self.elapsedTime -= 0.2;
-    
-    if (self.elapsedTime <= (NSTimeInterval)0) {
-        // if ther is no time remaining, invalidate the timer
-        [self.timer invalidate];
-        self.timer = nil;
-    } else {
-        // otherwise, update the timer
-        // Create date from the elapsed time
-        NSDate *currentDate = [NSDate date];
-        NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
-        NSTimeInterval countDownInterval = self.countDownDuration - timeInterval;
-        NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:countDownInterval];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        
-        [dateFormatter setDateFormat:@"HH:mm:ss"];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
-        
-        // Format the elapsed time and set it to the label
-        NSString *timeString = [dateFormatter stringFromDate:timerDate];
-        self.timeLabel.text = timeString;
-    }
-}
-
-- (void)action:(id)sender
-{
-    if([self.segmentedControl selectedSegmentIndex] == 0)
-    {
-        self.previewCollectionView.hidden = NO;
-        self.noteLabel.hidden = YES;
-        self.noteText.hidden = YES;
-    } else if([self.segmentedControl selectedSegmentIndex] == 1)
-    {
-        self.previewCollectionView.hidden = YES;
-        self.noteLabel.hidden = NO;
-        self.noteText.hidden = NO;
-    }
-}
+}*/
 
 - (void)viewDidLoad
 {
@@ -164,7 +123,7 @@
     
     // set up the timer
     self.date = [NSDate date];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timerFireTimeInterval
                                                   target:self
                                                 selector:@selector(updateTimer)
                                                 userInfo:nil
@@ -230,7 +189,6 @@
     self.notes = [[PWCNotes alloc] initNotesWithFilename:theFirstViewController.page.document.title
                                  path:path
                               numberOfPages:theFirstViewController.page.document.numberOfPages];
-    [self.segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
     
     // update title and cast the image of the first page
     [self updateTitleAndCastImage];
@@ -269,6 +227,47 @@
     [self.timer invalidate];
     self.timer = nil;
     [self.chromecastController stopCastMedia];
+}
+
+- (void)updateTimer
+{
+    self.elapsedTime -= timerFireTimeInterval;
+    
+    if (self.elapsedTime <= 0) {
+        // if ther is no time remaining, invalidate the timer
+        [self.timer invalidate];
+        self.timer = nil;
+    } else {
+        // otherwise, update the timer
+        // Create date from the elapsed time
+        NSDate *currentDate = [NSDate date];
+        NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.date];
+        NSTimeInterval countDownInterval = self.countDownDuration - timeInterval;
+        NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:countDownInterval];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+        
+        // Format the elapsed time and set it to the label
+        NSString *timeString = [dateFormatter stringFromDate:timerDate];
+        self.timeLabel.text = timeString;
+    }
+}
+
+- (IBAction)segmentedControlValueChanged:(UISegmentedControl *)control
+{
+    if([control selectedSegmentIndex] == 0)
+    {
+        self.previewCollectionView.hidden = NO;
+        self.noteLabel.hidden = YES;
+        self.noteText.hidden = YES;
+    } else if([control selectedSegmentIndex] == 1)
+    {
+        self.previewCollectionView.hidden = YES;
+        self.noteLabel.hidden = NO;
+        self.noteText.hidden = NO;
+    }
 }
 
 - (NSString *)getIPAddress

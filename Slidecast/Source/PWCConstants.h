@@ -20,4 +20,7 @@ extern const CGFloat BACKGROUND_RED_VALUE;
 extern const CGFloat BACKGROUND_GREEN_VALUE;
 extern const CGFloat BACKGROUND_BLUE_VALUE;
 
+// the amount of time between two consecutive timer firing
+extern const NSTimeInterval timerFireTimeInterval;
+
 @end

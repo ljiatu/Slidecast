@@ -18,4 +18,6 @@ const CGFloat BACKGROUND_RED_VALUE = 127 / 255.0;
 const CGFloat BACKGROUND_GREEN_VALUE = 54 / 255.0;
 const CGFloat BACKGROUND_BLUE_VALUE = 151 / 255.0;
 
+const NSTimeInterval timerFireTimeInterval = 0.1;
+
 @end

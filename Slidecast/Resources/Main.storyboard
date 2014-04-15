@@ -344,6 +344,9 @@
                                     <segment title="Preview"/>
                                     <segment title="Notes"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="e00-ps-v49" eventType="valueChanged" id="ozu-GF-XdH"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-Yd-c0G">
                                 <rect key="frame" x="5" y="468" width="42" height="21"/>
@@ -591,7 +594,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Timer Settings" id="yMH-Q6-iJV">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="gle-w7-pWm">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="gle-w7-pWm">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="akZ-aF-RFO" kind="unwind" identifier="timerUnwindSegue" unwindAction="unwindToPreview:" id="J4i-bG-NQN"/>
