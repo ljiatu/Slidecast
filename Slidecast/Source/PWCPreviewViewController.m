@@ -13,6 +13,7 @@
 #import "CPDFDocument.h"
 #import "CPDFPage.h"
 #import "PWCAppDelegate.h"
+#import "PWCConstants.h"
 #import "PWCNotesViewController.h"
 #import "PWCTimerSettingsViewController.h"
 
@@ -42,8 +43,8 @@
     // initialize the document
     self.document = [[CPDFDocument alloc] initWithURL:self.documentURL];
     
-    // set background color
-    self.view.backgroundColor = [UIColor purpleColor];
+    // set background picture
+    self.view.layer.contents = (id)[UIImage imageNamed:@"background.jpg"].CGImage;
     
     // set title
     self.presentationTitle.title = self.document.title;

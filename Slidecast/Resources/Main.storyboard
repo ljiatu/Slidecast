@@ -39,21 +39,21 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem width="62" style="plain" systemItem="fixedSpace" id="pKr-Ed-Lw4"/>
+                                    <barButtonItem width="51" style="plain" systemItem="fixedSpace" id="pKr-Ed-Lw4"/>
                                     <barButtonItem systemItem="compose" id="gj7-hG-Edg">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="AxK-3e-Ylx" kind="modal" identifier="notesSegue" id="2SS-E5-HgS"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="NUg-px-P3B"/>
+                                    <barButtonItem width="51" style="plain" systemItem="fixedSpace" id="NUg-px-P3B"/>
                                     <barButtonItem image="stopwatch.png" id="a2t-D5-MVb">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="c9g-8u-sQf" kind="modal" identifier="timerSegue" id="6E6-Me-IX4"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="0Sr-x4-xpx"/>
+                                    <barButtonItem width="55" style="plain" systemItem="fixedSpace" id="0Sr-x4-xpx"/>
                                     <barButtonItem systemItem="play" id="uVA-2j-HV5">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -61,7 +61,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                             </toolbar>
                         </subviews>
                     </view>
@@ -115,7 +115,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -183,7 +183,7 @@
         <scene sceneID="Gnc-Vv-tqy">
             <objects>
                 <tableViewController id="jLl-nS-bAu" customClass="CLibraryViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VwD-W1-7fH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VwD-W1-7fH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,7 +199,7 @@
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -240,7 +240,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zXk-lf-peI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.70786181939712911" green="0.014239679121644023" blue="0.89317255434782605" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32549020648002625" green="0.0078431377187371254" blue="0.43529415130615234" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -259,7 +259,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6hm-4a-vSe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -316,26 +316,34 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-be-ZQD">
-                                <rect key="frame" x="53" y="76" width="129" height="21"/>
+                                <rect key="frame" x="52" y="137" width="129" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Uh-WkB">
-                                <rect key="frame" x="196" y="76" width="163" height="21"/>
+                                <rect key="frame" x="196" y="137" width="163" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFa-RO-zlC">
-                                <rect key="frame" x="0.0" y="462" width="320" height="106"/>
+                                <rect key="frame" x="0.0" y="463" width="320" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bng-Gg-fKa">
+                                <rect key="frame" x="67" y="77" width="187" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Preview"/>
+                                    <segment title="Notes"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -353,14 +361,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4G-dH-KEp">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Bng-Gg-fKa">
-                            <rect key="frame" x="67" y="6" width="187" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Preview"/>
-                                <segment title="Notes"/>
-                            </segments>
-                        </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="doubleTapRecognizer" destination="VSg-99-qdL" id="xBI-ig-Ax2"/>
@@ -386,7 +386,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-611" y="-3446"/>
+            <point key="canvasLocation" x="-621" y="-3446"/>
         </scene>
         <!--Device Table View Controller - Connect to-->
         <scene sceneID="0PO-WC-bze">
@@ -408,7 +408,7 @@
                                             <rect key="frame" x="15" y="2" width="34" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hl8-tG-Fq9">
@@ -432,6 +432,7 @@
                                             <rect key="frame" x="0.0" y="7" width="320" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Disconnect">
+                                                <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -504,7 +505,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Oh-hi-mnD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -537,7 +538,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Ix-d8-R6y">
                                 <rect key="frame" x="251" y="109" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="66m-FT-cM6" eventType="valueChanged" id="pbD-9z-Vbw"/>
                                 </connections>
@@ -607,7 +608,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yeB-Rx-fQd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -626,7 +627,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2gG-DT-Pdt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.70786181940000004" green="0.014239679119999999" blue="0.89317255429999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -647,6 +648,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="I0E-Ie-Urr"/>
+        <segue reference="xnQ-a4-Jtl"/>
     </inferredMetricsTieBreakers>
 </document>

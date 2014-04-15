@@ -45,7 +45,10 @@
 		132CC5A218DBC2D800FFD22D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132CC5A118DBC2D800FFD22D /* libxml2.dylib */; };
 		1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */; };
 		1349528518F37C0E003C8759 /* PWCPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1349528418F37C0E003C8759 /* PWCPageContentViewController.m */; };
-		135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */; };
+		134D017918FDADD400BDF6FC /* PWCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 134D017818FDADD400BDF6FC /* PWCConstants.m */; };
+		134D017F18FDBB3D00BDF6FC /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 134D017E18FDBB3D00BDF6FC /* background.jpg */; };
+		134D018518FDBEE700BDF6FC /* launch-1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134D018318FDBEE700BDF6FC /* launch-1x.png */; };
+		134D018718FDBF0100BDF6FC /* launch-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134D018618FDBF0100BDF6FC /* launch-2x.png */; };
 		135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAC18E8E90B0077DDF3 /* cast_off.png */; };
 		135EFFB318E8E90B0077DDF3 /* cast_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAD18E8E90B0077DDF3 /* cast_on.png */; };
 		135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */ = {isa = PBXBuildFile; fileRef = 135EFFAE18E8E90B0077DDF3 /* cast_on0.png */; };
@@ -170,7 +173,11 @@
 		1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCChromecastDeviceController.m; sourceTree = "<group>"; };
 		1349528318F37C0E003C8759 /* PWCPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCPageContentViewController.h; sourceTree = "<group>"; };
 		1349528418F37C0E003C8759 /* PWCPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCPageContentViewController.m; sourceTree = "<group>"; };
-		135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
+		134D017718FDADD400BDF6FC /* PWCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCConstants.h; sourceTree = "<group>"; };
+		134D017818FDADD400BDF6FC /* PWCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCConstants.m; sourceTree = "<group>"; };
+		134D017E18FDBB3D00BDF6FC /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images/background.jpg; sourceTree = "<group>"; };
+		134D018318FDBEE700BDF6FC /* launch-1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-1x.png"; path = "Images/launch-1x.png"; sourceTree = "<group>"; };
+		134D018618FDBF0100BDF6FC /* launch-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-2x.png"; path = "Images/launch-2x.png"; sourceTree = "<group>"; };
 		135EFFAC18E8E90B0077DDF3 /* cast_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_off.png; sourceTree = "<group>"; };
 		135EFFAD18E8E90B0077DDF3 /* cast_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on.png; sourceTree = "<group>"; };
 		135EFFAE18E8E90B0077DDF3 /* cast_on0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on0.png; sourceTree = "<group>"; };
@@ -431,10 +438,12 @@
 		135EFC5918E8B8540077DDF3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				134D018618FDBF0100BDF6FC /* launch-2x.png */,
+				134D018318FDBEE700BDF6FC /* launch-1x.png */,
+				134D017E18FDBB3D00BDF6FC /* background.jpg */,
 				1377DEF018FC986A00D2B6E3 /* icon.png */,
 				1377DEE718FB8E2900D2B6E3 /* stopwatch.png */,
 				135EFFAB18E8E90B0077DDF3 /* 1x */,
-				135EFFA918E8BA800077DDF3 /* Default-568h@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -509,6 +518,8 @@
 				455699A115507139009E52FE /* PWCAppDelegate.m */,
 				1339F18118EA289700A14F1C /* PWCChromecastDeviceController.h */,
 				1339F18218EA289700A14F1C /* PWCChromecastDeviceController.m */,
+				134D017718FDADD400BDF6FC /* PWCConstants.h */,
+				134D017818FDADD400BDF6FC /* PWCConstants.m */,
 				1309E5CE18EB1ABF007952F9 /* PWCDeviceTableViewController.h */,
 				1309E5CF18EB1ABF007952F9 /* PWCDeviceTableViewController.m */,
 				13FE0A9518E39A3D000AA6E0 /* PWCFileServer.h */,
@@ -708,17 +719,19 @@
 			files = (
 				1377DEF118FC986A00D2B6E3 /* icon.png in Resources */,
 				135EFFB218E8E90B0077DDF3 /* cast_off.png in Resources */,
-				135EFFAA18E8BA800077DDF3 /* Default-568h@2x.png in Resources */,
 				1377DEF318FC989C00D2B6E3 /* Images.xcassets in Resources */,
 				132CC59618DBBD7100FFD22D /* About.txt in Resources */,
 				130D9FB118D4D6E7000B07A6 /* Main.storyboard in Resources */,
 				9F0C06ED18EC9EB900DA7726 /* design.storyboard in Resources */,
 				135EFFB418E8E90B0077DDF3 /* cast_on0.png in Resources */,
 				135EFFB618E8E90B0077DDF3 /* cast_on2.png in Resources */,
+				134D017F18FDBB3D00BDF6FC /* background.jpg in Resources */,
 				1377DEE818FB8E2900D2B6E3 /* stopwatch.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,
 				135EFFB318E8E90B0077DDF3 /* cast_on.png in Resources */,
 				135EFFB518E8E90B0077DDF3 /* cast_on1.png in Resources */,
+				134D018518FDBEE700BDF6FC /* launch-1x.png in Resources */,
+				134D018718FDBF0100BDF6FC /* launch-2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +796,7 @@
 				9FD5BD3118EA985C00B55EC3 /* PWCJpegManager.m in Sources */,
 				1339F18318EA289700A14F1C /* PWCChromecastDeviceController.m in Sources */,
 				45454DF11558429C004AC470 /* CContentScrollView.m in Sources */,
+				134D017918FDADD400BDF6FC /* PWCConstants.m in Sources */,
 				132CC59F18DBBD7100FFD22D /* DispatchQueueLogFormatter.m in Sources */,
 				132CC58718DBBD7100FFD22D /* HTTPServer.m in Sources */,
 				45F9FAFA1582D495004D267B /* CFadelessTiledLayer.m in Sources */,

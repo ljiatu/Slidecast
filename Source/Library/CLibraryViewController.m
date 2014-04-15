@@ -173,10 +173,10 @@
 
 #pragma mark - Table view delegate
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)inSection
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)inSection
 {
     return(@"Please select a presentation");
-}
+}*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // dehighlight the selected row

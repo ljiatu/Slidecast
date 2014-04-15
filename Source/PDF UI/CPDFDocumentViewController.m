@@ -45,6 +45,7 @@
 #import "CPreviewCollectionViewCell.h"
 #import "Geometry.h"
 #import "PWCAppDelegate.h"
+#import "PWCConstants.h"
 #import "PWCFileServer.h"
 #import "PWCNotes.h"
 
@@ -152,7 +153,10 @@
     self.segmentedControl.tintColor = [UIColor whiteColor];
     
     // set the background to be purple
-    self.view.backgroundColor = [UIColor purpleColor];
+    /*self.view.backgroundColor = [UIColor colorWithRed:BACKGROUND_RED_VALUE
+                                                green:BACKGROUND_GREEN_VALUE
+                                                 blue:BACKGROUND_BLUE_VALUE
+                                                alpha:1.0];*/
     
     // show/hide the timer as needed
     self.timeRemainingLabel.hidden = !self.timerOn;
@@ -203,11 +207,19 @@
     
     self.previewCollectionView.dataSource = self;
     self.previewCollectionView.delegate = self;
+    self.previewCollectionView.backgroundColor = [UIColor colorWithRed:NAVIGATION_RED_VALUE
+                                                                 green:NAVIGATION_GREEN_VALUE
+                                                                  blue:NAVIGATION_BLUE_VALUE
+                                                                 alpha:1.0];
+    self.view.layer.contents = (id)[UIImage imageNamed:@"background.jpg"].CGImage;
     
     [self.singleTapRecognizer requireGestureRecognizerToFail:self.doubleTapRecognizer];
     
     // add a border for text view
-    self.noteText.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.noteText.layer.borderColor = [[UIColor colorWithRed:NAVIGATION_RED_VALUE
+                                                       green:NAVIGATION_GREEN_VALUE
+                                                        blue:NAVIGATION_BLUE_VALUE
+                                                       alpha:1.0] CGColor];
     self.noteText.layer.borderWidth = 1;
     
     // get the ip address and port of the device
@@ -313,6 +325,7 @@
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             self.navigationController.navigationBar.alpha = 0.0;
             self.previewCollectionView.alpha = 0.0;
+            self.segmentedControl.alpha = 0.0;
         } completion:^(BOOL finished) {
             self.navigationBarHidden = YES;
         }];
@@ -326,6 +339,7 @@
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
         self.navigationController.navigationBar.alpha = (1.0 - !self.navigationBarHidden);
         self.previewCollectionView.alpha = (1.0 - !self.navigationBarHidden);
+        self.segmentedControl.alpha = (1.0 - !self.navigationBarHidden);
     } completion:^(BOOL finished) {
         self.navigationBarHidden = !self.navigationBarHidden;
     }];
@@ -340,6 +354,7 @@
     CPDFPageViewController *theFirstViewController = theViewControllers[0];
     NSInteger pageNumber = theFirstViewController.page.pageNumber;
     self.title = [NSString stringWithFormat:@"Page %ld", (long)pageNumber];
+
     // load notes for that page
     [self.noteText setText:[self.notes getNoteAtIndex:(pageNumber - 1)]];
     // cast image of the page
