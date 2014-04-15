@@ -60,6 +60,7 @@
 @property (readwrite, nonatomic, strong) CContentScrollView *scrollView;
 @property (readwrite, nonatomic, strong) IBOutlet UICollectionView *previewCollectionView;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UILabel *noteLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapRecognizer;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapRecognizer;
@@ -125,10 +126,12 @@
     if([self.segmentedControl selectedSegmentIndex] == 0)
     {
         self.previewCollectionView.hidden = NO;
+        self.noteLabel.hidden = YES;
         self.noteText.hidden = YES;
     } else if([self.segmentedControl selectedSegmentIndex] == 1)
     {
         self.previewCollectionView.hidden = YES;
+        self.noteLabel.hidden = NO;
         self.noteText.hidden = NO;
     }
 }
@@ -152,12 +155,9 @@
     // set the segmented control to be white
     self.segmentedControl.tintColor = [UIColor whiteColor];
     
-    // set the background to be purple
-    /*self.view.backgroundColor = [UIColor colorWithRed:BACKGROUND_RED_VALUE
-                                                green:BACKGROUND_GREEN_VALUE
-                                                 blue:BACKGROUND_BLUE_VALUE
-                                                alpha:1.0];*/
-    
+    // set the background picture
+    self.view.layer.contents = (id)[UIImage imageNamed:@"background.jpg"].CGImage;
+
     // show/hide the timer as needed
     self.timeRemainingLabel.hidden = !self.timerOn;
     self.timeLabel.hidden = !self.timerOn;
@@ -211,16 +211,21 @@
                                                                  green:NAVIGATION_GREEN_VALUE
                                                                   blue:NAVIGATION_BLUE_VALUE
                                                                  alpha:1.0];
-    self.view.layer.contents = (id)[UIImage imageNamed:@"background.jpg"].CGImage;
     
     [self.singleTapRecognizer requireGestureRecognizerToFail:self.doubleTapRecognizer];
     
+    // set the background of text
+    self.noteText.backgroundColor = [UIColor clearColor];
+    self.noteText.textColor = [UIColor whiteColor];
+    self.noteLabel.hidden = YES;
+    self.noteText.hidden = YES;
+    
     // add a border for text view
-    self.noteText.layer.borderColor = [[UIColor colorWithRed:NAVIGATION_RED_VALUE
+    /*self.noteText.layer.borderColor = [[UIColor colorWithRed:NAVIGATION_RED_VALUE
                                                        green:NAVIGATION_GREEN_VALUE
                                                         blue:NAVIGATION_BLUE_VALUE
                                                        alpha:1.0] CGColor];
-    self.noteText.layer.borderWidth = 1;
+    self.noteText.layer.borderWidth = 1;*/
     
     // get the ip address and port of the device
     self.ipAddress = [self getIPAddress];
@@ -329,8 +334,6 @@
         } completion:^(BOOL finished) {
             self.navigationBarHidden = YES;
         }];
-        //[self.navigationController setNavigationBarHidden:YES animated:YES];
-        //self.navigationBarHidden = YES;
     }
 }
 
@@ -343,9 +346,6 @@
     } completion:^(BOOL finished) {
         self.navigationBarHidden = !self.navigationBarHidden;
     }];
-    
-    //[self.navigationController setNavigationBarHidden:!self.navigationBarHidden animated:YES];
-    //self.navigationBarHidden = !self.navigationBarHidden;
 }
 
 - (void)updateTitleAndCastImage
