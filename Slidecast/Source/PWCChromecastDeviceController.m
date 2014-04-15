@@ -94,11 +94,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     [self.deviceManager disconnect];
 }
 
-/*- (void)updateToolbarForViewController:(UIViewController *)viewController
-{
-    [self updateToolbarStateIn:viewController];
-}*/
-
 - (void)updateStatsFromDevice
 {
     if (self.isConnected && self.mediaControlChannel && self.mediaControlChannel.mediaStatus) {
@@ -313,20 +308,5 @@ didCompleteLoadWithSessionID:(NSInteger)sessionID
         }
     }
 }
-
-/*- (void)updateToolbarStateIn:(UIViewController *)viewController
-{
-    // Ignore this view controller if it is not visible.
-    if (!(viewController.isViewLoaded && viewController.view.window)) {
-        return;
-    }
-    // Get the playing status.
-    if (self.isPlayingMedia) {
-        viewController.navigationController.toolbarHidden = NO;
-    } else {
-        viewController.navigationController.toolbarHidden = YES;
-        return;
-    }
-}*/
 
 @end

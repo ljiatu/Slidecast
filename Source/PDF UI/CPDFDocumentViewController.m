@@ -220,13 +220,6 @@
     self.noteLabel.hidden = YES;
     self.noteText.hidden = YES;
     
-    // add a border for text view
-    /*self.noteText.layer.borderColor = [[UIColor colorWithRed:NAVIGATION_RED_VALUE
-                                                       green:NAVIGATION_GREEN_VALUE
-                                                        blue:NAVIGATION_BLUE_VALUE
-                                                       alpha:1.0] CGColor];
-    self.noteText.layer.borderWidth = 1;*/
-    
     // get the ip address and port of the device
     self.ipAddress = [self getIPAddress];
     self.port = [delegate.server listeningPort];
@@ -376,11 +369,6 @@
     CGRect theBounds = self.view.bounds;
     CGRect theFrame;
     CGRect theMediaBox = [self.document pageForPageNumber:1].mediaBox;
-    /*if ([self canDoubleSpreadForOrientation:inOrientation] == YES) {
-        theMediaBox.size.width *= 2;
-    } else {
-        theFrame = ScaleAndAlignRectToRect(theMediaBox, theBounds, ImageScaling_Proportionally, ImageAlignment_Center);
-    }*/
     theFrame = ScaleAndAlignRectToRect(theMediaBox, theBounds, ImageScaling_Proportionally, ImageAlignment_Center);
     theFrame = CGRectIntegral(theFrame);
     
