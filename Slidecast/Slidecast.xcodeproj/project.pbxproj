@@ -54,7 +54,6 @@
 		134D019118FE04CD00BDF6FC /* cast_on0.png in Resources */ = {isa = PBXBuildFile; fileRef = 134D018B18FE04CD00BDF6FC /* cast_on0.png */; };
 		134D019218FE04CD00BDF6FC /* cast_on1.png in Resources */ = {isa = PBXBuildFile; fileRef = 134D018C18FE04CD00BDF6FC /* cast_on1.png */; };
 		134D019318FE04CD00BDF6FC /* cast_on2.png in Resources */ = {isa = PBXBuildFile; fileRef = 134D018D18FE04CD00BDF6FC /* cast_on2.png */; };
-		134D019418FE04CD00BDF6FC /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 134D018E18FE04CD00BDF6FC /* Icon */; };
 		1375979218F0BEDB00A32C40 /* PDFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C25DD8155335BD001BA233 /* PDFUtilities.m */; };
 		1375979518F0BF7900A32C40 /* CPDFObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1375979418F0BF7900A32C40 /* CPDFObjectReference.m */; };
 		1376E0FE18F6524E00B3018E /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1376E0FD18F6524E00B3018E /* GoogleCast.framework */; };
@@ -184,7 +183,6 @@
 		134D018B18FE04CD00BDF6FC /* cast_on0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on0.png; sourceTree = "<group>"; };
 		134D018C18FE04CD00BDF6FC /* cast_on1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on1.png; sourceTree = "<group>"; };
 		134D018D18FE04CD00BDF6FC /* cast_on2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_on2.png; sourceTree = "<group>"; };
-		134D018E18FE04CD00BDF6FC /* Icon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
 		1375979318F0BF7900A32C40 /* CPDFObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDFObjectReference.h; sourceTree = "<group>"; };
 		1375979418F0BF7900A32C40 /* CPDFObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDFObjectReference.m; sourceTree = "<group>"; };
 		1376E0FD18F6524E00B3018E /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastFramework-2.1.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 				134D018B18FE04CD00BDF6FC /* cast_on0.png */,
 				134D018C18FE04CD00BDF6FC /* cast_on1.png */,
 				134D018D18FE04CD00BDF6FC /* cast_on2.png */,
-				134D018E18FE04CD00BDF6FC /* Icon */,
 			);
 			name = 1x;
 			path = Images/Cast_Icons/ios/exported/white_white/cast_icon/1x;
@@ -731,7 +728,6 @@
 				134D019218FE04CD00BDF6FC /* cast_on1.png in Resources */,
 				134D018F18FE04CD00BDF6FC /* cast_off.png in Resources */,
 				134D017F18FDBB3D00BDF6FC /* background.jpg in Resources */,
-				134D019418FE04CD00BDF6FC /* Icon in Resources */,
 				1377DEE818FB8E2900D2B6E3 /* stopwatch.png in Resources */,
 				132CC5A018DBBD7100FFD22D /* README.txt in Resources */,
 				134D018518FDBEE700BDF6FC /* launch-1x.png in Resources */,
