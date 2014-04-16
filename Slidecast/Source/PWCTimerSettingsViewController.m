@@ -70,6 +70,8 @@
         destination.timerOn = self.timerSwitch.on;
         if (self.timerSwitch.on) {
             destination.countDownDuration = self.datePicker.countDownDuration;
+        } else {
+            destination.countDownDuration = 0;
         }
     }
 }
