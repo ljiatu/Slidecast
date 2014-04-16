@@ -7,6 +7,7 @@
 //
 
 #import "PWCNotesViewController.h"
+
 #import "PWCPageContentViewController.h"
 #import "PWCNotes.h"
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic) PWCNotes *notes;
 @property (nonatomic) UIPageViewController *pageViewController;
+@property (nonatomic) NSString *imageDirectoryPath;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousButton;
@@ -32,7 +34,8 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    _notes = [[PWCNotes alloc] initNotesWithFilename:self.docTitle path:path numberOfPages:self.numberOfPages];
+    _imageDirectoryPath = [path stringByAppendingFormat:@"/%@", self.documentTitle];
+    _notes = [[PWCNotes alloc] initNotesWithFilename:self.documentTitle path:path numberOfPages:self.numberOfPages];
     
     // if there is only one slide, disable the next button
     if (self.numberOfPages <= 1) {
@@ -101,6 +104,10 @@
     // display notes in the text view
     NSString *text = [self.notes getNoteAtIndex:index];
     [viewController.textView setText:text];
+    
+    // get the corresponding slide
+    NSString *imagePath = [self.imageDirectoryPath stringByAppendingFormat:@"/%d.jpeg", index + 1];
+    [viewController.slideView setImage:[UIImage imageWithContentsOfFile:imagePath]];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController
@@ -187,6 +194,11 @@
                                        animated:YES
                                      completion:nil];
     [viewController.textView setText:[self.notes getNoteAtIndex:index]];
+    
+    // get the corresponding slide
+    NSString *imagePath = [self.imageDirectoryPath stringByAppendingFormat:@"/%d.jpeg", index + 1];
+    [viewController.slideView setImage:[UIImage imageWithContentsOfFile:imagePath]];
+
     [self.pageTitle setTitle:[NSString stringWithFormat:@"Notes for slide %lu", (unsigned long)(index + 1)]];
 }
 

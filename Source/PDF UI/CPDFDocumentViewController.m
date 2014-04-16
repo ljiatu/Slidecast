@@ -187,8 +187,8 @@
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     CPDFPageViewController *theFirstViewController = theViewControllers[0];
     self.notes = [[PWCNotes alloc] initNotesWithFilename:theFirstViewController.page.document.title
-                                 path:path
-                              numberOfPages:theFirstViewController.page.document.numberOfPages];
+                                                    path:path
+                                           numberOfPages:theFirstViewController.page.document.numberOfPages];
     
     // update title and cast the image of the first page
     [self updateTitleAndCastImage];

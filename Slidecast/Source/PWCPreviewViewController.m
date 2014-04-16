@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *presentationTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *presentationPreview;
 @property (weak, nonatomic) IBOutlet UILabel *numberSlides;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 
@@ -82,6 +83,16 @@
     
     // force the navigation bar to be shown
     self.navigationController.navigationBar.alpha = 1.0;
+
+    // display the total time
+    if (self.countDownDuration == 0) {
+        self.timeLabel.text = @"--:--:--";
+    } else {
+        NSInteger hours = self.countDownDuration / 3600;
+        NSInteger minutes = (self.countDownDuration - hours * 3600) / 60;
+        NSInteger seconds = self.countDownDuration - hours * 3600 - minutes * 60;
+        self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minutes, seconds];
+    }
     
     // assign ourselves as delegate ONLY in viewWillAppear of a view controller.
     self.chromecastController.delegate = self;
@@ -104,7 +115,7 @@
     } else if ([segue.identifier isEqualToString:@"notesSegue"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         PWCNotesViewController *destination = (PWCNotesViewController *)navigationController.visibleViewController;
-        destination.docTitle = self.document.title;
+        destination.documentTitle = self.document.title;
         destination.numberOfPages = self.document.numberOfPages;
     } else if ([segue.identifier isEqualToString:@"timerSegue"]) {
         UINavigationController *navigationController = segue.destinationViewController;
@@ -122,7 +133,7 @@
     NSString *imageDirectoryPath = [documentsPath stringByAppendingFormat:@"/%@", self.document.title];
     
     // test if the images have been generated
-    if ([manager fileExistsAtPath:[imageDirectoryPath stringByAppendingFormat:@"/1.jpeg"]]) {
+    if ([manager fileExistsAtPath:[imageDirectoryPath stringByAppendingString:@"/1.jpeg"]]) {
         // if exists, do nothing
         return YES;
     } else {

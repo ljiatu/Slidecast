@@ -75,7 +75,6 @@ static NSString *const kReceiverAppID = @"2CFA780B";
     
     // Start animating the cast connect images.
     UIButton *chromecastButton = (UIButton *)self.chromecastBarButton.customView;
-    chromecastButton.tintColor = [UIColor whiteColor];
     chromecastButton.imageView.animationImages =
     @[ [UIImage imageNamed:@"cast_on0.png"], [UIImage imageNamed:@"cast_on1.png"],
        [UIImage imageNamed:@"cast_on2.png"], [UIImage imageNamed:@"cast_on1.png"] ];
@@ -86,11 +85,8 @@ static NSString *const kReceiverAppID = @"2CFA780B";
 - (void)disconnectFromDevice
 {
     NSLog(@"Disconnecting device:%@", self.selectedDevice.friendlyName);
-    // New way of doing things: We're not going to stop the applicaton. We're just going
-    // to leave it.
-    [self.deviceManager leaveApplication];
     // If you want to force application to stop, uncomment below
-    //[self.deviceManager stopApplication];
+    [self.deviceManager stopApplication];
     [self.deviceManager disconnect];
 }
 
@@ -280,6 +276,7 @@ didCompleteLoadWithSessionID:(NSInteger)sessionID
                forControlEvents:UIControlEventTouchDown];
     chromecastButton.frame = CGRectMake(0, 0, self.btnImage.size.width, self.btnImage.size.height);
     [chromecastButton setImage:self.btnImage forState:UIControlStateNormal];
+    chromecastButton.tintColor = [UIColor whiteColor];
     chromecastButton.hidden = YES;
     
     _chromecastBarButton = [[UIBarButtonItem alloc] initWithCustomView:chromecastButton];

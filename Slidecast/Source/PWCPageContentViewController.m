@@ -8,6 +8,8 @@
 
 #import "PWCPageContentViewController.h"
 
+#import "PWCConstants.h"
+
 @interface PWCPageContentViewController ()
 
 @end

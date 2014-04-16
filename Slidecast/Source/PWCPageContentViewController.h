@@ -13,6 +13,7 @@
 @interface PWCPageContentViewController : UIViewController <UITextViewDelegate>
 
 @property NSUInteger index;
+@property (weak, nonatomic) IBOutlet UIImageView *slideView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 - (void)dismissKeyboard;

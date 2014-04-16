@@ -24,6 +24,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmU-ld-HqX">
+                                <rect key="frame" x="20" y="336" width="75" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahO-rZ-hEy">
                                 <rect key="frame" x="60" y="92" width="200" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,6 +70,13 @@
                                 </items>
                                 <color key="barTintColor" red="0.32549020649999999" green="0.0078431377190000002" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
                             </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTi-OL-7aG">
+                                <rect key="frame" x="212" y="336" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" title="(Name of Presentation)" id="70b-H1-6QW">
@@ -77,6 +91,7 @@
                         <outlet property="numberSlides" destination="LSz-0g-zEP" id="anK-Gv-FKK"/>
                         <outlet property="presentationPreview" destination="ahO-rZ-hEy" id="RhN-Lg-co8"/>
                         <outlet property="presentationTitle" destination="70b-H1-6QW" id="Euc-dZ-qev"/>
+                        <outlet property="timeLabel" destination="zTi-OL-7aG" id="C2D-jE-UZC"/>
                         <segue destination="uWq-Tv-Tbj" kind="modal" identifier="devicesSegue" id="I0E-Ie-Urr"/>
                     </connections>
                 </viewController>
@@ -160,18 +175,23 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="lHO-Vf-fyg">
-                                <rect key="frame" x="0.0" y="69" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="214" width="320" height="316"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fmk-VS-vgO">
+                                <rect key="frame" x="65" y="68" width="191" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="NyS-xx-W7n"/>
                     <connections>
+                        <outlet property="slideView" destination="fmk-VS-vgO" id="gFt-n3-IAu"/>
                         <outlet property="textView" destination="lHO-Vf-fyg" id="5BA-N6-eVN"/>
                     </connections>
                 </viewController>
@@ -660,6 +680,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G7x-MG-ExV"/>
+        <segue reference="I0E-Ie-Urr"/>
     </inferredMetricsTieBreakers>
 </document>
